@@ -3,7 +3,8 @@
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Check, Loader2, Send } from "lucide-react";
-import { Field, Select, TextArea, TextInput } from "@/components/ui/Field";
+import { Field, TextArea, TextInput } from "@/components/ui/Field";
+import { SelectMenu } from "@/components/ui/SelectMenu";
 import { submitForm, FORM_ENDPOINT } from "@/lib/submitForm";
 import { validate, type Rule } from "@/lib/validate";
 
@@ -73,7 +74,7 @@ export function EnquiryForm({ variant = "apply" }: { variant?: Variant }) {
     heard: ["required"],
   };
 
-  const set = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const set = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues((v) => ({ ...v, [field]: e.target.value }));
     setErrors((prev) => {
       if (!prev[field]) return prev;
@@ -109,10 +110,10 @@ export function EnquiryForm({ variant = "apply" }: { variant?: Variant }) {
         initial={reduce ? false : { opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-3xl border border-sheen-700/30 bg-sheen-100 p-8 sm:p-10"
+        className="rounded-3xl border border-brand/30 bg-brand-100 p-8 sm:p-10"
         role="status"
       >
-        <span aria-hidden className="grid h-12 w-12 place-items-center rounded-full bg-sheen-700 text-paper">
+        <span aria-hidden className="grid h-12 w-12 place-items-center rounded-full bg-brand text-paper">
           <Check size={22} strokeWidth={2.6} />
         </span>
         <h3 className="display-md mt-6 text-ink">Sent.</h3>
@@ -195,18 +196,25 @@ export function EnquiryForm({ variant = "apply" }: { variant?: Variant }) {
       </Field>
 
       <Field label="How did you hear about us?" name="heard" required error={errors.heard}>
-        <Select name="heard" value={values.heard ?? ""} onChange={set("heard")} error={errors.heard}>
-          <option value="">Choose one</option>
-          {HEARD_OPTIONS.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </Select>
+        <SelectMenu
+          name="heard"
+          value={values.heard ?? ""}
+          onChange={(v) => {
+            setValues((prev) => ({ ...prev, heard: v }));
+            setErrors((prev) => {
+              if (!prev.heard) return prev;
+              const next = { ...prev };
+              delete next.heard;
+              return next;
+            });
+          }}
+          options={HEARD_OPTIONS}
+          error={errors.heard}
+        />
       </Field>
 
       {serverError ? (
-        <p role="alert" className="rounded-xl bg-[#fdeaee] px-4 py-3 text-[0.88rem] font-medium text-[#b0203f]">
+        <p role="alert" className="rounded-xl bg-[#fbe9ea] px-4 py-3 text-[0.88rem] font-medium text-[#a8202f]">
           {serverError}
         </p>
       ) : null}
@@ -215,7 +223,7 @@ export function EnquiryForm({ variant = "apply" }: { variant?: Variant }) {
         <button
           type="submit"
           disabled={state === "sending"}
-          className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-iris px-7 font-semibold text-paper transition-colors hover:bg-iris-600 disabled:opacity-60"
+          className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-brand px-7 font-semibold text-paper transition-colors hover:bg-brand-600 disabled:opacity-60"
         >
           {state === "sending" ? (
             <>

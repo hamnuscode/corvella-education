@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
@@ -18,7 +17,7 @@ function LogoCard({
 }) {
   return (
     <div
-      className={`group grid h-24 place-items-center rounded-xl border border-mist bg-white px-6 transition-all duration-300 hover:border-iris/30 hover:shadow-[0_10px_30px_-18px_rgba(23,19,52,0.55)] sm:h-28 ${
+      className={`group grid h-24 place-items-center rounded-xl border border-mist bg-white px-6 transition-all duration-300 hover:border-brand/30 hover:shadow-[0_10px_30px_-18px_rgba(23,19,52,0.55)] sm:h-28 ${
         fixedWidth ? "w-[13.5rem] shrink-0 sm:w-[15rem]" : "w-full"
       }`}
     >
@@ -44,7 +43,7 @@ export function PartnerWall({ compact = true }: { compact?: boolean }) {
   const rows = [partners.slice(0, half), partners.slice(half)];
 
   return (
-    <Section id="partners" tone="paper">
+    <Section id="partners" tone="paper" backdrop={{ orbs: true }}>
       <Container>
         <SectionHead
           eyebrow="Our university partners"
@@ -85,14 +84,12 @@ export function PartnerWall({ compact = true }: { compact?: boolean }) {
       )}
 
       {compact ? (
-        <Container className="mt-12 text-center">
+        <Container className="mt-12">
           <Reveal>
-            <Link
-              href="/partners"
-              className="label inline-flex items-center gap-2 rounded-full border border-mist bg-paper-2 px-5 py-3 text-quiet transition-colors hover:border-iris/40 hover:text-ink"
-            >
-              See the full partner list
-            </Link>
+            <p className="mx-auto max-w-xl text-center text-[0.88rem] leading-relaxed text-quiet">
+              Partner lists change as agreements are renewed, so always confirm with us before you
+              make plans around a specific university.
+            </p>
           </Reveal>
         </Container>
       ) : null}

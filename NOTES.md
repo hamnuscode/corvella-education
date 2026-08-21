@@ -16,7 +16,7 @@ Placeholders are written as `[square brackets]` on the page so they are obvious 
 | `email` / `emailHref` | `[hello@corvella.example]` | Footer, Contact |
 | `referralEmail` | `[referrals@corvella.example]` | Careers |
 | `address` | `[Suite 00, Building Name]` etc. | Contact |
-| `hours` | `Monday to Friday, [10am to 6pm]` | Contact, About |
+| `hours` | `Monday to Friday, [10am to 6pm]` | Contact |
 
 Also in the same file: `site.url` (currently `https://corvella.vercel.app`, the live Vercel URL)
 drives canonical URLs, the sitemap and Open Graph. Change it the moment you point a real domain at
@@ -115,12 +115,17 @@ Delete the placeholder notice at the bottom of `src/app/blog/page.tsx` when the 
 
 ---
 
-## 8. Team
+## 8. Who we are
 
-**File:** `src/app/about/page.tsx`
+**File:** `src/components/sections/AboutStrip.tsx`
 
-The team section speaks about the team collectively, which is honest with no real names. There is
-a bracketed note in place telling you to add real profiles. Office hours are bracketed there too.
+The About and Partners pages have been removed. Both sets of content now live on the home page:
+`#about` (mission, the four rules, the FBA UK Ltd relationship) and `#partners` (the logo wall).
+The footer links point at those anchors.
+
+There are no named team profiles anywhere, deliberately, since inventing them would be dishonest.
+If you want a team section, add real names, roles and photos to `AboutStrip.tsx`. Office hours are
+bracketed in `src/lib/site.ts`.
 
 ---
 
@@ -157,6 +162,7 @@ date in your calendar.
 ## 12. Assets
 
 - **Partner logos** live in `public/partners/` as trimmed, optimised WebP (16 files, 180 KB total).
+  They are shown on the home page at `#partners` and on the Courses page.
 - **One logo failed to download:** `Buckinghamshire-New-University.png` returns HTTP 422 from
   fbaukltd.com. It has been dropped from the wall. Re-add it by putting a file in `public/partners/`
   and adding a row to the `partners` array in `src/lib/site.ts`.
@@ -169,7 +175,7 @@ date in your calendar.
 ## 13. Social preview image
 
 `src/app/opengraph-image.png` and `src/app/twitter-image.png` are generated 1200x630 images using
-the real brand fonts and palette. Regenerate them if the headline changes.
+the real brand fonts (Schibsted Grotesk) and palette. Regenerate them if the headline changes.
 
 ---
 
@@ -181,4 +187,5 @@ the real brand fonts and palette. Regenerate them if the headline changes.
 - [ ] Replace sample testimonials and the success story, or remove those sections
 - [ ] Complete and legally review the privacy policy, then remove its `noindex`
 - [ ] Decide whether `/brand` should stay published (it is `noindex, nofollow` and blocked in robots.txt)
+- [ ] If you had shared `/about` or `/partners` links anywhere, add redirects to `/#about` and `/#partners` in `next.config.ts`
 - [ ] Add analytics if you want it, and mention it in the privacy policy

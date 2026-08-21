@@ -25,7 +25,7 @@ export function Accordion({ items, className = "" }: { items: readonly QA[]; cla
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="flex w-full items-start justify-between gap-6 py-6 text-left transition-colors hover:text-iris"
+                className="flex w-full items-start justify-between gap-6 py-6 text-left transition-colors hover:text-brand"
               >
                 <span className="font-display text-[1.12rem] font-bold leading-snug text-ink sm:text-[1.25rem]">
                   {item.q}
@@ -33,7 +33,7 @@ export function Accordion({ items, className = "" }: { items: readonly QA[]; cla
                 <span
                   aria-hidden
                   className={`mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border transition-all duration-300 ${
-                    isOpen ? "rotate-45 border-iris bg-iris text-paper" : "border-mist text-quiet"
+                    isOpen ? "rotate-45 border-brand bg-brand text-paper" : "border-mist text-quiet"
                   }`}
                 >
                   <Plus size={16} strokeWidth={2.2} />

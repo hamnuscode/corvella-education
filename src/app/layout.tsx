@@ -1,32 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Schibsted_Grotesk, Geist } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
 
-const fraunces = Fraunces({
+const schibsted = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  axes: ["SOFT", "WONK"],
-});
-
-const instrument = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument",
+  variable: "--font-schibsted",
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-mono",
+  variable: "--font-geist",
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#f7f6fb",
+  themeColor: "#f7f7f4",
   width: "device-width",
   initialScale: 1,
 };
@@ -67,7 +59,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable}`}>
+    <html lang="en-GB" className={`${schibsted.variable} ${geist.variable}`}>
       <body className="min-h-screen antialiased">
         <a
           href="#main"

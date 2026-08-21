@@ -12,13 +12,13 @@ const timeline = [
 
 export function SuccessStory() {
   return (
-    <Section tone="paper">
+    <Section tone="paper" backdrop={{ orbs: true, arch: true }}>
       <Container>
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal>
             <div className="relative mx-auto w-full max-w-[22rem] lg:mx-0">
               {/* The doorway again: portrait sits inside the arch. */}
-              <div className="arch relative aspect-[3/4] overflow-hidden border border-mist bg-gradient-to-b from-iris-100 to-paper-2">
+              <div className="arch relative aspect-[3/4] overflow-hidden border border-mist bg-gradient-to-b from-brand-100 to-paper-2">
                 <div className="absolute inset-0 hairline-grid-light" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-center">
                   <p className="label text-quiet">Photo placeholder</p>
@@ -27,7 +27,7 @@ export function SuccessStory() {
                   </p>
                 </div>
                 <div className="absolute left-1/2 top-[28%] -translate-x-1/2">
-                  <span className="font-display text-[4.5rem] font-extrabold leading-none text-iris/15">
+                  <span className="font-display text-[4.5rem] font-extrabold leading-none text-brand/15">
                     [ ]
                   </span>
                 </div>
@@ -54,7 +54,7 @@ export function SuccessStory() {
               {timeline.map((item, i) => (
                 <Reveal as="li" key={item.when} delay={i * 0.06}>
                   <div className="flex gap-5 border-t border-mist py-5">
-                    <span className="label w-[3.2rem] shrink-0 pt-1 text-iris">
+                    <span className="label w-[3.2rem] shrink-0 pt-1 text-brand">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
@@ -68,7 +68,7 @@ export function SuccessStory() {
 
             <Link
               href="/apply"
-              className="group mt-9 inline-flex items-center gap-2 font-semibold text-iris transition-colors hover:text-iris-600"
+              className="group mt-9 inline-flex items-center gap-2 font-semibold text-brand transition-colors hover:text-brand-600"
             >
               Start your own check
               <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" aria-hidden />

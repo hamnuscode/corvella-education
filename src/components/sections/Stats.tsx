@@ -5,8 +5,7 @@ import { stats } from "@/lib/site";
 
 export function Stats() {
   return (
-    <Section tone="ink" className="relative overflow-hidden">
-      <div aria-hidden className="absolute inset-0 hairline-grid opacity-60" />
+    <Section tone="ink" backdrop={{ grid: true, orbs: true }}>
       <Container className="relative">
         <Eyebrow tone="light">Corvella in numbers</Eyebrow>
 
@@ -16,7 +15,7 @@ export function Stats() {
               <dt className="label text-paper/45">{stat.label}</dt>
               <dd className="mt-3 font-display text-[2.9rem] font-extrabold leading-none tracking-tight text-paper lg:text-[3.4rem]">
                 {"placeholder" in stat && stat.placeholder ? (
-                  <span className="text-beacon">{stat.placeholder}</span>
+                  <span className="text-amber">{stat.placeholder}</span>
                 ) : (
                   <CountUp to={stat.value} suffix={stat.suffix} />
                 )}

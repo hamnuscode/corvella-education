@@ -33,7 +33,7 @@ export default function ApplyPage() {
         <ul className="flex flex-wrap gap-x-7 gap-y-3">
           {assurances.map((a) => (
             <li key={a.text} className="flex items-center gap-2.5 text-[0.9rem] text-quiet">
-              <a.icon size={16} className="text-iris" aria-hidden />
+              <a.icon size={16} className="text-brand" aria-hidden />
               {a.text}
             </li>
           ))}
@@ -45,7 +45,7 @@ export default function ApplyPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-14">
             <Reveal>
               <div id="check" className="scroll-mt-28">
-                <p className="label text-iris">Step one</p>
+                <p className="label text-brand">Step one</p>
                 <h2 className="display-md mt-3 text-ink">Check your eligibility</h2>
                 <p className="mt-4 text-[0.97rem] leading-relaxed text-quiet">
                   Four questions about where you are now. No sign up, and nothing is stored.
@@ -63,7 +63,7 @@ export default function ApplyPage() {
 
             <Reveal delay={0.1}>
               <div id="details" className="scroll-mt-28">
-                <p className="label text-iris">Step two</p>
+                <p className="label text-brand">Step two</p>
                 <h2 className="display-md mt-3 text-ink">Send us your details</h2>
                 <p className="mt-4 text-[0.97rem] leading-relaxed text-quiet">
                   Fill this in and an adviser will come back to you with the courses you can apply

@@ -29,8 +29,8 @@ export default function CoursesPage() {
           <ul className="grid gap-5 lg:grid-cols-3">
             {courseLevels.map((level, i) => (
               <Reveal as="li" key={level.slug} delay={i * 0.08}>
-                <div className="flex h-full flex-col rounded-t-[9rem] rounded-b-3xl border border-mist bg-paper-2 px-8 pb-8 pt-12 transition-colors duration-300 hover:border-iris/35 hover:bg-white">
-                  <p className="label text-center text-iris">{level.label}</p>
+                <div className="flex h-full flex-col rounded-t-[9rem] rounded-b-3xl border border-mist bg-paper-2 px-8 pb-8 pt-12 transition-colors duration-300 hover:border-brand/35 hover:bg-white">
+                  <p className="label text-center text-brand">{level.label}</p>
                   <h2 className="mt-5 text-center font-display text-[1.5rem] font-bold leading-tight text-ink">
                     {level.title}
                   </h2>
@@ -38,7 +38,7 @@ export default function CoursesPage() {
                   <ul className="mt-7 flex flex-col gap-2.5 border-t border-mist pt-6">
                     {level.meta.map((m) => (
                       <li key={m} className="flex items-start gap-2.5 text-[0.88rem] text-ink">
-                        <Check size={15} className="mt-0.5 shrink-0 text-sheen-700" aria-hidden />
+                        <Check size={15} className="mt-0.5 shrink-0 text-brand" aria-hidden />
                         {m}
                       </li>
                     ))}
@@ -63,7 +63,7 @@ export default function CoursesPage() {
               </p>
               <Link
                 href="/apply"
-                className="group mt-7 inline-flex items-center gap-2 font-semibold text-iris transition-colors hover:text-iris-600"
+                className="group mt-7 inline-flex items-center gap-2 font-semibold text-brand transition-colors hover:text-brand-600"
               >
                 Ask about your subject
                 <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" aria-hidden />

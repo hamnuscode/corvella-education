@@ -15,7 +15,7 @@ export function FAQ({
   tone?: "paper" | "tinted";
 }) {
   return (
-    <Section id="faq" tone={tone}>
+    <Section id="faq" tone={tone} backdrop={{ orbs: true }}>
       <Container>
         <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -27,7 +27,7 @@ export function FAQ({
             </p>
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center gap-2 font-semibold text-iris transition-colors hover:text-iris-600"
+              className="mt-6 inline-flex items-center gap-2 font-semibold text-brand transition-colors hover:text-brand-600"
             >
               Ask us a question
             </Link>

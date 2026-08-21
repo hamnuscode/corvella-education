@@ -36,7 +36,8 @@ src/
   components/
     brand/Logo.tsx        the mark and the lockup, three variants each
     sections/             home page sections, reused across other pages
-    ui/                   Button, Field, Section, Reveal, CountUp, Accordion, ArchPanel
+    ui/                   Button, Field, SelectMenu, Section, Backdrop, Reveal,
+                          CountUp, Accordion, ArchPanel
     EligibilityCheck.tsx  the four question flow used in the hero and on /apply
     EnquiryForm.tsx       one form, three variants (apply / contact / referral)
     Header.tsx Footer.tsx PageHeader.tsx
@@ -54,10 +55,13 @@ Almost all editable content lives in `src/lib/site.ts`.
 
 ## Design
 
-The signature is **the arch**: a doorway with a semicircular top and a flat base. It is the logo,
-it frames the hero eligibility check, it holds the success story portrait, and it stands behind
-every inner page title. The site's argument is "the door you thought was closed", so the door is
-the shape everything is built from.
+The logo is a **C that is also a raven's head**: a thick ring opened on the right, the upper
+terminal drawn out into a beak, one amber eye. Corvella comes from the corvids.
+
+The layout signature is **the arch**: a doorway with a semicircular top and a flat base. It frames
+the hero eligibility check, holds the success story portrait, and stands faintly behind every inner
+page title. The site's argument is "the door you thought was closed", so the door is the shape
+everything is built from.
 
 The hero is not a headline plus a button. The hero **is** the first question of the eligibility
 check, answered inline, because finding out you can actually go is the most characteristic moment
@@ -65,15 +69,14 @@ in this business.
 
 | | |
 | --- | --- |
-| Display | Fraunces, weights 700 to 900, WONK on |
-| Body | Instrument Sans |
-| Utility | IBM Plex Mono, for eyebrows, field labels and figures |
-| Ink | `#171334` |
-| Iris | `#3d2fbf` |
-| Sheen | `#1fa8a0` (`#0e6f6a` when used as text) |
-| Beacon | `#ffc24b` |
-| Paper | `#f7f6fb` |
-| Mist | `#e0dcf2` |
+| Display | Schibsted Grotesk, weights 600 to 800 |
+| Body | Geist |
+| Ink | `#0b2621` |
+| Brand | `#0a6b5c` (actions and links) |
+| Jade | `#17a98f` (glows and focus only, never small text on light) |
+| Amber | `#f2a93b` (accent, the logo eye) |
+| Paper | `#f7f7f4` |
+| Mist | `#dedfd4` |
 
 See `/brand` for the logo variants, palette, type specimens and downloadable files. That page is
 `noindex, nofollow` and blocked in `robots.txt`.

@@ -32,10 +32,10 @@ export default function BlogPage() {
           <Reveal>
             <Link
               href={`/blog/${featured.slug}`}
-              className="group grid gap-8 overflow-hidden rounded-3xl border border-mist bg-paper-2 p-7 transition-all duration-300 hover:border-iris/35 hover:bg-white sm:p-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center"
+              className="group grid gap-8 overflow-hidden rounded-3xl border border-mist bg-paper-2 p-7 transition-all duration-300 hover:border-brand/35 hover:bg-white sm:p-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center"
             >
               <div>
-                <p className="label flex items-center gap-3 text-iris">
+                <p className="label flex items-center gap-3 text-brand">
                   Featured
                   <span aria-hidden className="h-px w-8 bg-mist" />
                   <span className="text-quiet">{featured.category}</span>
@@ -49,10 +49,10 @@ export default function BlogPage() {
                 </p>
               </div>
               <div className="hidden lg:block">
-                <div className="arch mx-auto grid aspect-[3/4] w-full max-w-[15rem] place-items-center border border-mist bg-gradient-to-b from-iris-100 to-paper">
+                <div className="arch mx-auto grid aspect-[3/4] w-full max-w-[15rem] place-items-center border border-mist bg-gradient-to-b from-brand-100 to-paper">
                   <ArrowUpRight
                     size={40}
-                    className="text-iris transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                    className="text-brand transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
                     aria-hidden
                   />
                 </div>
@@ -65,9 +65,9 @@ export default function BlogPage() {
               <Reveal as="li" key={post.slug} delay={i * 0.06}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-mist bg-paper p-7 transition-all duration-300 hover:-translate-y-1 hover:border-iris/35 hover:bg-white"
+                  className="group flex h-full flex-col rounded-2xl border border-mist bg-paper p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand/35 hover:bg-white"
                 >
-                  <p className="label text-iris">{post.category}</p>
+                  <p className="label text-brand">{post.category}</p>
                   <h2 className="mt-4 font-display text-[1.28rem] font-bold leading-snug text-ink">
                     {post.title}
                   </h2>

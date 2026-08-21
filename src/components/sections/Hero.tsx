@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
 import { SplitReveal } from "@/components/ui/Reveal";
 import { EligibilityCheck } from "@/components/EligibilityCheck";
@@ -10,7 +10,7 @@ import { ArchPanel } from "@/components/ui/ArchPanel";
 
 
 /**
- * Ambient sheen field. Adapted from the React Bits "Aurora" background:
+ * Ambient jade field. Adapted from the React Bits "Aurora" background:
  * the same idea of slow drifting colour fields, rebuilt with the Corvella
  * raven iridescence palette and layered behind a hairline grid.
  */
@@ -18,9 +18,9 @@ function SheenField() {
   const reduce = useReducedMotion();
 
   const blobs = [
-    { className: "left-[-14%] top-[-22%] h-[36rem] w-[36rem] bg-iris", d: 17, x: 60, y: 40 },
-    { className: "right-[-10%] top-[6%] h-[30rem] w-[30rem] bg-sheen", d: 21, x: -70, y: 55 },
-    { className: "left-[28%] bottom-[-30%] h-[32rem] w-[32rem] bg-beacon/70", d: 25, x: 45, y: -50 },
+    { className: "left-[-14%] top-[-24%] h-[38rem] w-[38rem] bg-jade", d: 19, x: 62, y: 42 },
+    { className: "right-[-12%] top-[2%] h-[32rem] w-[32rem] bg-brand", d: 23, x: -72, y: 58 },
+    { className: "left-[26%] bottom-[-32%] h-[34rem] w-[34rem] bg-amber/60", d: 27, x: 48, y: -52 },
   ];
 
   return (
@@ -28,7 +28,7 @@ function SheenField() {
       {blobs.map((b, i) => (
         <motion.div
           key={i}
-          className={`absolute rounded-full opacity-[0.34] blur-[90px] ${b.className}`}
+          className={`absolute rounded-full opacity-[0.38] blur-[100px] ${b.className}`}
           animate={reduce ? undefined : { x: [0, b.x, 0], y: [0, b.y, 0] }}
           transition={{ duration: b.d, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -56,7 +56,7 @@ export function Hero() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="label inline-flex items-center gap-2.5 rounded-full border border-paper/15 bg-paper/[0.06] px-3.5 py-2 text-paper/70"
             >
-              <span aria-hidden className="inline-block h-[7px] w-[7px] rounded-full bg-beacon" />
+              <span aria-hidden className="inline-block h-[7px] w-[7px] rounded-full bg-amber" />
               Partner agency of FBA UK Ltd
             </motion.p>
 
@@ -72,7 +72,7 @@ export function Hero() {
                   initial={reduce ? false : { scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.7, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute -bottom-1 left-0 h-[6px] w-full origin-left rounded-full bg-beacon"
+                  className="absolute -bottom-1 left-0 h-[6px] w-full origin-left rounded-full bg-amber"
                 />
               </span>
             </h1>
@@ -93,19 +93,17 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
               className="mt-9 flex flex-wrap items-center gap-3"
             >
-              <Link
-                href="/apply"
-                className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-beacon px-7 text-[1rem] font-semibold text-ink transition-transform duration-200 hover:-translate-y-0.5"
-              >
+              <ButtonLink href="/apply" variant="amber" size="lg">
                 Check your eligibility
-                <ArrowRight size={18} aria-hidden />
-              </Link>
-              <Link
-                href="/courses"
-                className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-2xl border border-paper/20 px-7 text-[1rem] font-semibold text-paper transition-colors hover:bg-paper/[0.08]"
-              >
+                <ArrowRight
+                  size={18}
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover:translate-x-1"
+                />
+              </ButtonLink>
+              <ButtonLink href="/courses" variant="glassGhost" size="lg" sweep={false}>
                 Browse courses
-              </Link>
+              </ButtonLink>
             </motion.div>
 
             <motion.div
@@ -116,7 +114,7 @@ export function Hero() {
             >
               {["Free for students", "No sign up needed", "An honest yes or no"].map((item) => (
                 <span key={item} className="flex items-center gap-2 text-[0.88rem] text-paper/60">
-                  <Check size={14} className="text-sheen" aria-hidden />
+                  <Check size={14} className="text-amber" aria-hidden />
                   {item}
                 </span>
               ))}

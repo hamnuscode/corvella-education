@@ -8,7 +8,7 @@ const icons = { ClipboardCheck, FileText, Wallet, Briefcase } as const;
 
 export function ServicesGrid({ tone = "tinted" }: { tone?: "paper" | "tinted" }) {
   return (
-    <Section id="services" tone={tone}>
+    <Section id="services" tone={tone} backdrop={{ orbs: true }}>
       <Container>
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHead
@@ -18,7 +18,7 @@ export function ServicesGrid({ tone = "tinted" }: { tone?: "paper" | "tinted" })
           />
           <Link
             href="/services"
-            className="label group inline-flex shrink-0 items-center gap-2 text-iris transition-colors hover:text-iris-600"
+            className="label group inline-flex shrink-0 items-center gap-2 text-brand transition-colors hover:text-brand-600"
           >
             All services
             <ArrowUpRight size={15} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -37,14 +37,14 @@ export function ServicesGrid({ tone = "tinted" }: { tone?: "paper" | "tinted" })
                   <span className="flex items-center justify-between">
                     <span
                       aria-hidden
-                      className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-paper transition-colors duration-300 group-hover:bg-iris"
+                      className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-paper transition-colors duration-300 group-hover:bg-brand"
                     >
                       <Icon size={19} strokeWidth={1.9} />
                     </span>
                     <ArrowUpRight
                       size={19}
                       aria-hidden
-                      className="text-mist transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-iris"
+                      className="text-mist transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
                     />
                   </span>
                   <h3 className="mt-7 font-display text-[1.4rem] font-bold leading-tight text-ink">

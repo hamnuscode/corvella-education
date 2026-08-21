@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Container, Section } from "@/components/ui/Section";
+import { Backdrop } from "@/components/ui/Backdrop";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTABand } from "@/components/sections/CTABand";
 import { posts } from "@/lib/site";
@@ -43,7 +44,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <>
       <article>
         <div className="relative overflow-hidden border-b border-mist bg-paper-2">
-          <div aria-hidden className="absolute inset-0 hairline-grid-light" />
+          <Backdrop orbs arch grid={false} />
           <div
             aria-hidden
             className="pointer-events-none absolute left-1/2 top-0 h-full w-[34rem] -translate-x-1/2 arch border border-mist/90 bg-gradient-to-b from-white/70 to-transparent"
@@ -56,7 +57,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <ArrowLeft size={14} aria-hidden />
               All articles
             </Link>
-            <p className="label mt-9 text-iris">{post.category}</p>
+            <p className="label mt-9 text-brand">{post.category}</p>
             <h1 className="display-lg mt-4 max-w-3xl text-ink">{post.title}</h1>
             <p className="label mt-7 text-quiet">
               <time dateTime={post.date}>{dateFmt.format(new Date(post.date))}</time>
@@ -92,7 +93,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   }
                   if (block.type === "ul") {
                     return (
-                      <ul key={i} className="flex flex-col gap-3 border-l-2 border-iris/30 pl-6">
+                      <ul key={i} className="flex flex-col gap-3 border-l-2 border-brand/30 pl-6">
                         {block.items.map((item) => (
                           <li key={item} className="text-[1.02rem] leading-relaxed text-ink/85">
                             {item}
@@ -129,7 +130,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   </p>
                   <Link
                     href="/apply"
-                    className="group mt-5 inline-flex items-center gap-2 font-semibold text-iris transition-colors hover:text-iris-600"
+                    className="group mt-5 inline-flex items-center gap-2 font-semibold text-brand transition-colors hover:text-brand-600"
                   >
                     Check your eligibility
                     <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
@@ -139,7 +140,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
               <Link
                 href={`/blog/${next.slug}`}
-                className="group mt-10 flex items-center justify-between gap-6 rounded-2xl border border-mist p-6 transition-colors hover:border-iris/35 hover:bg-paper-2"
+                className="group mt-10 flex items-center justify-between gap-6 rounded-2xl border border-mist p-6 transition-colors hover:border-brand/35 hover:bg-paper-2"
               >
                 <span>
                   <span className="label block text-quiet">Read next</span>

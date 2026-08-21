@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { WhoFor } from "@/components/sections/WhoFor";
+import { AboutStrip } from "@/components/sections/AboutStrip";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { PartnerWall } from "@/components/sections/PartnerWall";
 import { Stats } from "@/components/sections/Stats";
@@ -52,6 +53,7 @@ export default function HomePage() {
       <Hero />
       <TrustStrip />
       <WhoFor />
+      <AboutStrip />
       <ServicesGrid />
       <PartnerWall />
       <Stats />

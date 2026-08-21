@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Backdrop } from "@/components/ui/Backdrop";
 
 export function Container({
   children,
@@ -15,11 +16,13 @@ export function Section({
   className = "",
   id,
   tone = "paper",
+  backdrop,
 }: {
   children: React.ReactNode;
   className?: string;
   id?: string;
   tone?: "paper" | "tinted" | "ink" | "none";
+  backdrop?: false | { grid?: boolean; orbs?: boolean; arch?: boolean };
 }) {
   const tones = {
     paper: "bg-paper",
@@ -28,8 +31,19 @@ export function Section({
     none: "",
   } as const;
   return (
-    <section id={id} className={`${tones[tone]} py-16 sm:py-20 lg:py-28 ${className}`}>
-      {children}
+    <section
+      id={id}
+      className={`relative isolate overflow-hidden ${tones[tone]} py-16 sm:py-20 lg:py-28 ${className}`}
+    >
+      {backdrop ? (
+        <Backdrop
+          tone={tone === "ink" ? "dark" : "light"}
+          grid={backdrop.grid ?? false}
+          orbs={backdrop.orbs ?? true}
+          arch={backdrop.arch ?? false}
+        />
+      ) : null}
+      <div className="relative">{children}</div>
     </section>
   );
 }
@@ -47,7 +61,7 @@ export function Eyebrow({
     <p className={`label flex items-center gap-2.5 ${tone === "light" ? "text-paper/55" : "text-quiet"} ${className}`}>
       <span
         aria-hidden
-        className={`inline-block h-[7px] w-[7px] rounded-full ${tone === "light" ? "bg-beacon" : "bg-iris"}`}
+        className={`inline-block h-[7px] w-[7px] rounded-full ${tone === "light" ? "bg-amber" : "bg-brand"}`}
       />
       {children}
     </p>

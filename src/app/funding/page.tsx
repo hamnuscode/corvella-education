@@ -94,7 +94,7 @@ export default function FundingPage() {
             {helpBlocks.map((block, i) => (
               <Reveal as="li" key={block.title} delay={i * 0.06}>
                 <div className="h-full rounded-2xl border border-mist bg-paper p-8">
-                  <span aria-hidden className="grid h-11 w-11 place-items-center rounded-xl bg-iris-100 text-iris">
+                  <span aria-hidden className="grid h-11 w-11 place-items-center rounded-xl bg-brand-100 text-brand">
                     <block.icon size={20} strokeWidth={1.9} />
                   </span>
                   <h3 className="mt-6 font-display text-[1.25rem] font-bold leading-tight text-ink">

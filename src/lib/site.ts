@@ -27,11 +27,10 @@ export const site = {
 } as const;
 
 export const nav = [
-  { href: "/about", label: "About" },
+  { href: "/", label: "Home" },
   { href: "/courses", label: "Courses" },
   { href: "/services", label: "Services" },
   { href: "/funding", label: "Funding" },
-  { href: "/partners", label: "Partners" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -43,13 +42,13 @@ export const footerNav = [
       { href: "/courses", label: "Courses" },
       { href: "/apply", label: "Check your eligibility" },
       { href: "/funding", label: "Funding and student finance" },
-      { href: "/partners", label: "University partners" },
+      { href: "/#partners", label: "University partners" },
     ],
   },
   {
     title: "Company",
     links: [
-      { href: "/about", label: "About Corvella" },
+      { href: "/#about", label: "About Corvella" },
       { href: "/services", label: "Services" },
       { href: "/careers", label: "Become a consultant" },
       { href: "/blog", label: "Blog" },

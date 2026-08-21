@@ -12,7 +12,7 @@ export function TrustStrip() {
             <div key={r.source} className="flex items-center gap-2.5">
               <span className="flex" aria-hidden>
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} className="fill-beacon text-beacon" />
+                  <Star key={i} size={14} className="fill-amber text-amber" />
                 ))}
               </span>
               <span className="text-[0.92rem] font-semibold text-ink">{r.score}</span>
@@ -23,11 +23,11 @@ export function TrustStrip() {
 
         <Reveal delay={0.08} className="flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.88rem] text-quiet">
           <span className="flex items-center gap-2">
-            <ShieldCheck size={16} className="text-iris" aria-hidden />
+            <ShieldCheck size={16} className="text-brand" aria-hidden />
             Trusted by students since 2021
           </span>
           <span className="flex items-center gap-2">
-            <HandCoins size={16} className="text-iris" aria-hidden />
+            <HandCoins size={16} className="text-brand" aria-hidden />
             Our support is free for students
           </span>
         </Reveal>

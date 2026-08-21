@@ -1,39 +1,61 @@
 import Link from "next/link";
 import * as React from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "beacon";
+type Variant = "primary" | "secondary" | "ghost" | "amber" | "glass" | "glassGhost";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-semibold transition-[transform,background-color,color,box-shadow] duration-200 ease-out active:translate-y-px disabled:cursor-not-allowed disabled:opacity-55";
+  "group relative inline-flex items-center justify-center gap-2 overflow-hidden font-semibold transition-[transform,background-color,color,border-color,box-shadow] duration-200 ease-out will-change-transform hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-55 disabled:hover:translate-y-0";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-iris text-paper hover:bg-iris-600 shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_8px_24px_-12px_rgba(61,47,191,0.9)]",
+    "bg-brand text-paper shadow-[0_10px_28px_-14px_rgb(10_107_92/0.9)] hover:bg-brand-600 hover:shadow-[0_16px_34px_-14px_rgb(10_107_92/0.95)]",
   secondary:
-    "bg-paper text-ink border border-mist hover:border-ink/30 hover:bg-white",
+    "border border-mist bg-paper text-ink hover:border-ink/25 hover:bg-white hover:shadow-[0_10px_26px_-18px_rgb(11_38_33/0.6)]",
   ghost: "text-ink hover:bg-ink/[0.06]",
-  beacon: "bg-beacon text-ink hover:brightness-[1.06]",
+  amber:
+    "bg-amber text-ink shadow-[0_10px_28px_-14px_rgb(242_169_59/0.85)] hover:brightness-[1.05] hover:shadow-[0_16px_34px_-14px_rgb(242_169_59/0.95)]",
+  glass: "glass text-paper hover:border-white/40",
+  glassGhost:
+    "border border-paper/25 text-paper hover:border-paper/50 hover:bg-paper/10",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 rounded-lg px-3.5 text-[0.83rem]",
-  md: "h-11 rounded-xl px-5 text-[0.94rem]",
-  lg: "h-[3.25rem] rounded-2xl px-7 text-[1rem]",
+  sm: "h-9 rounded-full px-4 text-[0.85rem]",
+  md: "h-11 rounded-full px-5.5 text-[0.94rem]",
+  lg: "h-[3.4rem] rounded-full px-8 text-[1rem]",
 };
 
-type CommonProps = { variant?: Variant; size?: Size; className?: string; children: React.ReactNode };
+/** A light sweep that crosses the button once on hover. */
+function Sweep() {
+  return (
+    <span
+      aria-hidden
+      className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-white/25 opacity-0 transition-opacity duration-150 group-hover:animate-[sweep_0.85s_ease-out] group-hover:opacity-100"
+    />
+  );
+}
+
+type CommonProps = {
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+  sweep?: boolean;
+  children: React.ReactNode;
+};
 
 export function Button({
   variant = "primary",
   size = "md",
   className = "",
+  sweep = true,
   children,
   ...rest
 }: CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button className={`${base} ${variants[variant]} ${sizes[size]} ${className}`} {...rest}>
-      {children}
+      {sweep ? <Sweep /> : null}
+      <span className="relative inline-flex items-center gap-2">{children}</span>
     </button>
   );
 }
@@ -43,12 +65,14 @@ export function ButtonLink({
   variant = "primary",
   size = "md",
   className = "",
+  sweep = true,
   children,
   ...rest
 }: CommonProps & { href: string } & Omit<React.ComponentProps<typeof Link>, "href" | "className">) {
   return (
     <Link href={href} className={`${base} ${variants[variant]} ${sizes[size]} ${className}`} {...rest}>
-      {children}
+      {sweep ? <Sweep /> : null}
+      <span className="relative inline-flex items-center gap-2">{children}</span>
     </Link>
   );
 }

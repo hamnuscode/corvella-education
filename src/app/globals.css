@@ -1,29 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette: raven iridescence + light through an open door */
-  --color-paper: #f7f6fb;
-  --color-paper-2: #efecf9;
-  --color-mist: #e0dcf2;
-  --color-ink: #171334;
-  --color-ink-2: #241d55;
-  --color-ink-3: #322a6d;
-  --color-iris: #3d2fbf;
-  --color-iris-600: #3325a6;
-  --color-iris-100: #e7e3fa;
-  --color-sheen: #1fa8a0;
-  --color-sheen-700: #0e6f6a;
-  --color-sheen-100: #d9f2ef;
-  --color-beacon: #ffc24b;
-  --color-quiet: #5a5580;
+  /* Palette: deep evergreen, jade, and a warm amber for the way through */
+  --color-paper: #f7f7f4;
+  --color-paper-2: #eff0ea;
+  --color-mist: #dedfd4;
+  --color-ink: #0b2621;
+  --color-ink-2: #12403a;
+  --color-ink-3: #1b564d;
+  --color-brand: #0a6b5c;
+  --color-brand-600: #085649;
+  --color-brand-100: #dcefe9;
+  --color-jade: #17a98f;
+  --color-amber: #f2a93b;
+  --color-quiet: #4e5b56;
 
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 
   --radius-arch: 9999px;
-
-  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
@@ -37,18 +32,28 @@
   }
 
   body {
+    position: relative;
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  /* A whisper of grain over the whole page so flat colour never looks plastic. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.033;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-variation-settings: "SOFT" 0, "WONK" 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     text-wrap: balance;
   }
 
@@ -57,13 +62,13 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-sheen);
+    outline: 3px solid var(--color-jade);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   ::selection {
-    background: var(--color-beacon);
+    background: var(--color-amber);
     color: var(--color-ink);
   }
 }
@@ -73,80 +78,93 @@
   .arch {
     border-radius: var(--radius-arch) var(--radius-arch) 0 0;
   }
-  .arch-soft {
-    border-radius: 62% 62% 14px 14px / 34% 34% 4% 4%;
-  }
 
   .label {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.16em;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    font-weight: 500;
   }
 
   .display-xl {
-    font-size: clamp(2.6rem, 7.2vw, 5.1rem);
-    line-height: 0.94;
+    font-size: clamp(2.65rem, 7.2vw, 5.2rem);
+    line-height: 0.95;
     font-weight: 800;
+    letter-spacing: -0.038em;
   }
   .display-lg {
     font-size: clamp(2.1rem, 5vw, 3.5rem);
-    line-height: 0.98;
-    font-weight: 700;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.032em;
   }
   .display-md {
-    font-size: clamp(1.6rem, 3vw, 2.25rem);
-    line-height: 1.06;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.08;
     font-weight: 700;
+    letter-spacing: -0.028em;
   }
 
   .lede {
-    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-    line-height: 1.55;
+    font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+    line-height: 1.58;
   }
 
-  .rule-arch {
-    background-image: radial-gradient(circle at 50% 100%, transparent 11px, var(--color-mist) 11px, var(--color-mist) 12px, transparent 12px);
-    background-repeat: no-repeat;
-    background-position: center bottom;
+  /* Glass: used for the panels that sit over dark, coloured ground. */
+  .glass {
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, white 16%, transparent),
+      color-mix(in srgb, white 5%, transparent)
+    );
+    backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid color-mix(in srgb, white 22%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in srgb, white 28%, transparent),
+      0 24px 60px -30px rgb(0 0 0 / 0.7);
+  }
+
+  .glass-quiet {
+    background: color-mix(in srgb, white 8%, transparent);
+    backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in srgb, white 16%, transparent);
   }
 }
 
-/* Grain + weave used behind dark surfaces */
-.sheen-field {
+/* ------------------------------------------------------------ backgrounds */
+
+.aurora-field {
   background:
-    radial-gradient(120% 90% at 12% 8%, rgba(61, 47, 191, 0.55) 0%, transparent 55%),
-    radial-gradient(90% 80% at 88% 22%, rgba(31, 168, 160, 0.34) 0%, transparent 58%),
-    radial-gradient(70% 70% at 62% 96%, rgba(255, 194, 75, 0.16) 0%, transparent 60%),
+    radial-gradient(120% 92% at 10% 4%, rgb(23 169 143 / 0.42) 0%, transparent 56%),
+    radial-gradient(88% 78% at 92% 18%, rgb(10 107 92 / 0.55) 0%, transparent 60%),
+    radial-gradient(72% 70% at 58% 100%, rgb(242 169 59 / 0.16) 0%, transparent 62%),
     var(--color-ink);
 }
 
 .hairline-grid {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
-  background-size: 72px 72px;
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 76px 76px;
 }
 
 .hairline-grid-light {
   background-image:
-    linear-gradient(to right, rgba(23, 19, 52, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(23, 19, 52, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
+    linear-gradient(to right, rgb(11 38 33 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(11 38 33 / 0.04) 1px, transparent 1px);
+  background-size: 76px 76px;
+}
+
+.dot-field {
+  background-image: radial-gradient(rgb(11 38 33 / 0.09) 1px, transparent 1px);
+  background-size: 26px 26px;
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-}
+/* ---------------------------------------------------------------- motion */
 
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -155,4 +173,28 @@
 @keyframes marquee-rev {
   from { transform: translateX(-100%); }
   to { transform: translateX(0); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4%, -6%, 0) scale(1.08); }
+}
+@keyframes drift-slow {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-5%, 5%, 0) scale(1); }
+}
+@keyframes sweep {
+  from { transform: translateX(-130%) skewX(-18deg); }
+  to { transform: translateX(230%) skewX(-18deg); }
+}
+
+.animate-drift { animation: drift 26s ease-in-out infinite; }
+.animate-drift-slow { animation: drift-slow 34s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

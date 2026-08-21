@@ -7,41 +7,44 @@ import { footerNav, site } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const contacts = [
+    { icon: Phone, label: site.contact.phone, href: site.contact.phoneHref },
+    { icon: MessageCircle, label: site.contact.whatsapp, href: site.contact.whatsappHref },
+    { icon: Mail, label: site.contact.email, href: site.contact.emailHref },
+  ];
 
   return (
-    <footer className="bg-ink text-paper">
-      <Container className="py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_2fr]">
-          <div>
-            <CorvellaLogo variant="reversed" markClassName="h-10 w-10" idPrefix="footer" />
-            <p className="mt-6 max-w-sm text-[0.97rem] leading-relaxed text-paper/65">
-              We help people get on to UK university courses, including people who were told it was
-              not an option. The advice is free and the answers are honest.
-            </p>
+    <footer className="relative overflow-hidden bg-ink text-paper">
+      <div aria-hidden className="pointer-events-none absolute inset-0 hairline-grid opacity-40" />
 
-            <div className="mt-7 flex flex-col gap-2.5 text-[0.93rem]">
-              <a href={site.contact.phoneHref} className="inline-flex w-fit items-center gap-2.5 text-paper/75 transition-colors hover:text-paper">
-                <Phone size={15} aria-hidden /> {site.contact.phone}
-              </a>
-              <a href={site.contact.whatsappHref} className="inline-flex w-fit items-center gap-2.5 text-paper/75 transition-colors hover:text-paper">
-                <MessageCircle size={15} aria-hidden /> WhatsApp {site.contact.whatsapp}
-              </a>
-              <a href={site.contact.emailHref} className="inline-flex w-fit items-center gap-2.5 text-paper/75 transition-colors hover:text-paper">
-                <Mail size={15} aria-hidden /> {site.contact.email}
-              </a>
+      <Container className="relative py-10 lg:py-12">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
+          <div className="lg:max-w-xs">
+            <CorvellaLogo variant="reversed" markClassName="h-9 w-9" idPrefix="footer" />
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+              {contacts.map((c) => (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  className="inline-flex items-center gap-2 text-[0.85rem] text-paper/70 transition-colors hover:text-paper"
+                >
+                  <c.icon size={13} aria-hidden />
+                  {c.label}
+                </a>
+              ))}
             </div>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-3">
+          <div className="grid flex-1 gap-8 sm:grid-cols-3 lg:max-w-2xl">
             {footerNav.map((col) => (
               <div key={col.title}>
-                <h2 className="label text-paper/45">{col.title}</h2>
-                <ul className="mt-5 flex flex-col gap-3">
+                <h2 className="label text-paper/40">{col.title}</h2>
+                <ul className="mt-3.5 flex flex-col gap-2">
                   {col.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-[0.95rem] text-paper/75 transition-colors hover:text-paper"
+                        className="text-[0.88rem] text-paper/70 transition-colors hover:text-paper"
                       >
                         {link.label}
                       </Link>
@@ -53,40 +56,42 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 rounded-2xl border border-paper/12 bg-paper/[0.04] p-6 sm:flex sm:items-center sm:gap-7">
+        <div className="mt-9 flex flex-col gap-5 border-t border-paper/12 pt-6 lg:flex-row lg:items-center lg:justify-between">
           <a
             href={site.parent.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-fit shrink-0 rounded"
+            className="flex items-center gap-4"
             aria-label="FBA UK Ltd website, opens in a new tab"
           >
             <Image
               src="/brand/fba-uk-ltd.png"
               alt="FBA UK Ltd"
-              width={200}
-              height={62}
-              className="h-11 w-auto opacity-90"
+              width={160}
+              height={50}
+              className="h-7 w-auto opacity-80 transition-opacity hover:opacity-100"
             />
+            <span className="max-w-md text-[0.78rem] leading-relaxed text-paper/50">
+              {site.parent.line}
+            </span>
           </a>
-          <p className="mt-5 text-[0.9rem] leading-relaxed text-paper/60 sm:mt-0">
-            {site.parent.line}
-          </p>
-        </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-paper/12 pt-8 text-[0.83rem] text-paper/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {year} {site.name}. {site.company.registration} {site.company.vat}.
-          </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.78rem] text-paper/45">
             <Link href="/privacy" className="transition-colors hover:text-paper/80">
-              Privacy policy
+              Privacy
             </Link>
             <Link href="/careers" className="transition-colors hover:text-paper/80">
               Become a consultant
             </Link>
+            <span>
+              &copy; {year} {site.name}
+            </span>
           </div>
         </div>
+
+        <p className="mt-4 text-[0.72rem] leading-relaxed text-paper/32">
+          {site.company.registration} {site.company.vat}.
+        </p>
       </Container>
     </footer>
   );

@@ -43,7 +43,7 @@ export default function ServicesPage() {
                       >
                         <Icon size={24} strokeWidth={1.8} />
                       </span>
-                      <p className="label mt-6 text-iris">Service {String(i + 1).padStart(2, "0")}</p>
+                      <p className="label mt-6 text-brand">Service {String(i + 1).padStart(2, "0")}</p>
                       <h2 className="display-md mt-3 text-ink">{service.title}</h2>
                     </div>
                   </Reveal>
@@ -53,7 +53,7 @@ export default function ServicesPage() {
                     <ul className="mt-9 grid gap-px overflow-hidden rounded-2xl border border-mist bg-mist sm:grid-cols-2">
                       {service.points.map((point) => (
                         <li key={point} className="flex gap-3 bg-paper p-5 text-[0.93rem] leading-snug text-ink">
-                          <Check size={16} className="mt-0.5 shrink-0 text-sheen-700" aria-hidden />
+                          <Check size={16} className="mt-0.5 shrink-0 text-brand" aria-hidden />
                           {point}
                         </li>
                       ))}

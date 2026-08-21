@@ -1,14 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="520" height="128" role="img" aria-label="Corvella Education">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 64" width="500" height="128" role="img" aria-label="Corvella Education">
   <title>Corvella Education</title>
-  <mask id="lk" maskUnits="userSpaceOnUse" x="8" y="12" width="40" height="40">
-    <rect x="8" y="12" width="40" height="40" fill="#000"/>
-    <g transform="translate(8 12) scale(1.25)">
-      <path d="M3 29 V16 C3 8.82 8.82 3 16 3 C23.18 3 29 8.82 29 16 V29 Z" fill="#fff"/>
-      <path d="M26.9 15.4 C21.8 12.5 17.0 10.3 13.4 9.5 C9.8 8.7 7.2 11.0 7.2 14.6 C7.2 18.4 9.6 21.9 13.6 21.7 C16.2 21.6 18.1 20.4 18.7 18.8 C21.2 17.9 24.3 16.6 26.9 15.4 Z" transform="translate(-1.0 1.2)" fill="#000"/>
+  <mask id="lk" maskUnits="userSpaceOnUse" x="6" y="10" width="44" height="44">
+    <g transform="translate(6 10) scale(1.375)">
+      <circle cx="16" cy="16" r="13.2" fill="#fff"/>
+      <circle cx="15" cy="17.2" r="6.9" fill="#000"/>
+      <path d="M16.62 10.49 L28.96 13.48 L40 -6 L40 42 L37.55 30.54 L16 16 Z" fill="#000"/>
+      <circle cx="16.65" cy="6.64" r="1.45" fill="#000"/>
     </g>
   </mask>
-  <rect x="8" y="12" width="40" height="40" fill="currentColor" mask="url(#lk)"/>
+  <rect x="6" y="10" width="44" height="44" fill="currentColor" mask="url(#lk)"/>
 
-  <text x="60" y="35" font-family="Fraunces, Georgia, serif" font-size="27" font-weight="800" letter-spacing="-0.9" fill="currentColor">Corvella</text>
-  <text x="61.5" y="48" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.5" font-weight="500" letter-spacing="2.4" fill="currentColor">EDUCATION</text>
+  <text x="60" y="36" font-family="'Schibsted Grotesk', Helvetica, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-1.1" fill="currentColor">Corvella</text>
+  <text x="61" y="49" font-family="'Schibsted Grotesk', Helvetica, Arial, sans-serif" font-size="8" font-weight="600" letter-spacing="1.9" fill="currentColor">EDUCATION</text>
 </svg>

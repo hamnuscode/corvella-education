@@ -37,7 +37,7 @@ export default function BrandPage() {
       <PageHeader
         eyebrow="Brand"
         title="The Corvella mark"
-        lede="An open doorway with a raven cut out of it. The arch is the shape the whole site is built from, the raven is the name (Corvella comes from the corvids), and the single yellow eye is the only spot of accent colour in the mark."
+        lede="A C that is also a raven's head. Corvella comes from the corvids, the family of birds known for being resourceful, so the initial and the bird are the same shape: a thick ring opened on the right, with the upper terminal drawn out into a beak and a single amber eye. The arch it used to sit in now belongs to the layout instead."
       />
 
       <Section tone="paper">
@@ -111,26 +111,25 @@ export default function BrandPage() {
             ))}
           </ul>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-3">
-            <div className="rounded-2xl border border-mist bg-paper p-7">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+            <div className="rounded-2xl border border-mist bg-paper p-8">
               <p className="label text-quiet">Display</p>
-              <p className="mt-4 font-display text-[2.4rem] font-extrabold leading-none text-ink">Fraunces</p>
-              <p className="mt-4 text-[0.88rem] leading-relaxed text-quiet">
-                Headings and quotes, weights 700 to 900, WONK on.
+              <p className="mt-4 font-display text-[2.6rem] font-extrabold leading-none tracking-[-0.035em] text-ink">
+                Schibsted Grotesk
+              </p>
+              <p className="mt-5 text-[0.9rem] leading-relaxed text-quiet">
+                Headings, quotes and the small uppercase labels. Weights 600 to 800, tracking pulled
+                in tight. Warm terminals keep it from feeling corporate.
               </p>
             </div>
-            <div className="rounded-2xl border border-mist bg-paper p-7">
+            <div className="rounded-2xl border border-mist bg-paper p-8">
               <p className="label text-quiet">Body</p>
-              <p className="mt-4 text-[2.4rem] font-semibold leading-none text-ink">Instrument Sans</p>
-              <p className="mt-4 text-[0.88rem] leading-relaxed text-quiet">
-                Everything you actually read.
+              <p className="mt-4 text-[2.6rem] font-medium leading-none tracking-[-0.02em] text-ink">
+                Geist
               </p>
-            </div>
-            <div className="rounded-2xl border border-mist bg-paper p-7">
-              <p className="label text-quiet">Utility</p>
-              <p className="mt-4 font-mono text-[2rem] font-medium leading-none text-ink">IBM Plex</p>
-              <p className="mt-4 text-[0.88rem] leading-relaxed text-quiet">
-                Eyebrows, field labels and figures. Borrowed from the world of forms.
+              <p className="mt-5 text-[0.9rem] leading-relaxed text-quiet">
+                Everything you actually read. Neutral on purpose, so the display face carries the
+                voice and the body copy stays out of the way.
               </p>
             </div>
           </div>
@@ -146,7 +145,7 @@ export default function BrandPage() {
                 <a
                   href={f.href}
                   download
-                  className="flex items-center justify-between gap-4 bg-paper px-6 py-5 text-[0.95rem] font-medium text-ink transition-colors hover:bg-white hover:text-iris"
+                  className="flex items-center justify-between gap-4 bg-paper px-6 py-5 text-[0.95rem] font-medium text-ink transition-colors hover:bg-white hover:text-brand"
                 >
                   {f.label}
                   <Download size={17} aria-hidden className="text-quiet" />

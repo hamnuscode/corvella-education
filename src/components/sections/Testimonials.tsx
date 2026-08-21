@@ -29,7 +29,7 @@ export function Testimonials() {
   const active = testimonials[index];
 
   return (
-    <Section tone="tinted">
+    <Section tone="tinted" backdrop={{ orbs: true }}>
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
@@ -57,7 +57,7 @@ export function Testimonials() {
         </div>
 
         <div className="mt-12 rounded-3xl border border-mist bg-paper p-8 sm:p-12 lg:p-14">
-          <Quote size={34} className="text-iris/25" aria-hidden />
+          <Quote size={34} className="text-brand/25" aria-hidden />
           <div className="relative mt-6 min-h-[11rem] sm:min-h-[9rem]" aria-live="polite">
             <AnimatePresence mode="wait" custom={dir} initial={false}>
               <motion.figure
@@ -89,7 +89,7 @@ export function Testimonials() {
                   aria-label={`Quote ${i + 1}`}
                   onClick={() => go(i)}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === index ? "w-7 bg-iris" : "w-2 bg-mist hover:bg-quiet/40"
+                    i === index ? "w-7 bg-brand" : "w-2 bg-mist hover:bg-quiet/40"
                   }`}
                 />
               ))}

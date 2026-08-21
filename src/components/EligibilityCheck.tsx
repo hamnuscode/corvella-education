@@ -150,11 +150,11 @@ export function EligibilityCheck({
         <p className="label text-quiet">
           {done ? "Your result" : `Step ${step + 1} of ${questions.length}`}
         </p>
-        <p className="label text-iris">{done ? "Complete" : current.label}</p>
+        <p className="label text-brand">{done ? "Complete" : current.label}</p>
       </div>
       <div className="mt-3 h-[3px] w-full overflow-hidden rounded-full bg-mist">
         <motion.div
-          className="h-full rounded-full bg-iris"
+          className="h-full rounded-full bg-brand"
           initial={false}
           animate={{ width: `${progress}%` }}
           transition={{ duration: reduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
@@ -172,13 +172,13 @@ export function EligibilityCheck({
                     key={opt.value}
                     type="button"
                     onClick={() => pick(opt.value)}
-                    className="group flex min-h-[3.25rem] w-full items-center justify-between gap-4 rounded-xl border border-mist bg-paper px-4 py-3 text-left text-[0.95rem] font-medium text-ink transition-all duration-200 hover:-translate-y-px hover:border-iris hover:bg-iris-100"
+                    className="group flex min-h-[3.25rem] w-full items-center justify-between gap-4 rounded-xl border border-mist bg-paper px-4 py-3 text-left text-[0.95rem] font-medium text-ink transition-all duration-200 hover:-translate-y-px hover:border-brand hover:bg-brand-100"
                   >
                     <span>{opt.label}</span>
                     <ArrowRight
                       size={17}
                       aria-hidden
-                      className="shrink-0 text-quiet transition-all group-hover:translate-x-0.5 group-hover:text-iris"
+                      className="shrink-0 text-quiet transition-all group-hover:translate-x-0.5 group-hover:text-brand"
                     />
                   </button>
                 ))}
@@ -186,7 +186,7 @@ export function EligibilityCheck({
             </motion.div>
           ) : (
             <motion.div key="result" {...anim}>
-              <p className="label text-sheen-700">{outcome!.verdict}</p>
+              <p className="label text-brand">{outcome!.verdict}</p>
               <h3 className="display-md mt-3 text-ink">{outcome!.headline}</h3>
               <p className="mt-4 text-[0.97rem] leading-relaxed text-quiet">{outcome!.body}</p>
 
@@ -195,7 +195,7 @@ export function EligibilityCheck({
                   <li key={s} className="flex gap-3 text-[0.92rem] leading-snug text-ink">
                     <span
                       aria-hidden
-                      className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-sheen-100 text-sheen-700"
+                      className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-100 text-brand"
                     >
                       <Check size={12} strokeWidth={3} />
                     </span>
@@ -230,7 +230,7 @@ export function EligibilityCheck({
         {done ? (
           <Link
             href={ctaHref}
-            className="ml-auto inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-iris px-5 text-[0.94rem] font-semibold text-paper transition-colors hover:bg-iris-600"
+            className="ml-auto inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-brand px-5 text-[0.94rem] font-semibold text-paper transition-colors hover:bg-brand-600"
           >
             {ctaLabel}
             <ArrowRight size={17} aria-hidden />

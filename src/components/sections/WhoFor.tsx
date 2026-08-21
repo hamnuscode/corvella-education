@@ -7,7 +7,7 @@ const icons = { GraduationCap, Clock, Compass, CalendarCheck } as const;
 
 export function WhoFor() {
   return (
-    <Section id="who-for" tone="paper">
+    <Section id="who-for" tone="paper" backdrop={{ orbs: true, arch: true }}>
       <Container>
         <SectionHead
           eyebrow="Who this is for"
@@ -20,10 +20,10 @@ export function WhoFor() {
             const Icon = icons[item.icon as keyof typeof icons];
             return (
               <Reveal as="li" key={item.title} delay={i * 0.07}>
-                <div className="group relative h-full overflow-hidden rounded-t-[8rem] rounded-b-2xl border border-mist bg-paper-2 px-6 pb-7 pt-10 transition-all duration-300 hover:-translate-y-1 hover:border-iris/35 hover:bg-white">
+                <div className="group relative h-full overflow-hidden rounded-t-[8rem] rounded-b-2xl border border-mist bg-paper-2 px-6 pb-7 pt-10 transition-all duration-300 hover:-translate-y-1 hover:border-brand/35 hover:bg-white">
                   <span
                     aria-hidden
-                    className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-iris-100 text-iris transition-colors duration-300 group-hover:bg-iris group-hover:text-paper"
+                    className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-brand-100 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-paper"
                   >
                     <Icon size={21} strokeWidth={1.9} />
                   </span>

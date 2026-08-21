@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256" role="img" aria-label="Corvella Education">
   <title>Corvella Education</title>
-
   <mask id="cvmask" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
-    <rect width="32" height="32" fill="#000"/>
-    <path d="M3 29 V16 C3 8.82 8.82 3 16 3 C23.18 3 29 8.82 29 16 V29 Z" fill="#fff"/>
-    <path d="M26.9 15.4 C21.8 12.5 17.0 10.3 13.4 9.5 C9.8 8.7 7.2 11.0 7.2 14.6 C7.2 18.4 9.6 21.9 13.6 21.7 C16.2 21.6 18.1 20.4 18.7 18.8 C21.2 17.9 24.3 16.6 26.9 15.4 Z" transform="translate(-1.0 1.2)" fill="#000"/>
+    <circle cx="16" cy="16" r="13.2" fill="#fff"/>
+    <circle cx="15" cy="17.2" r="6.9" fill="#000"/>
+    <path d="M16.62 10.49 L28.96 13.48 L40 -6 L40 42 L37.55 30.54 L16 16 Z" fill="#000"/>
+
   </mask>
-  <rect width="32" height="32" fill="#3d2fbf" mask="url(#cvmask)"/>
-  <circle cx="11.9" cy="14.8" r="1.25" fill="#ffc24b"/>
+  <rect width="32" height="32" fill="#0a6b5c" mask="url(#cvmask)"/>
+  <circle cx="16.65" cy="6.64" r="1.45" fill="#f2a93b"/>
 </svg>

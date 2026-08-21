@@ -37,9 +37,9 @@ export default function ContactPage() {
                   <a
                     key={d.label}
                     href={d.href}
-                    className="group flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-iris/35 hover:bg-white"
+                    className="group flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/35 hover:bg-white"
                   >
-                    <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-iris-100 text-iris transition-colors group-hover:bg-iris group-hover:text-paper">
+                    <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand transition-colors group-hover:bg-brand group-hover:text-paper">
                       <d.icon size={19} strokeWidth={1.9} />
                     </span>
                     <span>
@@ -52,7 +52,7 @@ export default function ContactPage() {
                 ))}
 
                 <div className="flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6">
-                  <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-iris-100 text-iris">
+                  <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand">
                     <MapPin size={19} strokeWidth={1.9} />
                   </span>
                   <span>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6">
-                  <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-iris-100 text-iris">
+                  <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand">
                     <Clock size={19} strokeWidth={1.9} />
                   </span>
                   <span>
