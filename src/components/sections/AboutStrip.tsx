@@ -29,7 +29,7 @@ const principles = [
 
 export function AboutStrip() {
   return (
-    <Section id="about" tone="tinted" backdrop={{ orbs: true, arch: true }}>
+    <Section id="about" tone="tinted" backdrop={{ orbs: true, arch: true, shapes: true }}>
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <div>

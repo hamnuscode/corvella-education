@@ -20,11 +20,12 @@ export function WhoFor() {
           {audience.map((item, i) => {
             const Icon = icons[item.icon as keyof typeof icons];
             return (
+              // One accent across all four: they are four sides of the same question.
               <Reveal as="li" key={item.title} delay={i * 0.07} className="h-full">
                 <Tilt3D className="h-full" radiusClass="rounded-t-[8rem] rounded-b-2xl">
                 <div
                   className="card-lift group relative h-full overflow-hidden rounded-t-[8rem] rounded-b-2xl border border-mist bg-paper-2 px-6 pb-7 pt-10 hover:bg-white"
-                  style={{ ["--accent" as string]: accentHex[item.accent] }}
+                  style={{ ["--accent" as string]: accentHex.brand }}
                 >
                   <span
                     aria-hidden

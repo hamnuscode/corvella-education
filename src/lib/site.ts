@@ -83,25 +83,21 @@ export const accentHex: Record<Accent, string> = {
 export const audience = [
   {
     icon: "GraduationCap",
-    accent: "brand" as Accent,
     title: "No formal qualifications",
     body: "You left school without A levels, or your grades are long behind you. There are recognised routes into a degree that do not need them.",
   },
   {
     icon: "Clock",
-    accent: "sky" as Accent,
     title: "Working full time",
     body: "You have a job, a commute and bills. Part time, evening and blended courses are built for people in exactly that position.",
   },
   {
     icon: "Compass",
-    accent: "ochre" as Accent,
     title: "Changing career",
     body: "You want to move into law, healthcare, computing or business. We help you pick the course that actually leads there.",
   },
   {
     icon: "CalendarCheck",
-    accent: "coral" as Accent,
     title: "Ready to start soon",
     body: "Intakes run more than once a year. If you want to start at the next one, we will tell you honestly whether it is realistic.",
   },

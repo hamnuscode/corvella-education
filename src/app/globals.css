@@ -74,6 +74,12 @@
     text-wrap: pretty;
   }
 
+  /* Anything that can be linked to has to clear the sticky header, otherwise
+     jumping to it hides its own heading behind the bar. */
+  [id] {
+    scroll-margin-top: 6.5rem;
+  }
+
   :focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 3px;
@@ -231,6 +237,18 @@
   from { transform: rotateY(-9deg) rotateX(4deg); }
   to { transform: rotateY(9deg) rotateX(-2deg); }
 }
+@keyframes float-a {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-14px, -38px, 0) rotate(5deg); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(22px, -28px, 0) rotate(-7deg); }
+}
+@keyframes float-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-18px, 26px, 0) scale(1.09); }
+}
 @keyframes sweep {
   from { transform: translateX(-130%) skewX(-18deg); }
   to { transform: translateX(230%) skewX(-18deg); }
@@ -239,6 +257,9 @@
 .animate-drift { animation: drift 26s ease-in-out infinite; }
 .animate-drift-slow { animation: drift-slow 34s ease-in-out infinite; }
 .animate-mote { animation: mote 14s ease-in-out infinite; }
+.animate-float-a { animation: float-a 34s ease-in-out infinite; }
+.animate-float-b { animation: float-b 42s ease-in-out infinite; }
+.animate-float-c { animation: float-c 50s ease-in-out infinite; }
 .animate-turn { animation: turn 18s ease-in-out infinite alternate; }
 
 @media (prefers-reduced-motion: reduce) {

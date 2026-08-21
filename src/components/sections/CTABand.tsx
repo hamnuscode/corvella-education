@@ -5,6 +5,7 @@ import { ArrowRight, Clock3, MessageCircle, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { CorvellaMark } from "@/components/brand/Logo";
+import { FloatingShapes } from "@/components/ui/FloatingShapes";
 import { site } from "@/lib/site";
 
 const assurances = [
@@ -42,6 +43,7 @@ export function CTABand({
         />
         <div className="absolute left-1/2 top-1/2 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber/12 blur-[130px]" />
         <div className="absolute inset-0 hairline-grid opacity-50" />
+        <FloatingShapes tone="dark" />
       </div>
 
       <Container className="relative">

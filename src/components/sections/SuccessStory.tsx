@@ -25,7 +25,7 @@ const timeline = [
 
 export function SuccessStory() {
   return (
-    <Section tone="paper" backdrop={{ orbs: true, arch: true }}>
+    <Section tone="paper" backdrop={{ orbs: true, arch: true, shapes: true }}>
       <Container>
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal>

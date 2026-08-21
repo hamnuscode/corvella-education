@@ -22,7 +22,7 @@ export function Section({
   className?: string;
   id?: string;
   tone?: "paper" | "tinted" | "ink" | "none";
-  backdrop?: false | { grid?: boolean; orbs?: boolean; arch?: boolean };
+  backdrop?: false | { grid?: boolean; orbs?: boolean; arch?: boolean; motes?: boolean; shapes?: boolean };
 }) {
   const tones = {
     paper: "bg-paper",
@@ -41,6 +41,8 @@ export function Section({
           grid={backdrop.grid ?? false}
           orbs={backdrop.orbs ?? true}
           arch={backdrop.arch ?? false}
+          motes={backdrop.motes ?? false}
+          shapes={backdrop.shapes ?? false}
         />
       ) : null}
       <div className="relative">{children}</div>

@@ -12,7 +12,7 @@ const glow: Record<string, string> = {
 
 export function Stats() {
   return (
-    <Section tone="ink" backdrop={{ grid: true, orbs: true }}>
+    <Section tone="ink" backdrop={{ grid: true, orbs: true, motes: true }}>
       <Container>
         <Eyebrow tone="light">Corvella in numbers</Eyebrow>
 

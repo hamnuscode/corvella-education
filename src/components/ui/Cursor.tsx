@@ -88,18 +88,18 @@ export function Cursor() {
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[60] overflow-hidden">
       <div
         ref={haloRef}
-        className="absolute left-0 top-0 h-[22rem] w-[22rem] rounded-full opacity-0 transition-opacity duration-500 will-change-transform"
+        className="absolute left-0 top-0 h-[11rem] w-[11rem] rounded-full opacity-0 transition-opacity duration-500 will-change-transform"
         style={{
           background:
-            "radial-gradient(closest-side, rgb(43 95 146 / 0.13), rgb(15 116 144 / 0.07) 45%, transparent 72%)",
+            "radial-gradient(closest-side, rgb(43 95 146 / 0.16), rgb(15 116 144 / 0.08) 45%, transparent 72%)",
         }}
       />
       <div
         ref={dotRef}
-        className="absolute left-0 top-0 h-10 w-10 rounded-full opacity-0 transition-opacity duration-300 will-change-transform"
+        className="absolute left-0 top-0 h-6 w-6 rounded-full opacity-0 transition-opacity duration-300 will-change-transform"
         style={{
           background:
-            "radial-gradient(closest-side, rgb(240 169 60 / 0.2), rgb(240 169 60 / 0.06) 55%, transparent 75%)",
+            "radial-gradient(closest-side, rgb(240 169 60 / 0.28), rgb(240 169 60 / 0.08) 55%, transparent 75%)",
         }}
       />
     </div>

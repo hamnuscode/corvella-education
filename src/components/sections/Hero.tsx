@@ -9,6 +9,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { EligibilityCheck } from "@/components/EligibilityCheck";
 import { ArchPanel } from "@/components/ui/ArchPanel";
 import { CorvellaMark } from "@/components/brand/Logo";
+import { FloatingShapes } from "@/components/ui/FloatingShapes";
 
 /**
  * The hero is a doorway you are standing in front of.
@@ -109,6 +110,7 @@ function AmbientField() {
         />
       ))}
       <div className="absolute inset-0 hairline-grid pan-grid opacity-70" />
+      <FloatingShapes tone="dark" />
       <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ink via-ink/70 to-transparent" />
     </div>
   );

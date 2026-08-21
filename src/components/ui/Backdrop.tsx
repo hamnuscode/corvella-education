@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
+import { FloatingShapes } from "@/components/ui/FloatingShapes";
 
 /**
  * Ambient background furniture. Deliberately faint: it should register as
@@ -22,7 +23,8 @@ export function Backdrop({
   grid = true,
   orbs = true,
   arch = false,
-  motes = true,
+  motes = false,
+  shapes = false,
   className = "",
 }: {
   tone?: "light" | "dark";
@@ -30,6 +32,7 @@ export function Backdrop({
   orbs?: boolean;
   arch?: boolean;
   motes?: boolean;
+  shapes?: boolean;
   className?: string;
 }) {
   const reduce = useReducedMotion();
@@ -59,6 +62,8 @@ export function Backdrop({
           />
         </>
       ) : null}
+
+      {shapes ? <FloatingShapes tone={tone} /> : null}
 
       {motes && !reduce ? (
         <>
