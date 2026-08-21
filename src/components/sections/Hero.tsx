@@ -7,10 +7,12 @@ import { Container } from "@/components/ui/Section";
 import { SplitReveal } from "@/components/ui/Reveal";
 import { EligibilityCheck } from "@/components/EligibilityCheck";
 import { ArchPanel } from "@/components/ui/ArchPanel";
+import { ArchDepth } from "@/components/ui/ArchDepth";
+import { Tilt3D } from "@/components/ui/Tilt3D";
 
 
 /**
- * Ambient jade field. Adapted from the React Bits "Aurora" background:
+ * Ambient steel field. Adapted from the React Bits "Aurora" background:
  * the same idea of slow drifting colour fields, rebuilt with the Corvella
  * raven iridescence palette and layered behind a hairline grid.
  */
@@ -18,7 +20,7 @@ function SheenField() {
   const reduce = useReducedMotion();
 
   const blobs = [
-    { className: "left-[-14%] top-[-24%] h-[38rem] w-[38rem] bg-jade", d: 19, x: 62, y: 42 },
+    { className: "left-[-14%] top-[-24%] h-[38rem] w-[38rem] bg-steel", d: 19, x: 62, y: 42 },
     { className: "right-[-12%] top-[2%] h-[32rem] w-[32rem] bg-brand", d: 23, x: -72, y: 58 },
     { className: "left-[26%] bottom-[-32%] h-[34rem] w-[34rem] bg-amber/60", d: 27, x: 48, y: -52 },
   ];
@@ -33,7 +35,9 @@ function SheenField() {
           transition={{ duration: b.d, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
-      <div className="absolute inset-0 hairline-grid opacity-70" />
+      <div className="absolute inset-0 hairline-grid pan-grid opacity-70" />
+      {/* The doorway, extruded, standing behind the panel. */}
+      <ArchDepth className="absolute right-[-6%] top-[8%] hidden h-[78%] w-[34rem] lg:block" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
     </div>
   );
@@ -128,9 +132,11 @@ export function Hero() {
             transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
             className="relative mx-auto w-full max-w-[27rem] lg:mx-0 lg:max-w-none"
           >
-            <ArchPanel label="Free eligibility check" idPrefix="hero-arch">
-              <EligibilityCheck />
-            </ArchPanel>
+            <Tilt3D max={5} glare={false}>
+              <ArchPanel label="Free eligibility check" idPrefix="hero-arch">
+                <EligibilityCheck />
+              </ArchPanel>
+            </Tilt3D>
           </motion.div>
         </div>
       </Container>

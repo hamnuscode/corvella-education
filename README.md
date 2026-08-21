@@ -37,7 +37,7 @@ src/
     brand/Logo.tsx        the mark and the lockup, three variants each
     sections/             home page sections, reused across other pages
     ui/                   Button, Field, SelectMenu, Section, Backdrop, Reveal,
-                          CountUp, Accordion, ArchPanel
+                          CountUp, Accordion, ArchPanel, ArchDepth, Tilt3D
     EligibilityCheck.tsx  the four question flow used in the hero and on /apply
     EnquiryForm.tsx       one form, three variants (apply / contact / referral)
     Header.tsx Footer.tsx PageHeader.tsx
@@ -60,7 +60,9 @@ terminal drawn out into a beak, one amber eye. Corvella comes from the corvids.
 
 The layout signature is **the arch**: a doorway with a semicircular top and a flat base. It frames
 the hero eligibility check, holds the success story portrait, and stands faintly behind every inner
-page title. The site's argument is "the door you thought was closed", so the door is the shape
+page title. In the hero it is extruded: a stack of arch outlines pushed back along Z inside a
+perspective container (`ArchDepth`), so you look down the depth of the doorway rather than at a
+flat shape. `Tilt3D` gives the same treatment to the panel and the card grids. The site's argument is "the door you thought was closed", so the door is the shape
 everything is built from.
 
 The hero is not a headline plus a button. The hero **is** the first question of the eligibility
@@ -71,12 +73,13 @@ in this business.
 | --- | --- |
 | Display | Schibsted Grotesk, weights 600 to 800 |
 | Body | Geist |
-| Ink | `#0b2621` |
-| Brand | `#0a6b5c` (actions and links) |
-| Jade | `#17a98f` (glows and focus only, never small text on light) |
-| Amber | `#f2a93b` (accent, the logo eye) |
-| Paper | `#f7f7f4` |
-| Mist | `#dedfd4` |
+| Ink | `#101823` |
+| Brand | `#2b5f92` (actions and links) |
+| Steel | `#5e9bd6` (glows and accents on dark, never small text on light) |
+| Focus | `#3e7bb8` (focus rings, clears 3:1 on both paper and ink) |
+| Amber | `#f0a93c` (accent, the logo eye) |
+| Paper | `#f5f7fa` |
+| Mist | `#d4dce7` |
 
 See `/brand` for the logo variants, palette, type specimens and downloadable files. That page is
 `noindex, nofollow` and blocked in `robots.txt`.

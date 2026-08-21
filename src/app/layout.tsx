@@ -18,7 +18,7 @@ const geist = Geist({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#f7f7f4",
+  themeColor: "#f5f7fa",
   width: "device-width",
   initialScale: 1,
 };

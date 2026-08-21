@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette: deep evergreen, jade, and a warm amber for the way through */
-  --color-paper: #f7f7f4;
-  --color-paper-2: #eff0ea;
-  --color-mist: #dedfd4;
-  --color-ink: #0b2621;
-  --color-ink-2: #12403a;
-  --color-ink-3: #1b564d;
-  --color-brand: #0a6b5c;
-  --color-brand-600: #085649;
-  --color-brand-100: #dcefe9;
-  --color-jade: #17a98f;
-  --color-amber: #f2a93b;
-  --color-quiet: #4e5b56;
+  /* Palette: cool blue grey, steel, and a warm amber for the way through */
+  --color-paper: #f5f7fa;
+  --color-paper-2: #e9eef5;
+  --color-mist: #d4dce7;
+  --color-ink: #101823;
+  --color-ink-2: #1b2838;
+  --color-ink-3: #26374b;
+  --color-brand: #2b5f92;
+  --color-brand-600: #224c77;
+  --color-brand-100: #dbe7f4;
+  --color-steel: #5e9bd6;
+  --color-amber: #f0a93c;
+  --color-quiet: #54637a;
+  /* Sits above 3:1 against both paper and ink, so one ring works everywhere. */
+  --color-focus: #3e7bb8;
 
   --font-display: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
@@ -62,7 +64,7 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-jade);
+    outline: 3px solid var(--color-focus);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -136,9 +138,9 @@
 
 .aurora-field {
   background:
-    radial-gradient(120% 92% at 10% 4%, rgb(23 169 143 / 0.42) 0%, transparent 56%),
-    radial-gradient(88% 78% at 92% 18%, rgb(10 107 92 / 0.55) 0%, transparent 60%),
-    radial-gradient(72% 70% at 58% 100%, rgb(242 169 59 / 0.16) 0%, transparent 62%),
+    radial-gradient(120% 92% at 10% 4%, rgb(94 155 214 / 0.38) 0%, transparent 56%),
+    radial-gradient(88% 78% at 92% 18%, rgb(43 95 146 / 0.6) 0%, transparent 60%),
+    radial-gradient(72% 70% at 58% 100%, rgb(240 169 60 / 0.14) 0%, transparent 62%),
     var(--color-ink);
 }
 
@@ -151,14 +153,19 @@
 
 .hairline-grid-light {
   background-image:
-    linear-gradient(to right, rgb(11 38 33 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(11 38 33 / 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgb(16 24 35 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(16 24 35 / 0.045) 1px, transparent 1px);
   background-size: 76px 76px;
 }
 
 .dot-field {
-  background-image: radial-gradient(rgb(11 38 33 / 0.09) 1px, transparent 1px);
+  background-image: radial-gradient(rgb(16 24 35 / 0.09) 1px, transparent 1px);
   background-size: 26px 26px;
+}
+
+/* A grid that creeps by one cell over a couple of minutes. */
+.pan-grid {
+  animation: pan 150s linear infinite;
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -182,6 +189,18 @@
   0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
   50% { transform: translate3d(-5%, 5%, 0) scale(1); }
 }
+@keyframes pan {
+  from { background-position: 0 0; }
+  to { background-position: 76px 76px; }
+}
+@keyframes mote {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.5; }
+  50% { transform: translate3d(0, -26px, 0); opacity: 1; }
+}
+@keyframes turn {
+  from { transform: rotateY(-9deg) rotateX(4deg); }
+  to { transform: rotateY(9deg) rotateX(-2deg); }
+}
 @keyframes sweep {
   from { transform: translateX(-130%) skewX(-18deg); }
   to { transform: translateX(230%) skewX(-18deg); }
@@ -189,6 +208,8 @@
 
 .animate-drift { animation: drift 26s ease-in-out infinite; }
 .animate-drift-slow { animation: drift-slow 34s ease-in-out infinite; }
+.animate-mote { animation: mote 14s ease-in-out infinite; }
+.animate-turn { animation: turn 18s ease-in-out infinite alternate; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

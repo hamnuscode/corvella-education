@@ -8,8 +8,8 @@
 
     </g>
   </mask>
-  <rect x="6" y="10" width="44" height="44" fill="#0b2621" mask="url(#lk)"/>
-  <circle cx="28.9" cy="19.1" r="2" fill="#f2a93b"/>
-  <text x="60" y="36" font-family="'Schibsted Grotesk', Helvetica, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-1.1" fill="#0b2621">Corvella</text>
-  <text x="61" y="49" font-family="'Schibsted Grotesk', Helvetica, Arial, sans-serif" font-size="8" font-weight="600" letter-spacing="1.9" fill="#4e5b56">EDUCATION</text>
+  <rect x="6" y="10" width="44" height="44" fill="#101823" mask="url(#lk)"/>
+  <circle cx="28.9" cy="19.1" r="2" fill="#f0a93c"/>
+  <text x="60" y="36" font-family="'Schibsted Grotesk', Helvetica, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-1.1" fill="#101823">Corvella</text>
+  <text x="61" y="49" font-family="'Schibsted Grotesk', Helvetica, Arial, sans-serif" font-size="8" font-weight="600" letter-spacing="1.9" fill="#54637a">EDUCATION</text>
 </svg>

@@ -1,6 +1,7 @@
 import { GraduationCap, Clock, Compass, CalendarCheck } from "lucide-react";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { Tilt3D } from "@/components/ui/Tilt3D";
 import { audience } from "@/lib/site";
 
 const icons = { GraduationCap, Clock, Compass, CalendarCheck } as const;
@@ -19,8 +20,9 @@ export function WhoFor() {
           {audience.map((item, i) => {
             const Icon = icons[item.icon as keyof typeof icons];
             return (
-              <Reveal as="li" key={item.title} delay={i * 0.07}>
-                <div className="group relative h-full overflow-hidden rounded-t-[8rem] rounded-b-2xl border border-mist bg-paper-2 px-6 pb-7 pt-10 transition-all duration-300 hover:-translate-y-1 hover:border-brand/35 hover:bg-white">
+              <Reveal as="li" key={item.title} delay={i * 0.07} className="h-full">
+                <Tilt3D className="h-full" radiusClass="rounded-t-[8rem] rounded-b-2xl">
+                <div className="group relative h-full overflow-hidden rounded-t-[8rem] rounded-b-2xl border border-mist bg-paper-2 px-6 pb-7 pt-10 transition-colors duration-300 hover:border-brand/35 hover:bg-white">
                   <span
                     aria-hidden
                     className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-brand-100 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-paper"
@@ -34,6 +36,7 @@ export function WhoFor() {
                     {item.body}
                   </p>
                 </div>
+                </Tilt3D>
               </Reveal>
             );
           })}

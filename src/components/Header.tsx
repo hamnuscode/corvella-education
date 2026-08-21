@@ -65,7 +65,7 @@ export function Header() {
         <motion.div
           aria-hidden
           style={{ scaleX: reduce ? 0 : progress }}
-          className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-gradient-to-r from-brand via-jade to-amber"
+          className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-gradient-to-r from-brand via-steel to-amber"
         />
 
         <Container

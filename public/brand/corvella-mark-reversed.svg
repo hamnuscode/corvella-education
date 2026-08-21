@@ -6,6 +6,6 @@
     <path d="M16.62 10.49 L28.96 13.48 L40 -6 L40 42 L37.55 30.54 L16 16 Z" fill="#000"/>
     <circle cx="16.65" cy="6.64" r="1.45" fill="#000"/>
   </mask>
-  <rect width="32" height="32" fill="#f7f7f4" mask="url(#cvmask)"/>
+  <rect width="32" height="32" fill="#f5f7fa" mask="url(#cvmask)"/>
 
 </svg>

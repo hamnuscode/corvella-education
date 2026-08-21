@@ -31,7 +31,7 @@ export function CTABand({
       {/* Ambient ground behind the glass */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
-          className={`absolute -left-[8%] top-[-30%] h-[34rem] w-[34rem] rounded-full bg-jade/30 blur-[120px] ${
+          className={`absolute -left-[8%] top-[-30%] h-[34rem] w-[34rem] rounded-full bg-steel/30 blur-[120px] ${
             reduce ? "" : "animate-drift"
           }`}
         />

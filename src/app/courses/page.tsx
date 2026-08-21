@@ -4,6 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Container, Section, SectionHead, Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { Tilt3D } from "@/components/ui/Tilt3D";
 import { CTABand } from "@/components/sections/CTABand";
 import { PartnerWall } from "@/components/sections/PartnerWall";
 import { courseLevels, subjectAreas } from "@/lib/site";
@@ -28,7 +29,8 @@ export default function CoursesPage() {
         <Container>
           <ul className="grid gap-5 lg:grid-cols-3">
             {courseLevels.map((level, i) => (
-              <Reveal as="li" key={level.slug} delay={i * 0.08}>
+              <Reveal as="li" key={level.slug} delay={i * 0.08} className="h-full">
+                <Tilt3D className="h-full" max={6} radiusClass="rounded-t-[9rem] rounded-b-3xl">
                 <div className="flex h-full flex-col rounded-t-[9rem] rounded-b-3xl border border-mist bg-paper-2 px-8 pb-8 pt-12 transition-colors duration-300 hover:border-brand/35 hover:bg-white">
                   <p className="label text-center text-brand">{level.label}</p>
                   <h2 className="mt-5 text-center font-display text-[1.5rem] font-bold leading-tight text-ink">
@@ -44,6 +46,7 @@ export default function CoursesPage() {
                     ))}
                   </ul>
                 </div>
+                </Tilt3D>
               </Reveal>
             ))}
           </ul>

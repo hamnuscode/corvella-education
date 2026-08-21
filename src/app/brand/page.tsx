@@ -12,12 +12,15 @@ export const metadata: Metadata = {
 };
 
 const palette = [
-  { name: "Ink", hex: "#171334", note: "Text and dark surfaces" },
-  { name: "Iris", hex: "#3d2fbf", note: "Primary brand and actions" },
-  { name: "Sheen", hex: "#1fa8a0", note: "Confirmation and focus" },
-  { name: "Beacon", hex: "#ffc24b", note: "Accent, never for body text" },
-  { name: "Paper", hex: "#f7f6fb", note: "Page background" },
-  { name: "Mist", hex: "#e0dcf2", note: "Borders and dividers" },
+  { name: "Ink", hex: "#101823", note: "Text and dark surfaces" },
+  { name: "Brand", hex: "#2b5f92", note: "Primary actions and links" },
+  { name: "Steel", hex: "#5e9bd6", note: "Glows and accents on dark, not small text on light" },
+  { name: "Focus", hex: "#3e7bb8", note: "Focus rings. Clears 3:1 on both paper and ink" },
+  { name: "Amber", hex: "#f0a93c", note: "Accent and the logo eye, never body text on light" },
+  { name: "Paper", hex: "#f5f7fa", note: "Page background" },
+  { name: "Paper 2", hex: "#e9eef5", note: "Alternating section background" },
+  { name: "Mist", hex: "#d4dce7", note: "Borders and dividers" },
+  { name: "Quiet", hex: "#54637a", note: "Secondary text" },
 ];
 
 const files = [
@@ -37,7 +40,7 @@ export default function BrandPage() {
       <PageHeader
         eyebrow="Brand"
         title="The Corvella mark"
-        lede="A C that is also a raven's head. Corvella comes from the corvids, the family of birds known for being resourceful, so the initial and the bird are the same shape: a thick ring opened on the right, with the upper terminal drawn out into a beak and a single amber eye. The arch it used to sit in now belongs to the layout instead."
+        lede="A C that is also a raven's head. Corvella comes from the corvids, the family of birds known for being resourceful, so the initial and the bird are the same shape: a thick ring opened on the right, with the upper terminal drawn out into a beak and a single amber eye. The arch it used to sit in now belongs to the layout, where it is built with real depth."
       />
 
       <Section tone="paper">

@@ -30,7 +30,7 @@ export function CorvellaMark({
 }) {
   const maskId = `${idPrefix}-mark-mask`;
   const fill =
-    variant === "reversed" ? "#f7f7f4" : variant === "mono" ? "currentColor" : "#0a6b5c";
+    variant === "reversed" ? "#f5f7fa" : variant === "mono" ? "currentColor" : "#2b5f92";
   const knockOutEye = variant !== "colour";
 
   return (
@@ -50,7 +50,7 @@ export function CorvellaMark({
         {knockOutEye ? <circle {...EYE} fill="#000" /> : null}
       </mask>
       <rect width="32" height="32" fill={fill} mask={`url(#${maskId})`} />
-      {variant === "colour" ? <circle {...EYE} fill="#f2a93b" /> : null}
+      {variant === "colour" ? <circle {...EYE} fill="#f0a93c" /> : null}
     </svg>
   );
 }
