@@ -6,7 +6,7 @@ import { Container, Section } from "@/components/ui/Section";
 import { Backdrop } from "@/components/ui/Backdrop";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTABand } from "@/components/sections/CTABand";
-import { posts } from "@/lib/site";
+import { posts, accentHex } from "@/lib/site";
 import { getPostBody } from "@/lib/postContent";
 
 const dateFmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -36,7 +36,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
 
-  const { blocks, isSample } = getPostBody(slug);
+  const { blocks } = getPostBody(slug);
   const index = posts.findIndex((p) => p.slug === slug);
   const next = posts[(index + 1) % posts.length];
 
@@ -57,7 +57,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <ArrowLeft size={14} aria-hidden />
               All articles
             </Link>
-            <p className="label mt-9 text-brand">{post.category}</p>
+            <p className="label mt-9" style={{ color: accentHex[post.accent] }}>{post.category}</p>
             <h1 className="display-lg mt-4 max-w-3xl text-ink">{post.title}</h1>
             <p className="label mt-7 text-quiet">
               <time dateTime={post.date}>{dateFmt.format(new Date(post.date))}</time>
@@ -70,15 +70,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <Section tone="paper">
           <Container>
             <div className="mx-auto max-w-[42rem]">
-              {isSample ? (
-                <p className="mb-10 rounded-2xl border border-dashed border-mist bg-paper-2 p-5 text-[0.85rem] leading-relaxed text-quiet">
-                  Sample article. Add the real body for this post in{" "}
-                  <code className="rounded bg-paper px-1.5 py-0.5 font-mono text-[0.75rem]">
-                    src/lib/postContent.ts
-                  </code>
-                  .
-                </p>
-              ) : null}
+
 
               <p className="lede text-quiet">{post.excerpt}</p>
 
@@ -93,7 +85,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   }
                   if (block.type === "ul") {
                     return (
-                      <ul key={i} className="flex flex-col gap-3 border-l-2 border-brand/30 pl-6">
+                      <ul
+                        key={i}
+                        className="flex flex-col gap-3 border-l-2 pl-6"
+                        style={{ borderColor: `color-mix(in srgb, ${accentHex[post.accent]} 45%, transparent)` }}
+                      >
                         {block.items.map((item) => (
                           <li key={item} className="text-[1.02rem] leading-relaxed text-ink/85">
                             {item}
@@ -106,7 +102,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                     return (
                       <blockquote
                         key={i}
-                        className="my-4 rounded-2xl bg-paper-2 p-7 font-display text-[1.3rem] font-semibold leading-snug text-ink"
+                        className="my-4 rounded-2xl border-l-4 bg-paper-2 p-7 font-display text-[1.3rem] font-semibold leading-snug tracking-[-0.02em] text-ink"
+                        style={{ borderColor: accentHex[post.accent] }}
                       >
                         {block.text}
                       </blockquote>

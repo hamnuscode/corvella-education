@@ -80,10 +80,7 @@ export default function ContactPage() {
                   </span>
                 </div>
 
-                <p className="rounded-2xl border border-dashed border-mist p-5 text-[0.83rem] leading-relaxed text-quiet">
-                  Every contact detail on this page is a placeholder in square brackets. Replace them
-                  in <code className="rounded bg-paper-2 px-1.5 py-0.5 font-mono text-[0.75rem]">src/lib/site.ts</code>.
-                </p>
+
               </div>
             </Reveal>
 

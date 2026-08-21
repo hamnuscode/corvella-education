@@ -33,7 +33,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`relative isolate overflow-hidden ${tones[tone]} py-16 sm:py-20 lg:py-28 ${className}`}
+      className={`relative isolate overflow-clip ${tones[tone]} py-16 sm:py-20 lg:py-28 ${className}`}
     >
       {backdrop ? (
         <Backdrop

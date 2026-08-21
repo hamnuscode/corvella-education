@@ -3,6 +3,7 @@ import { Schibsted_Grotesk, Geist } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Cursor } from "@/components/ui/Cursor";
 import { site } from "@/lib/site";
 
 const schibsted = Schibsted_Grotesk({
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <Cursor />
         <Header />
         <main id="main">{children}</main>
         <Footer />

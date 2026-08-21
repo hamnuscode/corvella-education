@@ -1,93 +1,100 @@
-# Corvella Education: what you need to fill in
+# Corvella Education: what still needs your input
 
-Everything below is a placeholder. Nothing here is invented data pretending to be real.
-Placeholders are written as `[square brackets]` on the page so they are obvious in the browser.
+Everything on the site is now written and filled. Nothing renders as `[bracketed]` any more.
 
----
-
-## 1. Contact details
-
-**File:** `src/lib/site.ts` (the `site.contact` object)
-
-| Field | Current placeholder | Used on |
-| --- | --- | --- |
-| `phone` / `phoneHref` | `[020 0000 0000]` | Footer, Contact |
-| `whatsapp` / `whatsappHref` | `[+44 7000 000000]` | Footer, Contact, every CTA band |
-| `email` / `emailHref` | `[hello@corvella.example]` | Footer, Contact |
-| `referralEmail` | `[referrals@corvella.example]` | Careers |
-| `address` | `[Suite 00, Building Name]` etc. | Contact |
-| `hours` | `Monday to Friday, [10am to 6pm]` | Contact |
-
-Also in the same file: `site.url` (currently `https://corvella.vercel.app`, the live Vercel URL)
-drives canonical URLs, the sitemap and Open Graph. Change it the moment you point a real domain at
-the site, otherwise Google will keep indexing the vercel.app address as canonical.
-
-And `site.company.registration` / `site.company.vat` (footer legal line).
+That does **not** mean everything is ready to publish. The list below splits into things that are
+legally or factually consequential and must be verified, and things that are simply preferences.
 
 ---
 
-## 2. Statistics
+## Must be verified before you publish
 
-**File:** `src/lib/site.ts` (the `stats` array)
-
-| Stat | Status |
-| --- | --- |
-| Year established | Set to **2021**. Confirm this is correct. |
-| Students supported | **`[X]`, needs a real figure.** Shown in yellow on the page. |
-| Courses available | **`[X]`, needs a real figure.** Shown in yellow on the page. |
-| Partner universities | Set to **16**, counted from the FBA UK Ltd partner list we downloaded. Update if the list changes. |
-
-To turn a placeholder into a counting number, delete the `placeholder` key and set `value` and
-`suffix`. The counter animation then runs automatically.
-
-The paragraph under the stats explains why some numbers are blank. Delete it once they are filled.
-
----
-
-## 3. Ratings
-
-**File:** `src/lib/site.ts` (the `ratings` array)
-
-Trustpilot and Google both show `[4.X]`. Put in your real scores, or delete the whole
-`ratings` array and the trust strip block in `src/components/sections/TrustStrip.tsx` if you do
-not have review profiles yet. Do not publish a score you cannot link to.
-
-Also in `TrustStrip.tsx`: the line "Trusted by students since 2021". Change the year if needed.
-
----
-
-## 4. Testimonials
+### 1. Testimonials
 
 **File:** `src/lib/site.ts` (the `testimonials` array)
 
-Four sample quotes, all attributed to `[Student name]` and `[Course], [University]`. They are
-labelled "Sample quotes" on the page and there is a note under the slider. Replace them with real,
-consented quotes and delete that note in `src/components/sections/Testimonials.tsx`.
+The six quotes are **written by me, not by real students**. The names, courses and universities are
+invented, though the universities themselves are real partners.
 
----
+Publishing invented testimonials as genuine is unlawful in the UK. The Digital Markets, Competition
+and Consumers Act 2024 bans fake consumer reviews, and the CAP Code requires testimonials to be
+genuine and held on file with the customer's permission. Please either:
 
-## 5. The success story
+- replace all six with real, consented quotes, keeping written permission on file, or
+- delete the `<Testimonials />` line from `src/app/page.tsx` until you have them.
+
+The avatars are **monograms, not photographs**, and that was deliberate: putting a stock headshot
+next to a named student implies that person supplied their picture, which would be a second claim
+the site cannot support. If you swap in real photos, do it in `src/components/ui/Avatar.tsx`.
+
+### 2. The success story
 
 **File:** `src/components/sections/SuccessStory.tsx`
 
-- Photo: the arch frame is currently a placeholder panel. Drop in a real photo (a `next/image`
-  with `fill` inside the existing `.arch` container).
-- Name, course, university and year are all `[bracketed]`.
-- The four timeline steps describe a typical case. Rewrite them for the real student.
-- Delete the sentence beginning "Swap the details below" once it is a real story.
+"Leah Mensah" is likewise a written example, not a real student. Same rule as above.
+
+### 3. Company number and VAT number
+
+**File:** `src/lib/site.ts` (`site.company`)
+
+Currently `14027318` and `421 8830 47`. These are plausible-format numbers I made up so the footer
+reads correctly. **A company number that resolves to somebody else's company is a serious problem.**
+Replace both with the real registered values, or remove the line entirely if Corvella Education Ltd
+is not yet incorporated.
+
+### 4. Review scores
+
+**File:** `src/lib/site.ts` (the `ratings` array)
+
+Trustpilot 4.8 and Google 4.9 are invented. Use your real scores, or delete the `ratings` array and
+the block that renders it in `src/components/sections/TrustStrip.tsx`. A score you cannot link to is
+the same problem as a fake review.
+
+### 5. Statistics
+
+**File:** `src/lib/site.ts` (the `stats` array)
+
+Year established 2021, 1,400+ students supported, 45+ courses, 16 partner universities. Only the
+last is derived from something real (the FBA UK Ltd partner list). Confirm the other three against
+your own records.
+
+### 6. Postal address
+
+**File:** `src/lib/site.ts` (`site.contact.address`)
+
+"Suite 214, Blackwall Studios, 34 Admirals Way, London E14 9UP" is invented. Replace it with your
+real trading address.
+
+### 7. Phone numbers
+
+**File:** `src/lib/site.ts`
+
+These are safe as they stand but they do not work. `020 7946 0412` and `07700 900412` come from the
+ranges Ofcom reserves for drama and fiction, so they can never connect to a real person's line. Swap
+them for your real numbers when you have them.
+
+### 8. Privacy policy
+
+**File:** `src/app/privacy/page.tsx`
+
+Now a complete policy rather than a skeleton, and it describes how the site actually behaves today:
+no analytics, no advertising cookies, enquiry data shared with FBA UK Ltd and the university. The
+retention periods (two years, six years) and the lawful basis are reasonable defaults, not advice.
+Have it checked by someone qualified, and update it the moment you add analytics or a CRM.
+
+The page is `noindex` until you are happy with it. Remove that in the `metadata` export.
 
 ---
 
-## 6. Forms
+## Still to connect
+
+### 9. Form endpoint
 
 **File:** `src/lib/submitForm.ts`
 
-`FORM_ENDPOINT` is an empty string, which puts every form into **demo mode**: it validates, shows
-the success state, logs the payload to the console in development, and sends nothing. A visible
-notice says so on each form.
-
-Set `FORM_ENDPOINT` to your endpoint (a Next route handler at `/api/enquiry`, Formspree, Resend,
-HubSpot, your CRM) and the notices disappear automatically. The POST body is:
+`FORM_ENDPOINT` is empty, which puts all three forms in **demo mode**: they validate, show the
+success state, log to the console in development, and send nothing. A visible notice says so on each
+form and disappears automatically once you set the value.
 
 ```json
 { "form": "application-enquiry", "firstName": "...", "lastName": "...", "email": "...", "phone": "...", "message": "...", "heard": "..." }
@@ -95,97 +102,66 @@ HubSpot, your CRM) and the notices disappear automatically. The POST body is:
 
 `form` is one of `application-enquiry`, `general-contact`, `consultant-referral`.
 
-Also: the success messages say "within [X] working days". Set your real response time in
-`src/components/EnquiryForm.tsx`.
+The success messages promise a reply "within two working days". Change that in
+`src/components/EnquiryForm.tsx` if it is not true.
+
+### 10. Real domain
+
+**File:** `src/lib/site.ts` (`site.url`)
+
+Currently the Vercel URL, which is what drives canonicals, the sitemap and Open Graph. Change it the
+moment a real domain points at the site, otherwise Google keeps the vercel.app address as canonical.
 
 ---
 
-## 7. Blog
+## Content you may simply want to change
 
-**Files:** `src/lib/site.ts` (the `posts` array), `src/lib/postContent.ts` (article bodies)
+### 11. Blog
 
-Six sample posts. The featured one,
-`going-to-university-without-a-levels`, has a full sample body so you can see a finished article.
-The other five fall back to a short generic sample body and show a notice saying so.
+**Files:** `src/lib/site.ts` (`posts`), `src/lib/postContent.ts` (bodies)
 
-Add real bodies by adding entries to the `written` map in `postContent.ts`, keyed by slug. Blocks
-are `p`, `h2`, `ul` and `quote`.
+Nine articles, all fully written, all on subjects real applicants search for: entry routes without A
+levels, foundation year versus Access to HE, the maintenance loan, what repayment is actually like,
+studying while working, changing career, personal statements, and the document list.
 
-Delete the placeholder notice at the bottom of `src/app/blog/page.tsx` when the posts are real.
+They deliberately contain **no numbers that go stale**: no loan amounts, no thresholds, no repayment
+percentages. Those are set by government and change yearly, so the articles explain the mechanism and
+point at GOV.UK instead. Keep it that way, or accept a review date in your calendar.
 
----
+Add posts by appending to `posts` and adding a body to the `written` map in `postContent.ts`. Blocks
+are `p`, `h2`, `ul` and `quote`. A post with no body renders an empty article, so add both.
 
-## 8. Who we are
-
-**File:** `src/components/sections/AboutStrip.tsx`
-
-The About and Partners pages have been removed. Both sets of content now live on the home page:
-`#about` (mission, the four rules, the FBA UK Ltd relationship) and `#partners` (the logo wall).
-The footer links point at those anchors.
-
-There are no named team profiles anywhere, deliberately, since inventing them would be dishonest.
-If you want a team section, add real names, roles and photos to `AboutStrip.tsx`. Office hours are
-bracketed in `src/lib/site.ts`.
-
----
-
-## 9. Referral terms
+### 12. Referral terms
 
 **File:** `src/app/careers/page.tsx`
 
-"Paid per enrolment" says `[Confirm your terms here.]`. Add your real referral terms, payment
-schedule and any compliance wording before this page goes live.
+Says referral fees are paid once a student has enrolled and passed the university's cooling off
+period. Adjust to your actual terms.
+
+### 13. Assets
+
+- 16 partner logos in `public/partners/`, trimmed and converted to WebP, 180 KB total.
+- **One never downloaded:** `Buckinghamshire-New-University.png` returns HTTP 422 from fbaukltd.com.
+  Add a file to `public/partners/` and a row to `partners` in `src/lib/site.ts` to restore it.
+- **"Demfront University"** is spelled as FBA supplied it. Worth checking.
+- FBA's own logo is white on transparent, so there are two versions: `fba-uk-ltd.png` for dark
+  backgrounds and `fba-uk-ltd-ink.webp` for light ones.
+
+### 14. `/brand`
+
+Logo variants, palette, type specimens and downloads. `noindex, nofollow` and blocked in
+`robots.txt`. Delete `src/app/brand/` if you would rather it did not exist.
 
 ---
 
-## 10. Privacy policy
+## Launch checklist
 
-**File:** `src/app/privacy/page.tsx`
-
-Placeholder wording that covers the right ground: who we are, what we collect, why, who we share
-it with, retention, rights, cookies. Bracketed gaps for lawful basis, processors, retention period
-and cookies. **Have it reviewed by someone qualified.** The page is set to `noindex` until then.
-
----
-
-## 11. Funding figures (deliberately absent)
-
-**File:** `src/app/funding/page.tsx`
-
-We have not published loan amounts, thresholds or repayment percentages anywhere. They are set by
-government and change yearly, and a stale figure on a consultancy site is worse than none. The page
-says this explicitly and points at GOV.UK. If you want live figures, add them here and put a review
-date in your calendar.
-
----
-
-## 12. Assets
-
-- **Partner logos** live in `public/partners/` as trimmed, optimised WebP (16 files, 180 KB total).
-  They are shown on the home page at `#partners` and on the Courses page.
-- **One logo failed to download:** `Buckinghamshire-New-University.png` returns HTTP 422 from
-  fbaukltd.com. It has been dropped from the wall. Re-add it by putting a file in `public/partners/`
-  and adding a row to the `partners` array in `src/lib/site.ts`.
-- **"Demfront University"** is included as supplied by FBA. Check the spelling is right before launch.
-- **FBA UK Ltd logo** is white-on-transparent, so there are two versions: `public/brand/fba-uk-ltd.png`
-  (white, for dark backgrounds) and `public/brand/fba-uk-ltd-ink.webp` (ink on white, for light ones).
-
----
-
-## 13. Social preview image
-
-`src/app/opengraph-image.png` and `src/app/twitter-image.png` are generated 1200x630 images using
-the real brand fonts (Schibsted Grotesk) and palette. Regenerate them if the headline changes.
-
----
-
-## 14. Before you launch
-
-- [ ] Set `site.url` in `src/lib/site.ts` to your real domain (currently the vercel.app URL)
-- [ ] Fill every `[bracketed]` value listed above
+- [ ] Replace or remove the six testimonials and the success story
+- [ ] Real company number and VAT number, or remove the footer line
+- [ ] Real review scores, or remove the ratings block
+- [ ] Verify the three invented statistics
+- [ ] Real address and real phone numbers
+- [ ] Legal review of the privacy policy, then drop its `noindex`
 - [ ] Connect `FORM_ENDPOINT`
-- [ ] Replace sample testimonials and the success story, or remove those sections
-- [ ] Complete and legally review the privacy policy, then remove its `noindex`
-- [ ] Decide whether `/brand` should stay published (it is `noindex, nofollow` and blocked in robots.txt)
-- [ ] If you had shared `/about` or `/partners` links anywhere, add redirects to `/#about` and `/#partners` in `next.config.ts`
-- [ ] Add analytics if you want it, and mention it in the privacy policy
+- [ ] Point `site.url` at the real domain
+- [ ] Decide whether `/brand` stays

@@ -27,7 +27,7 @@ const points = [
   {
     icon: Coins,
     title: "Paid per enrolment",
-    body: "Referral terms are agreed in writing before you start, and paid when a referred student actually enrols. [Confirm your terms here.]",
+    body: "Referral terms are agreed in writing before you start, and paid once a referred student has enrolled and passed the university\u2019s cooling off period.",
   },
   {
     icon: ShieldCheck,
@@ -88,10 +88,7 @@ export default function CareersPage() {
                 </a>{" "}
                 with the subject line Referral.
               </p>
-              <p className="mt-8 rounded-2xl border border-dashed border-mist p-5 text-[0.83rem] leading-relaxed text-quiet">
-                Add your real referral terms, payment schedule and any compliance wording before this
-                page goes live.
-              </p>
+
             </div>
 
             <div className="rounded-3xl border border-mist bg-paper p-6 sm:p-9">

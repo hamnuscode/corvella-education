@@ -112,6 +112,18 @@ export function Header() {
                     />
                   ) : null}
                   <span className="relative">{item.label}</span>
+                  {active ? (
+                    <motion.span
+                      layoutId="nav-underline"
+                      aria-hidden
+                      className="absolute inset-x-3.5 -bottom-[3px] h-[2.5px] rounded-full bg-brand"
+                      transition={
+                        reduce
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 420, damping: 34 }
+                      }
+                    />
+                  ) : null}
                 </Link>
               );
             })}

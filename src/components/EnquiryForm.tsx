@@ -28,14 +28,14 @@ const config: Record<
     name: "application-enquiry",
     submit: "Send my details",
     success:
-      "Thanks. Your details are with us. An adviser will come back to you within [X] working days with your options.",
+      "Thanks. Your details are with us. An adviser will come back to you within two working days with your options.",
     messageLabel: "What do you want to study, and where are you now?",
     messageHint: "A few lines is plenty. Tell us your subject, your work situation and when you want to start.",
   },
   contact: {
     name: "general-contact",
     submit: "Send message",
-    success: "Thanks. Your message is with us and we will reply within [X] working days.",
+    success: "Thanks. Your message is with us and we will reply within two working days.",
     messageLabel: "Your message",
     messageHint: "Tell us what you need and we will point you to the right person.",
   },

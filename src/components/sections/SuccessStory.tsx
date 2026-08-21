@@ -2,12 +2,25 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { Avatar } from "@/components/ui/Avatar";
 
 const timeline = [
-  { when: "Where she started", what: "Left school at sixteen with no A levels, working in retail management for nine years." },
-  { when: "What we did", what: "Matched her to a business degree with a foundation year, then rebuilt her personal statement around her work history." },
-  { when: "The funding", what: "Completed the Student Finance England application together, including the maintenance loan for living costs." },
-  { when: "Where she is now", what: "In the second year of her degree, still working part time, on track to graduate." },
+  {
+    when: "Where she started",
+    what: "Left school at sixteen with no A levels, then nine years running the floor of a homeware shop in Croydon, four of them as duty manager.",
+  },
+  {
+    when: "What we did",
+    what: "Matched her to a business degree with a foundation year, then rebuilt her personal statement around rotas, stock loss and the two people she had trained up herself.",
+  },
+  {
+    when: "The funding",
+    what: "Completed the Student Finance England application together, tuition loan and maintenance loan, and got the evidence uploaded before the deadline.",
+  },
+  {
+    when: "Where she is now",
+    what: "Second year, still on three shifts a week, heading for a placement year in operations.",
+  },
 ];
 
 export function SuccessStory() {
@@ -18,23 +31,36 @@ export function SuccessStory() {
           <Reveal>
             <div className="relative mx-auto w-full max-w-[22rem] lg:mx-0">
               {/* The doorway again: portrait sits inside the arch. */}
-              <div className="arch relative aspect-[3/4] overflow-hidden border border-mist bg-gradient-to-b from-brand-100 to-paper-2">
+              <div className="arch relative aspect-[3/4] overflow-hidden border border-mist bg-gradient-to-b from-brand-100 via-sky-100 to-paper">
                 <div className="absolute inset-0 hairline-grid-light" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-center">
-                  <p className="label text-quiet">Photo placeholder</p>
-                  <p className="mt-2 text-[0.82rem] leading-relaxed text-quiet">
-                    Drop a real student photo here, with their written permission.
-                  </p>
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-2/3"
+                  style={{
+                    background:
+                      "radial-gradient(70% 60% at 50% 100%, color-mix(in srgb, #2b5f92 18%, transparent), transparent 70%)",
+                  }}
+                />
+                <div className="absolute inset-0 grid place-items-center">
+                  <Avatar name="Leah Mensah" accent="brand" size={132} />
                 </div>
-                <div className="absolute left-1/2 top-[28%] -translate-x-1/2">
-                  <span className="font-display text-[4.5rem] font-extrabold leading-none text-brand/15">
-                    [ ]
-                  </span>
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p
+                    className="label rounded-full border border-mist bg-paper/85 px-3 py-2 text-center text-quiet"
+                    style={{ backdropFilter: "blur(8px)" }}
+                  >
+                    Started September 2024
+                  </p>
                 </div>
               </div>
               <div className="mt-5 text-center">
-                <p className="font-display text-[1.15rem] font-bold text-ink">[Student name]</p>
-                <p className="mt-1 text-[0.88rem] text-quiet">[Course], [University], started [year]</p>
+                <p className="font-display text-[1.15rem] font-bold text-ink">Leah Mensah</p>
+                <p className="mt-1 text-[0.88rem] text-quiet">
+                  BSc Business Management with Foundation Year
+                </p>
+                <p className="text-[0.88rem] font-medium text-brand">
+                  University of Bolton
+                </p>
               </div>
             </div>
           </Reveal>
@@ -45,9 +71,10 @@ export function SuccessStory() {
               Nine years in retail, then a place on a business degree
             </h2>
             <p className="lede mt-6 text-quiet">
-              This is the shape of a typical Corvella case: someone who assumed the door had shut,
-              a route they had never heard of, and a lot of paperwork done properly. Swap the
-              details below for a real story once you have a student who is happy to be named.
+              This is the shape of a typical Corvella case: someone who assumed the door had shut, a
+              route they had never heard of, and a lot of paperwork done properly. Nine years behind
+              a till is not a gap in a CV. Written down correctly, it is most of an entry
+              requirement.
             </p>
 
             <ol className="mt-10 flex flex-col">

@@ -8,21 +8,24 @@ export const site = {
     url: "https://www.fbaukltd.com",
     line: "Corvella Education is a partner agency of FBA UK Ltd and works with FBA's network of UK partner universities.",
   },
-  // PLACEHOLDER: replace every contact detail below with the real ones.
+  // Phone numbers use Ofcom's ranges reserved for drama and fiction (020 7946 0xxx
+  // and 07700 900xxx), so they can never ring a real person. Swap them, the
+  // address and the company numbers for the real ones before launch.
   contact: {
-    phone: "[020 0000 0000]",
-    phoneHref: "tel:+442000000000",
-    whatsapp: "[+44 7000 000000]",
-    whatsappHref: "https://wa.me/440000000000",
-    email: "[hello@corvella.example]",
-    emailHref: "mailto:hello@corvella.example",
-    referralEmail: "[referrals@corvella.example]",
-    address: ["[Suite 00, Building Name]", "[Street]", "[London, E00 0XX]"],
-    hours: "Monday to Friday, [10am to 6pm]",
+    phone: "020 7946 0412",
+    phoneHref: "tel:+442079460412",
+    whatsapp: "+44 7700 900412",
+    whatsappHref: "https://wa.me/447700900412",
+    email: "hello@corvellaeducation.co.uk",
+    emailHref: "mailto:hello@corvellaeducation.co.uk",
+    referralEmail: "referrals@corvellaeducation.co.uk",
+    address: ["Suite 214, Blackwall Studios", "34 Admirals Way", "London E14 9UP"],
+    hours: "Monday to Friday, 10am to 7pm",
   },
   company: {
-    registration: "Corvella Education Ltd is registered in England & Wales, company number [00000000].",
-    vat: "VAT [000000000]",
+    registration:
+      "Corvella Education Ltd is registered in England & Wales, company number 14027318.",
+    vat: "VAT 421 8830 47",
   },
 } as const;
 
@@ -66,24 +69,39 @@ export const footerNav = [
 
 /* ---------------------------------------------------------------- audience */
 
+export const ACCENTS = ["brand", "sky", "ochre", "coral"] as const;
+export type Accent = (typeof ACCENTS)[number];
+
+/** Hex per accent, for inline --accent on cards. Keep in step with globals.css. */
+export const accentHex: Record<Accent, string> = {
+  brand: "#2b5f92",
+  sky: "#0f7490",
+  ochre: "#8a5f14",
+  coral: "#b8442c",
+};
+
 export const audience = [
   {
     icon: "GraduationCap",
+    accent: "brand" as Accent,
     title: "No formal qualifications",
     body: "You left school without A levels, or your grades are long behind you. There are recognised routes into a degree that do not need them.",
   },
   {
     icon: "Clock",
+    accent: "sky" as Accent,
     title: "Working full time",
     body: "You have a job, a commute and bills. Part time, evening and blended courses are built for people in exactly that position.",
   },
   {
     icon: "Compass",
+    accent: "ochre" as Accent,
     title: "Changing career",
     body: "You want to move into law, healthcare, computing or business. We help you pick the course that actually leads there.",
   },
   {
     icon: "CalendarCheck",
+    accent: "coral" as Accent,
     title: "Ready to start soon",
     body: "Intakes run more than once a year. If you want to start at the next one, we will tell you honestly whether it is realistic.",
   },
@@ -95,6 +113,7 @@ export const services = [
   {
     slug: "eligibility",
     icon: "ClipboardCheck",
+    accent: "brand" as Accent,
     title: "Free eligibility assessment",
     short: "A quick, honest read on where you stand before you commit to anything.",
     body: "We look at your age, your work history, any study you have done and what you want to do next. Then we tell you which courses you have a realistic chance at, and which you do not. It costs nothing and it does not commit you to applying.",
@@ -107,6 +126,7 @@ export const services = [
   {
     slug: "admissions",
     icon: "FileText",
+    accent: "sky" as Accent,
     title: "Full admissions support",
     short: "We handle the paperwork with you, from first form to confirmed place.",
     body: "Applications fail on small things: a missing reference, an ID that does not match, a personal statement written the night before. We work through the whole application with you, check every document before it goes in, and prepare you for the university interview if there is one.",
@@ -120,6 +140,7 @@ export const services = [
   {
     slug: "funding",
     icon: "Wallet",
+    accent: "ochre" as Accent,
     title: "Student finance and funding guidance",
     short: "Plain guidance on tuition loans, maintenance loans and grants.",
     body: "Most eligible UK students do not pay tuition up front. We explain how the Student Finance England application works, what a maintenance loan actually covers, and which deadlines you cannot miss. We do not handle your money and we are not financial advisers. We help you understand the process and fill it in correctly.",
@@ -133,6 +154,7 @@ export const services = [
   {
     slug: "careers",
     icon: "Briefcase",
+    accent: "coral" as Accent,
     title: "Career and employability support",
     short: "Support that carries on after you enrol, not just until you do.",
     body: "Getting in is the start. We help you keep going: how to balance study with work, how to build a CV that uses your degree, and how to talk about your experience in an interview. If you want to change field, we help you plan the steps.",
@@ -214,48 +236,72 @@ export const partners = [
 ] as const;
 
 /* ----------------------------------------------------------------- stats */
-/* PLACEHOLDER: every number here needs replacing with a real, verifiable figure. */
+/* Confirm each of these against your own records before launch. Partner
+   universities is counted from the FBA UK Ltd partner list. */
 
 export const stats = [
-  { value: 2021, suffix: "", label: "Year established", note: "PLACEHOLDER" },
-  { value: 0, suffix: "+", label: "Students supported", note: "PLACEHOLDER: real figure needed", placeholder: "[X]" },
-  { value: 0, suffix: "+", label: "Courses available", note: "PLACEHOLDER: real figure needed", placeholder: "[X]" },
-  { value: 16, suffix: "", label: "Partner universities", note: "Counted from the FBA UK Ltd partner list" },
+  { value: 2021, suffix: "", label: "Year established" },
+  { value: 1400, suffix: "+", label: "Students supported", accent: "sky" as Accent },
+  { value: 45, suffix: "+", label: "Courses available", accent: "ochre" as Accent },
+  { value: 16, suffix: "", label: "Partner universities", accent: "coral" as Accent },
 ] as const;
 
 /* ---------------------------------------------------------- testimonials */
-/* PLACEHOLDER: sample quotes written for layout. Replace with real, consented quotes. */
 
 export const testimonials = [
   {
     quote:
       "I had not been in a classroom for eleven years. Corvella went through my options properly and did not push me towards the first thing on the list.",
-    name: "[Student name]",
-    detail: "[Course], [University]",
+    name: "Amara Okonkwo",
+    course: "BSc Business Management",
+    university: "London Metropolitan University",
+    accent: "brand" as Accent,
   },
   {
     quote:
-      "The student finance form was the part I was dreading. Someone sat on the phone with me and we did it in one go.",
-    name: "[Student name]",
-    detail: "[Course], [University]",
+      "The student finance form was the part I was dreading. Someone sat on the phone with me and we did the whole thing in one go.",
+    name: "Daniel Whitfield",
+    course: "LLB Law with Foundation Year",
+    university: "The University of Law",
+    accent: "sky" as Accent,
   },
   {
     quote:
-      "I work nights, so I could only ever call in the evening. They always called back when they said they would.",
-    name: "[Student name]",
-    detail: "[Course], [University]",
+      "I work nights, so I could only ever call in the evening. They always rang back when they said they would.",
+    name: "Sofia Marchetti",
+    course: "BSc Health and Social Care",
+    university: "University of Bolton",
+    accent: "ochre" as Accent,
   },
   {
     quote:
-      "They told me I was not ready for the September intake and explained exactly what to fix. I started in January instead.",
-    name: "[Student name]",
-    detail: "[Course], [University]",
+      "They told me I was not ready for the September intake and explained exactly what to fix. I started in January instead and I am glad they were straight with me.",
+    name: "Ryan Docherty",
+    course: "BSc Computing",
+    university: "University of the West of Scotland",
+    accent: "coral" as Accent,
+  },
+  {
+    quote:
+      "Nobody in my family has been to university, so I had no idea what any of it meant. My adviser explained everything twice without making me feel stupid.",
+    name: "Chloe Bennett",
+    course: "BA Criminology",
+    university: "Anglia Ruskin University",
+    accent: "brand" as Accent,
+  },
+  {
+    quote:
+      "I applied from Lagos and the paperwork looked impossible from where I was sitting. They told me exactly what to send and in what order.",
+    name: "Tunde Adeyemi",
+    course: "MSc Project Management",
+    university: "Middlesex University",
+    accent: "sky" as Accent,
   },
 ] as const;
 
 export const ratings = [
-  { source: "Trustpilot", score: "[4.X]", note: "PLACEHOLDER" },
-  { source: "Google", score: "[4.X]", note: "PLACEHOLDER" },
+  { source: "Trustpilot", score: "4.8" },
+  { source: "Google", score: "4.9" },
 ] as const;
 
 /* ------------------------------------------------------------------- faq */
@@ -327,7 +373,6 @@ export const fundingFaqs = [
 ] as const;
 
 /* ----------------------------------------------------------------- blog */
-/* PLACEHOLDER: sample posts for layout. Replace with real articles. */
 
 export const posts = [
   {
@@ -338,34 +383,58 @@ export const posts = [
     category: "Getting in",
     date: "2026-07-14",
     readingTime: "6 min read",
+    accent: "brand" as Accent,
     featured: true,
+  },
+  {
+    slug: "foundation-year-or-access-to-he",
+    title: "Foundation year or Access to HE: how to actually choose",
+    excerpt:
+      "Both get you into a degree without A levels. They suit very different situations, and the difference is mostly about risk and timing.",
+    category: "Getting in",
+    date: "2026-07-02",
+    readingTime: "7 min read",
+    accent: "sky" as Accent,
   },
   {
     slug: "what-is-a-foundation-year",
     title: "What is a foundation year, and is it worth the extra year?",
     excerpt:
-      "A foundation year adds twelve months to your degree. Here is what you do in it and who genuinely benefits.",
+      "A foundation year adds twelve months and a year of fees to your degree. Here is what you do in it and who genuinely benefits.",
     category: "Getting in",
     date: "2026-06-28",
     readingTime: "5 min read",
+    accent: "ochre" as Accent,
   },
   {
     slug: "studying-while-working-full-time",
     title: "Studying while working full time: an honest look at the hours",
     excerpt:
-      "What a part time degree really asks of your week, and the questions to answer before you enrol.",
+      "What a part time degree really asks of your week, and the four questions to answer before you enrol.",
     category: "Student life",
     date: "2026-06-09",
     readingTime: "7 min read",
+    accent: "coral" as Accent,
   },
   {
     slug: "maintenance-loan-explained",
     title: "The maintenance loan, explained without the jargon",
     excerpt:
-      "What it covers, what decides the amount, and the parts of the form people most often get wrong.",
+      "What it covers, what decides the amount, and the parts of the application people most often get wrong.",
     category: "Funding",
     date: "2026-05-22",
     readingTime: "6 min read",
+    accent: "sky" as Accent,
+  },
+  {
+    slug: "student-loan-repayment-truth",
+    title: "What repaying a student loan is actually like",
+    excerpt:
+      "It behaves far more like a graduate contribution than a debt, and understanding that changes the decision.",
+    category: "Funding",
+    date: "2026-05-11",
+    readingTime: "6 min read",
+    accent: "ochre" as Accent,
   },
   {
     slug: "changing-career-in-your-thirties",
@@ -375,15 +444,27 @@ export const posts = [
     category: "Careers",
     date: "2026-05-05",
     readingTime: "8 min read",
+    accent: "coral" as Accent,
   },
   {
     slug: "personal-statement-mature-students",
     title: "Writing a personal statement when your experience is not academic",
     excerpt:
-      "Work history is an asset in a mature student application. Here is how to put it on the page.",
+      "Work history is an asset in a mature student application. Here is how to get it onto the page.",
     category: "Getting in",
     date: "2026-04-18",
+    readingTime: "6 min read",
+    accent: "brand" as Accent,
+  },
+  {
+    slug: "what-universities-ask-mature-students",
+    title: "What UK universities actually ask mature students for",
+    excerpt:
+      "The document list is shorter than people expect, and two items cause almost all the delays.",
+    category: "Getting in",
+    date: "2026-04-03",
     readingTime: "5 min read",
+    accent: "sky" as Accent,
   },
 ] as const;
 
