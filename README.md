@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Corvella Education
 
-## Getting Started
+Marketing site for Corvella Education, a UK university admissions and education consultancy and a
+partner agency of FBA UK Ltd.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build    # production build
+npm run start    # serve the production build
+npm run lint     # eslint
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Node 20 or newer. No environment variables are needed to run the site: forms are in demo mode until
+you connect an endpoint (see `NOTES.md`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack
 
-## Learn More
+- **Next.js 16** (App Router) with TypeScript
+- **Tailwind CSS v4**, tokens defined in `src/app/globals.css` under `@theme`
+- **Framer Motion** for animation, with `prefers-reduced-motion` respected everywhere
+- **lucide-react** for icons
+- Fonts loaded through `next/font/google`, self hosted at build time
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/                    one folder per route, plus icon/OG/sitemap/robots files
+    globals.css           design tokens and the .arch signature class
+  components/
+    brand/Logo.tsx        the mark and the lockup, three variants each
+    sections/             home page sections, reused across other pages
+    ui/                   Button, Field, Section, Reveal, CountUp, Accordion, ArchPanel
+    EligibilityCheck.tsx  the four question flow used in the hero and on /apply
+    EnquiryForm.tsx       one form, three variants (apply / contact / referral)
+    Header.tsx Footer.tsx PageHeader.tsx
+  lib/
+    site.ts               all copy, nav, stats, FAQs, partners, posts. Start here.
+    postContent.ts        blog article bodies
+    submitForm.ts         the form endpoint (currently a demo handler)
+    validate.ts           form validation rules
+public/
+  brand/                  logo files and the FBA UK Ltd logo
+  partners/               university logos, trimmed and converted to WebP
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Almost all editable content lives in `src/lib/site.ts`.
 
-## Deploy on Vercel
+## Design
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The signature is **the arch**: a doorway with a semicircular top and a flat base. It is the logo,
+it frames the hero eligibility check, it holds the success story portrait, and it stands behind
+every inner page title. The site's argument is "the door you thought was closed", so the door is
+the shape everything is built from.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The hero is not a headline plus a button. The hero **is** the first question of the eligibility
+check, answered inline, because finding out you can actually go is the most characteristic moment
+in this business.
+
+| | |
+| --- | --- |
+| Display | Fraunces, weights 700 to 900, WONK on |
+| Body | Instrument Sans |
+| Utility | IBM Plex Mono, for eyebrows, field labels and figures |
+| Ink | `#171334` |
+| Iris | `#3d2fbf` |
+| Sheen | `#1fa8a0` (`#0e6f6a` when used as text) |
+| Beacon | `#ffc24b` |
+| Paper | `#f7f6fb` |
+| Mist | `#e0dcf2` |
+
+See `/brand` for the logo variants, palette, type specimens and downloadable files. That page is
+`noindex, nofollow` and blocked in `robots.txt`.
+
+## What still needs filling in
+
+See **`NOTES.md`**. Every placeholder is listed there with the file it lives in.

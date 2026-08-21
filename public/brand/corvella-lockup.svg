@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="520" height="128" role="img" aria-label="Corvella Education">
+  <title>Corvella Education</title>
+  <mask id="lk" maskUnits="userSpaceOnUse" x="8" y="12" width="40" height="40">
+    <rect x="8" y="12" width="40" height="40" fill="#000"/>
+    <g transform="translate(8 12) scale(1.25)">
+      <path d="M3 29 V16 C3 8.82 8.82 3 16 3 C23.18 3 29 8.82 29 16 V29 Z" fill="#fff"/>
+      <path d="M26.9 15.4 C21.8 12.5 17.0 10.3 13.4 9.5 C9.8 8.7 7.2 11.0 7.2 14.6 C7.2 18.4 9.6 21.9 13.6 21.7 C16.2 21.6 18.1 20.4 18.7 18.8 C21.2 17.9 24.3 16.6 26.9 15.4 Z" transform="translate(-1.0 1.2)" fill="#000"/>
+    </g>
+  </mask>
+  <rect x="8" y="12" width="40" height="40" fill="#171334" mask="url(#lk)"/>
+  <circle cx="20.88" cy="30.5" r="1.56" fill="#ffc24b"/>
+  <text x="60" y="35" font-family="Fraunces, Georgia, serif" font-size="27" font-weight="800" letter-spacing="-0.9" fill="#171334">Corvella</text>
+  <text x="61.5" y="48" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.5" font-weight="500" letter-spacing="2.4" fill="#5a5580">EDUCATION</text>
+</svg>

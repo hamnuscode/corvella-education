@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Palette: raven iridescence + light through an open door */
+  --color-paper: #f7f6fb;
+  --color-paper-2: #efecf9;
+  --color-mist: #e0dcf2;
+  --color-ink: #171334;
+  --color-ink-2: #241d55;
+  --color-ink-3: #322a6d;
+  --color-iris: #3d2fbf;
+  --color-iris-600: #3325a6;
+  --color-iris-100: #e7e3fa;
+  --color-sheen: #1fa8a0;
+  --color-sheen-700: #0e6f6a;
+  --color-sheen-100: #d9f2ef;
+  --color-beacon: #ffc24b;
+  --color-quiet: #5a5580;
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-arch: 9999px;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  * {
+    border-color: var(--color-mist);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-sheen);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-beacon);
+    color: var(--color-ink);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* The signature: a doorway. Semicircular top, flat base. */
+  .arch {
+    border-radius: var(--radius-arch) var(--radius-arch) 0 0;
+  }
+  .arch-soft {
+    border-radius: 62% 62% 14px 14px / 34% 34% 4% 4%;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .display-xl {
+    font-size: clamp(2.6rem, 7.2vw, 5.1rem);
+    line-height: 0.94;
+    font-weight: 800;
+  }
+  .display-lg {
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    line-height: 0.98;
+    font-weight: 700;
+  }
+  .display-md {
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    line-height: 1.06;
+    font-weight: 700;
+  }
+
+  .lede {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    line-height: 1.55;
+  }
+
+  .rule-arch {
+    background-image: radial-gradient(circle at 50% 100%, transparent 11px, var(--color-mist) 11px, var(--color-mist) 12px, transparent 12px);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+  }
+}
+
+/* Grain + weave used behind dark surfaces */
+.sheen-field {
+  background:
+    radial-gradient(120% 90% at 12% 8%, rgba(61, 47, 191, 0.55) 0%, transparent 55%),
+    radial-gradient(90% 80% at 88% 22%, rgba(31, 168, 160, 0.34) 0%, transparent 58%),
+    radial-gradient(70% 70% at 62% 96%, rgba(255, 194, 75, 0.16) 0%, transparent 60%),
+    var(--color-ink);
+}
+
+.hairline-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.hairline-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(23, 19, 52, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 19, 52, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@keyframes marquee-rev {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }

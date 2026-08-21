@@ -1,0 +1,141 @@
+"use client";
+
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Check } from "lucide-react";
+import { Container } from "@/components/ui/Section";
+import { SplitReveal } from "@/components/ui/Reveal";
+import { EligibilityCheck } from "@/components/EligibilityCheck";
+import { ArchPanel } from "@/components/ui/ArchPanel";
+
+
+/**
+ * Ambient sheen field. Adapted from the React Bits "Aurora" background:
+ * the same idea of slow drifting colour fields, rebuilt with the Corvella
+ * raven iridescence palette and layered behind a hairline grid.
+ */
+function SheenField() {
+  const reduce = useReducedMotion();
+
+  const blobs = [
+    { className: "left-[-14%] top-[-22%] h-[36rem] w-[36rem] bg-iris", d: 17, x: 60, y: 40 },
+    { className: "right-[-10%] top-[6%] h-[30rem] w-[30rem] bg-sheen", d: 21, x: -70, y: 55 },
+    { className: "left-[28%] bottom-[-30%] h-[32rem] w-[32rem] bg-beacon/70", d: 25, x: 45, y: -50 },
+  ];
+
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {blobs.map((b, i) => (
+        <motion.div
+          key={i}
+          className={`absolute rounded-full opacity-[0.34] blur-[90px] ${b.className}`}
+          animate={reduce ? undefined : { x: [0, b.x, 0], y: [0, b.y, 0] }}
+          transition={{ duration: b.d, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ))}
+      <div className="absolute inset-0 hairline-grid opacity-70" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
+    </div>
+  );
+}
+
+export function Hero() {
+  const reduce = useReducedMotion();
+
+  return (
+    <section className="relative isolate overflow-hidden bg-ink text-paper">
+      <SheenField />
+
+      <Container className="relative pt-16 pb-20 sm:pt-20 lg:pb-28 lg:pt-24">
+        <div className="grid items-start gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
+          {/* Left: the thesis */}
+          <div className="max-w-xl">
+            <motion.p
+              initial={reduce ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="label inline-flex items-center gap-2.5 rounded-full border border-paper/15 bg-paper/[0.06] px-3.5 py-2 text-paper/70"
+            >
+              <span aria-hidden className="inline-block h-[7px] w-[7px] rounded-full bg-beacon" />
+              Partner agency of FBA UK Ltd
+            </motion.p>
+
+            <h1 className="display-xl mt-7 text-paper">
+              <SplitReveal text="The door you" delay={0.06} />
+              <br />
+              <SplitReveal text="thought was" delay={0.14} />
+              <br />
+              <span className="relative inline-block">
+                <SplitReveal text="closed." delay={0.24} />
+                <motion.span
+                  aria-hidden
+                  initial={reduce ? false : { scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.7, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute -bottom-1 left-0 h-[6px] w-full origin-left rounded-full bg-beacon"
+                />
+              </span>
+            </h1>
+
+            <motion.p
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="lede mt-8 text-paper/72"
+            >
+              You do not need A levels to study at a UK university. Answer four questions and we will
+              tell you, honestly, which route is open to you.
+            </motion.p>
+
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-9 flex flex-wrap items-center gap-3"
+            >
+              <Link
+                href="/apply"
+                className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-beacon px-7 text-[1rem] font-semibold text-ink transition-transform duration-200 hover:-translate-y-0.5"
+              >
+                Check your eligibility
+                <ArrowRight size={18} aria-hidden />
+              </Link>
+              <Link
+                href="/courses"
+                className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-2xl border border-paper/20 px-7 text-[1rem] font-semibold text-paper transition-colors hover:bg-paper/[0.08]"
+              >
+                Browse courses
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={reduce ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-paper/12 pt-7"
+            >
+              {["Free for students", "No sign up needed", "An honest yes or no"].map((item) => (
+                <span key={item} className="flex items-center gap-2 text-[0.88rem] text-paper/60">
+                  <Check size={14} className="text-sheen" aria-hidden />
+                  {item}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right: the signature. A doorway you can actually walk through. */}
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto w-full max-w-[27rem] lg:mx-0 lg:max-w-none"
+          >
+            <ArchPanel label="Free eligibility check" idPrefix="hero-arch">
+              <EligibilityCheck />
+            </ArchPanel>
+          </motion.div>
+        </div>
+      </Container>
+    </section>
+  );
+}
