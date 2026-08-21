@@ -2,7 +2,7 @@ export const site = {
   name: "Corvella Education",
   shortName: "Corvella",
   tagline: "UK university admissions, made straightforward.",
-  url: "https://corvella-education.example.com", // PLACEHOLDER: swap for the live domain
+  url: "https://corvella.vercel.app", // PLACEHOLDER: swap for the real domain when you have one
   parent: {
     name: "FBA UK Ltd",
     url: "https://www.fbaukltd.com",

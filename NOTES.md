@@ -18,8 +18,9 @@ Placeholders are written as `[square brackets]` on the page so they are obvious 
 | `address` | `[Suite 00, Building Name]` etc. | Contact |
 | `hours` | `Monday to Friday, [10am to 6pm]` | Contact, About |
 
-Also in the same file: `site.url` (currently `https://corvella-education.example.com`) drives
-canonical URLs, the sitemap and Open Graph. Set it before you deploy.
+Also in the same file: `site.url` (currently `https://corvella.vercel.app`, the live Vercel URL)
+drives canonical URLs, the sitemap and Open Graph. Change it the moment you point a real domain at
+the site, otherwise Google will keep indexing the vercel.app address as canonical.
 
 And `site.company.registration` / `site.company.vat` (footer legal line).
 
@@ -174,7 +175,7 @@ the real brand fonts and palette. Regenerate them if the headline changes.
 
 ## 14. Before you launch
 
-- [ ] Set `site.url` in `src/lib/site.ts`
+- [ ] Set `site.url` in `src/lib/site.ts` to your real domain (currently the vercel.app URL)
 - [ ] Fill every `[bracketed]` value listed above
 - [ ] Connect `FORM_ENDPOINT`
 - [ ] Replace sample testimonials and the success story, or remove those sections
