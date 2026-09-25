@@ -1,180 +1,134 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, GraduationCap } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { PageBanner, SectionBanner } from "@/components/PageBanner";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { Tilt3D } from "@/components/ui/Tilt3D";
 import { ButtonLink } from "@/components/ui/Button";
+import { CourseFinder } from "@/components/CourseFinder";
 import { CTABand } from "@/components/sections/CTABand";
 import { PartnerWall } from "@/components/sections/PartnerWall";
-import { accentHex, banners, courseLevels, photo, subjectGroups } from "@/lib/site";
+import { accentHex, banners, courseLevels, photo } from "@/lib/site";
+import { courseCounts } from "@/lib/courses";
 
 export const metadata: Metadata = {
   title: "Courses",
   description:
-    "Undergraduate, postgraduate and flexible online courses at UK universities, including foundation year routes for students without A levels.",
+    "Search CertHE, foundation, undergraduate and master's courses at UK universities. Day, evening, weekend, blended and online study.",
   alternates: { canonical: "/courses" },
 };
 
 const routes = [
   {
-    name: "Foundation year",
+    name: "Start with a CertHE",
     image: photo.routeFoundation,
     accent: "brand" as const,
-    body: "An extra year at the front of your degree. You study, get ready, and roll straight into year one at the same university. No second application.",
+    body: "One year of university level study with no A levels needed. Finish it and you can carry straight on into a degree, often at the same university.",
   },
   {
-    name: "Access to Higher Education",
+    name: "Take a foundation year",
     image: photo.routeAccess,
     accent: "sky" as const,
-    body: "A one year diploma made for adults returning to study. Widely recognised by UK universities and often available part time at a local college.",
+    body: "A preparation year attached to the front of a degree. One application, one offer, and a gentle run up before year one begins.",
   },
   {
-    name: "Work experience entry",
+    name: "Use your experience",
     image: photo.routeExperience,
     accent: "ochre" as const,
-    body: "Some courses welcome strong, relevant experience in place of formal qualifications, sometimes with a short interview or piece of written work.",
+    body: "Some courses welcome strong, relevant work experience in place of formal qualifications. Tell us what you have done and we will check.",
   },
 ];
 
 export default function CoursesPage() {
   return (
     <>
-      <PageBanner {...banners.courses} />
+      <PageBanner
+        {...banners.courses}
+        line={`Search ${courseCounts.total} courses across ${courseCounts.universities} UK universities, and we will help you pick.`}
+      />
 
+      {/* levels */}
       <Section tone="paper" backdrop={{ orbs: true }}>
         <Container>
           <SectionHead
             eyebrow="Choose your level"
-            title="Three ways to study, all of them real degrees"
-            lede="Pick the one that fits your life today. We will help you with the rest."
+            title="Four ways in, whatever you have studied before"
+            lede="Start where it suits you. Plenty of our students begin at the first step and carry all the way through to a degree."
           />
 
-          <ul className="mt-14 grid gap-5 lg:grid-cols-3">
+          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {courseLevels.map((level, i) => {
               const hex = accentHex[level.accent];
+              const count =
+                courseCounts.byLevel.find((b) => b.level === level.level)?.count ?? 0;
               return (
-                <Reveal as="li" key={level.slug} delay={i * 0.08} className="h-full">
-                  <Tilt3D className="h-full" max={5} radiusClass="rounded-3xl">
-                    <div
-                      id={level.slug}
-                      className="card-lift group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-mist bg-paper hover:bg-white"
-                      style={{ ["--accent" as string]: hex }}
-                    >
-                      <div className="relative aspect-[16/9] overflow-hidden">
-                        <Image
-                          src={level.image}
-                          alt=""
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 380px"
-                          className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                        />
-                        <span
-                          className="label absolute left-4 top-4 rounded-full px-3 py-1.5 text-paper shadow-sm"
-                          style={{ background: hex }}
-                        >
-                          {level.label}
-                        </span>
-                      </div>
-                      <div className="flex flex-1 flex-col p-7">
-                        <h2 className="font-display text-[1.3rem] font-bold leading-tight text-ink">
-                          {level.title}
-                        </h2>
-                        <p className="mt-3 text-[0.93rem] leading-relaxed text-quiet">{level.body}</p>
-                        <ul className="mt-6 flex flex-col gap-2.5 border-t border-mist pt-5">
-                          {level.meta.map((m) => (
-                            <li key={m} className="flex items-start gap-2.5 text-[0.86rem] text-ink">
-                              <Check size={15} className="mt-0.5 shrink-0" style={{ color: hex }} aria-hidden />
-                              {m}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </Tilt3D>
-                </Reveal>
-              );
-            })}
-          </ul>
-        </Container>
-      </Section>
-
-      <Section tone="tinted" backdrop={{ orbs: true }}>
-        <Container>
-          <SectionHead
-            eyebrow="Subject areas"
-            title="What would you love to study?"
-            lede="These are the areas we place students into most often. Availability changes by university and intake, so ask us about your subject."
-          />
-
-          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {subjectGroups.map((group, i) => {
-              const hex = accentHex[group.accent];
-              return (
-                <Reveal as="li" key={group.name} delay={(i % 3) * 0.07} className="h-full">
+                <Reveal as="li" key={level.slug} delay={i * 0.07} className="h-full">
                   <div
-                    className="card-lift group flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper hover:bg-white"
+                    id={level.slug}
+                    className="card-lift group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-mist bg-paper"
                     style={{ ["--accent" as string]: hex }}
                   >
-                    <div className="relative aspect-[16/9] overflow-hidden">
+                    <div className="relative aspect-[16/10] overflow-hidden">
                       <Image
-                        src={group.image}
+                        src={level.image}
                         alt=""
                         fill
-                        sizes="(max-width: 640px) 100vw, 360px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                       />
-                    </div>
-                    <h3
-                      className="flex items-center gap-2 px-6 pt-6 font-display text-[1.15rem] font-bold text-ink"
-                    >
-                      <GraduationCap size={18} aria-hidden style={{ color: hex }} />
-                      {group.name}
-                    </h3>
-                    <ul className="flex flex-1 flex-col gap-2 px-6 pb-2 pt-4">
-                      {group.examples.map((ex) => (
-                        <li key={ex} className="flex items-start gap-2.5 text-[0.9rem] text-quiet">
-                          <span
-                            aria-hidden
-                            className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full"
-                            style={{ background: hex }}
-                          />
-                          {ex}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="px-6 pb-6">
-                      <Link
-                        href="/apply"
-                        className="inline-flex items-center gap-1.5 text-[0.88rem] font-semibold"
-                        style={{ color: hex }}
+                      <span
+                        className="label absolute left-4 top-4 rounded-full px-3 py-1.5 text-paper shadow-sm"
+                        style={{ background: hex }}
                       >
-                        Ask about this subject
-                        <ArrowRight size={15} aria-hidden />
-                      </Link>
+                        {level.label}
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <h2 className="font-display text-[1.12rem] font-bold leading-tight text-ink">
+                        {level.title}
+                      </h2>
+                      <p className="mt-2.5 text-[0.89rem] leading-relaxed text-quiet">{level.body}</p>
+                      <ul className="mt-5 flex flex-col gap-2 border-t border-mist pt-4">
+                        {level.meta.map((m) => (
+                          <li key={m} className="flex items-start gap-2 text-[0.83rem] text-ink">
+                            <Check size={14} className="mt-0.5 shrink-0" style={{ color: hex }} aria-hidden />
+                            {m}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-4 text-[0.82rem] font-semibold" style={{ color: hex }}>
+                        {count} courses
+                      </p>
                     </div>
                   </div>
                 </Reveal>
               );
             })}
           </ul>
-
-          <p className="mt-10 rounded-2xl border border-dashed border-mist bg-paper p-6 text-[0.86rem] leading-relaxed text-quiet">
-            This subject list is a temporary placeholder. Send us the course finder document and we
-            will replace it with your real course list, grouped by level and subject.
-          </p>
         </Container>
       </Section>
 
+      {/* the finder */}
+      <Section id="finder" tone="tinted" backdrop={{ orbs: true }}>
+        <Container className="mb-10">
+          <SectionHead
+            eyebrow="Course finder"
+            title="Find the one that fits"
+            lede="Filter by level, subject, how you want to study and university. Tap Ask on any course and we will come straight back to you."
+          />
+        </Container>
+        <CourseFinder />
+      </Section>
+
+      {/* routes in */}
       <Section tone="paper" backdrop={{ orbs: true }}>
         <Container>
           <SectionBanner
             image={photo.coursesRoutes}
             eyebrow="Entry routes"
             heading="No A levels? There is still a way in."
-            line="These are the three routes that work best for adults returning to study."
+            line="These three routes work well for adults coming back to study."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-3">
@@ -199,6 +153,35 @@ export default function CoursesPage() {
               );
             })}
           </div>
+
+          <Reveal delay={0.1}>
+            <div className="mt-10 grid items-center gap-8 overflow-hidden rounded-3xl border border-mist bg-paper-2 lg:grid-cols-[1fr_1fr]">
+              <div className="order-2 p-7 sm:p-10 lg:order-1">
+                <p className="label text-brand">Ways to study</p>
+                <h3 className="display-md mt-3 text-ink">Days, evenings, weekends or online</h3>
+                <p className="mt-4 text-[0.97rem] leading-relaxed text-quiet">
+                  Our partner universities run daytime, evening, weekend, blended and fully online
+                  timetables. If you work, there is very likely a pattern that fits your week.
+                </p>
+                <Link
+                  href="/courses#finder"
+                  className="group mt-6 inline-flex items-center gap-2 font-semibold text-brand transition-colors hover:text-brand-600"
+                >
+                  Filter by how you study
+                  <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+                </Link>
+              </div>
+              <div className="relative order-1 h-56 w-full sm:h-72 lg:order-2 lg:h-full lg:min-h-[18rem]">
+                <Image
+                  src={photo.levelOnline}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </Reveal>
 
           <div className="mt-12 text-center">
             <ButtonLink href="/apply" size="lg">

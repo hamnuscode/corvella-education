@@ -7,7 +7,7 @@
 | **WhatsApp number** | `[WHATSAPP NUMBER]` | Floating button, "Ask us a question", footer, every form |
 | **Contact address** | `[NEW CONTACT ADDRESS]` | Contact page, footer |
 | **Main website URL** | `[MAIN WEBSITE URL]` | Footer |
-| **Course finder document** | Temporary subject list | Courses page and the home courses section |
+| ~~Course finder document~~ | **Received and live** | See section 3 |
 
 All four live in `src/lib/site.ts` near the top.
 
@@ -17,9 +17,7 @@ so it can never reach a real person. Replace `site.contact.whatsapp.e164` with y
 international format, no plus sign and no spaces (for example `447700123456`), and change `display`
 to how you want it written on the page.
 
-**About the course list:** the six subject groups on `/courses` and the home page are a temporary
-placeholder, and the page says so in a visible note. Send the course finder document and I will
-replace them with your real courses, grouped by level and subject, and remove that note.
+**The course list is now real.** See section 3.
 
 ---
 
@@ -51,7 +49,37 @@ It is `noindex` until you are happy with it.
 
 ---
 
-## 3. What changed in this round
+## 3. The course catalogue
+
+**File:** `src/lib/courses.ts` (generated, do not hand edit)
+
+Built from your course finder spreadsheet. All four course tabs were parsed: CertHE, Foundation
+Degree, Undergraduate and Masters.
+
+- **838 course offerings** across **18 universities** and 13 subject fields, after grouping the
+  1,897 spreadsheet rows so one course running at six campuses is one card listing six campuses.
+- Intake markers are read exactly as the sheet defines them in its own legend: **Y means running,
+  X means unavailable, ! means subject to demand.** Only running and subject-to-demand months are
+  shown, so nothing advertises a closed intake.
+- Tuition fees are shown as written in the sheet.
+- University and subject names were normalised where the sheet spelled them several ways, for
+  example ULAW and University of Law, or "Hotel & Tourisom" and "Tourism Management".
+- 204 rows had no subject field, so the subject was inferred from the course name.
+
+`/courses` is now a real course finder: search plus filters for level, subject, study mode and
+university, with Ask buttons that open WhatsApp prefilled with the course and university name.
+
+**Two things I did not carry across.** The sheet's "Course Informations" column links to PDFs on
+`crm.fbaukltd.com`, and you asked for all FBA material removed, so those links are not on the site.
+The FBA TEAM CONTACT tab was skipped for the same reason. Say the word if you want the course PDFs
+linked after all.
+
+**To refresh:** re-export each tab as CSV and regenerate. The parser lives in the project history
+rather than the repo, so ping me and I will rerun it.
+
+---
+
+## 4. What changed in this round
 
 - **Home page** now opens with a four slide image carousel. It auto plays gently, pauses on hover
   and on keyboard focus, supports swipe, and has a progress bar on the active dot. The door scene
@@ -79,9 +107,9 @@ It is `noindex` until you are happy with it.
 
 ---
 
-## 4. Photography
+## 5. Photography
 
-42 photographs in `public/photos/`, **all CC0 (public domain)**: free for commercial use, no
+43 photographs in `public/photos/`, **all CC0 (public domain)**: free for commercial use, no
 attribution required, no copyright restrictions. Full list in `public/photos/CREDITS.md`.
 
 **Every photograph is used in exactly one place.** Nothing repeats anywhere on the site.
@@ -89,6 +117,8 @@ attribution required, no copyright restrictions. Full list in `public/photos/CRE
 **No photograph has anything laid over it.** Banners and the carousel are split layouts: the words
 sit on solid ink, the picture sits beside them untouched. Cards show the photo clean, with the
 accent carried by a thin bar and the icon badge rather than a colour wash.
+
+The success story no longer carries a portrait at all, at your request.
 
 Six of them are portraits of real people used on the review cards. They are CC0, so this is legal,
 but please note the people in them did not give these testimonials. That is a second reason to swap
@@ -101,12 +131,11 @@ nothing else needs to change.
 
 ---
 
-## 5. Launch checklist
+## 6. Launch checklist
 
 - [ ] Real WhatsApp number in `site.contact.whatsapp`
 - [ ] Real contact address
 - [ ] Main website URL for the footer
-- [ ] Course finder document so the real course list replaces the placeholder
 - [ ] Replace or remove the sample reviews and the success story
 - [ ] Real company number and VAT number
 - [ ] Real phone number

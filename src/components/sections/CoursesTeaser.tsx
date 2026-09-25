@@ -3,9 +3,9 @@ import Link from "next/link";
 import { ArrowUpRight, GraduationCap } from "lucide-react";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { Tilt3D } from "@/components/ui/Tilt3D";
 import { ButtonLink } from "@/components/ui/Button";
 import { accentHex, courseLevels, subjectGroups } from "@/lib/site";
+import { courseCounts } from "@/lib/courses";
 
 export function CoursesTeaser() {
   return (
@@ -14,16 +14,15 @@ export function CoursesTeaser() {
         <SectionHead
           eyebrow="Courses"
           title="Find something you will enjoy studying"
-          lede="Pick a level, then a subject. Every card takes you straight to the details."
+          lede={`${courseCounts.total} courses across ${courseCounts.universities} UK universities. Pick a level or a subject and we will take it from there.`}
         />
 
         {/* levels */}
-        <ul className="mt-14 grid gap-5 lg:grid-cols-3">
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {courseLevels.map((level, i) => {
             const hex = accentHex[level.accent];
             return (
               <Reveal as="li" key={level.slug} delay={i * 0.07} className="h-full">
-                <Tilt3D className="h-full" max={5} radiusClass="rounded-3xl">
                   <Link
                     href={`/courses#${level.slug}`}
                     className="card-lift group relative flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper hover:bg-white"
@@ -62,7 +61,6 @@ export function CoursesTeaser() {
                       </span>
                     </div>
                   </Link>
-                </Tilt3D>
               </Reveal>
             );
           })}
@@ -76,7 +74,7 @@ export function CoursesTeaser() {
             return (
               <Reveal as="li" key={group.name} delay={(i % 3) * 0.06} className="h-full">
                 <Link
-                  href="/courses"
+                  href="/courses#finder"
                   className="card-lift group flex h-full gap-4 overflow-hidden rounded-2xl border border-mist bg-paper p-4 hover:bg-white"
                   style={{ ["--accent" as string]: hex }}
                 >
@@ -95,7 +93,10 @@ export function CoursesTeaser() {
                       {group.name}
                     </span>
                     <span className="mt-1.5 block text-[0.83rem] leading-relaxed text-quiet">
-                      {group.examples.slice(0, 3).join(", ")}
+                      {group.blurb}
+                    </span>
+                    <span className="mt-1.5 block text-[0.78rem] font-semibold" style={{ color: hex }}>
+                      {courseCounts.byField.find((f) => f.field === group.name)?.count ?? 0} courses
                     </span>
                   </span>
                 </Link>

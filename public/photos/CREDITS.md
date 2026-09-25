@@ -31,11 +31,10 @@
 | `photos/slide-handshake.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/5926299/photo-image-public-domain-hand-person |
 | `photos/slide-study-home.webp` | stocksnap | CC0 | https://stocksnap.io/photo/man-workspace-V0AKCFV9QX |
 | `photos/slide-uk-dome.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/6054286/free-public-domain-cc0-photo |
-| `photos/story-leah.webp` | stocksnap | CC0 | https://stocksnap.io/photo/education-graduation-XAL3MIM3OC |
 | `photos/subject-business.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/6924896/photo-image-public-domain-person |
 | `photos/subject-computing.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/5915015/image-background-public-domain-computer |
-| `photos/subject-creative.webp` | stocksnap | CC0 | https://stocksnap.io/photo/business-office-9UPH197S3L |
-| `photos/subject-education.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/5920973/photo-image-book-public-domain-art |
+| `photos/subject-marketing.webp` | stocksnap | CC0 | https://stocksnap.io/photo/business-office-9UPH197S3L |
+| `photos/subject-psychology.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/5920973/photo-image-book-public-domain-art |
 | `photos/subject-health.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/8759381/photo-image-public-domain-woman |
 | `photos/subject-law.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/6033185/old-library-free-public-domain-cc0-photo |
 | `photos/who-changing.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/6320754/carolyn-shefelman-social-worker-intern |
@@ -47,3 +46,5 @@
 Each photograph is used in exactly one place on the site.
 Every photograph is licensed **CC0 (public domain dedication)**: free for commercial use, no
 attribution required, no restrictions. Sources are listed anyway so any image can be traced.
+| `photos/level-certhe.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/3305146/free-photo-image-cloudy-skies-university-architecture |
+| `photos/level-foundation.webp` | rawpixel | CC0 | https://www.rawpixel.com/image/6035762/photo-image-public-domain-glass-window |

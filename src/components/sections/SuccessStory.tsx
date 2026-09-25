@@ -2,8 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import Image from "next/image";
-import { photo } from "@/lib/site";
 
 const timeline = [
   {
@@ -30,30 +28,37 @@ export function SuccessStory() {
       <Container>
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal>
-            <div className="relative mx-auto w-full max-w-[22rem] lg:mx-0">
-              {/* The doorway again: portrait sits inside the arch. */}
-              <div className="arch relative aspect-[3/4] overflow-hidden border border-mist bg-gradient-to-b from-brand-100 via-sky-100 to-paper">
-                <div className="absolute inset-0 hairline-grid-light" />
-
-                <Image
-                  src={photo.storyLeah}
-                  alt="A student working with an adviser at a table"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 352px"
-                  className="object-cover"
-                />
-
-
-              </div>
-              <div className="mt-5 text-center">
-                <p className="label mb-3 text-quiet">Started September 2024</p>
-                <p className="font-display text-[1.15rem] font-bold text-ink">Leah Mensah</p>
-                <p className="mt-1 text-[0.88rem] text-quiet">
+            {/* No portrait here: the story is written, so a photograph of a real
+                person would be claiming something the site cannot claim. */}
+            <div className="relative mx-auto w-full max-w-[22rem] lg:mx-0 lg:sticky lg:top-28">
+              <div className="rounded-3xl border border-mist bg-paper-2 p-7">
+                <p className="label text-brand">Started September 2024</p>
+                <p className="mt-5 font-display text-[1.45rem] font-bold leading-tight text-ink">
+                  Leah Mensah
+                </p>
+                <p className="mt-2 text-[0.92rem] leading-relaxed text-quiet">
                   BSc Business Management with Foundation Year
                 </p>
-                <p className="text-[0.88rem] font-medium text-brand">
-                  University of Bolton
-                </p>
+                <p className="mt-1 text-[0.92rem] font-semibold text-brand">University of Bolton</p>
+
+                <dl className="mt-7 grid grid-cols-2 gap-4 border-t border-mist pt-6">
+                  <div>
+                    <dt className="label text-quiet">Route in</dt>
+                    <dd className="mt-1.5 text-[0.92rem] font-semibold text-ink">Foundation year</dd>
+                  </div>
+                  <div>
+                    <dt className="label text-quiet">Studying</dt>
+                    <dd className="mt-1.5 text-[0.92rem] font-semibold text-ink">Part time</dd>
+                  </div>
+                  <div>
+                    <dt className="label text-quiet">A levels</dt>
+                    <dd className="mt-1.5 text-[0.92rem] font-semibold text-ink">None</dd>
+                  </div>
+                  <div>
+                    <dt className="label text-quiet">Now in</dt>
+                    <dd className="mt-1.5 text-[0.92rem] font-semibold text-ink">Year two</dd>
+                  </div>
+                </dl>
               </div>
             </div>
           </Reveal>

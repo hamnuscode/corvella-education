@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Sparkles, Clock, Compass, CalendarCheck } from "lucide-react";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { Tilt3D } from "@/components/ui/Tilt3D";
 import { ButtonLink } from "@/components/ui/Button";
 import { audience, accentHex } from "@/lib/site";
 
@@ -23,7 +22,6 @@ export function WhoFor() {
             const Icon = icons[item.icon as keyof typeof icons];
             return (
               <Reveal as="li" key={item.title} delay={i * 0.07} className="h-full">
-                <Tilt3D className="h-full" radiusClass="rounded-3xl">
                   <div
                     className="card-lift group relative flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper"
                     style={{ ["--accent" as string]: accentHex.brand }}
@@ -50,7 +48,6 @@ export function WhoFor() {
                       <p className="mt-2.5 text-[0.9rem] leading-relaxed text-quiet">{item.body}</p>
                     </div>
                   </div>
-                </Tilt3D>
               </Reveal>
             );
           })}

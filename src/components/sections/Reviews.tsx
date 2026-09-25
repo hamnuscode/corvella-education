@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/ui/Section";
 import Image from "next/image";
-import { Tilt3D } from "@/components/ui/Tilt3D";
 import { accentHex, reviews } from "@/lib/site";
 
 /**
@@ -49,9 +48,7 @@ export function Reviews() {
               transition={{ duration: 0.55, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="h-full"
             >
-              <Tilt3D max={5} radiusClass="rounded-3xl" className="h-full">
                 <ReviewCard review={r} />
-              </Tilt3D>
             </motion.div>
           ))}
         </div>
