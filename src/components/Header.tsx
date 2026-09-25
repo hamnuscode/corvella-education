@@ -225,7 +225,7 @@ export function Header() {
                 </Link>
               </div>
 
-              <p className="label mt-auto pt-10 text-quiet">Partner agency of FBA UK Ltd</p>
+              <p className="label mt-auto pt-10 text-quiet">Free advice for every student</p>
             </Container>
           </motion.div>
         ) : null}

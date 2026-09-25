@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
+import { PageBanner } from "@/components/PageBanner";
 import { Container, Section } from "@/components/ui/Section";
-import { site } from "@/lib/site";
+import { banners, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
@@ -14,14 +14,14 @@ const sections = [
   {
     h: "Who we are",
     p: [
-      `${site.name} is a UK education consultancy and a partner agency of ${site.parent.name}. ${site.company.registration}`,
+      `${site.name} is a UK education consultancy. ${site.company.registration}`,
       "We are the data controller for the information you give us through this website. If you have a question about your data, contact us using the details on our contact page.",
     ],
   },
   {
     h: "What we collect",
     p: [
-      "When you send an enquiry we collect your name, email address, phone number, what you told us about your situation, and how you heard about us.",
+      "When you send an enquiry we collect your name, email address, phone number, what you told us about your situation, and how you heard about us. Enquiry forms hand off to WhatsApp, so the message also sits in your own WhatsApp account.",
       "If you use the eligibility check, your answers stay in your browser and are never sent to us unless you go on to submit the enquiry form.",
       "Our hosting provider records standard server logs, including IP addresses, for security and reliability. These are not used to identify individual visitors.",
     ],
@@ -36,7 +36,7 @@ const sections = [
   {
     h: "Who we share it with",
     p: [
-      `Where you ask us to progress an application, we share the details you gave us with ${site.parent.name} and with the university you are applying to.`,
+      "Where you ask us to progress an application, we share the details you gave us with the university you are applying to.",
       "We also use service providers who process data on our behalf: our website host, our email provider, and our customer records system. They act on our instructions and may not use your data for their own purposes.",
       "We do not sell your data, and we do not share it with advertisers.",
     ],
@@ -68,11 +68,7 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Legal"
-        title="Privacy policy"
-        lede="How Corvella Education handles the personal information you give us, in plain language."
-      />
+      <PageBanner {...banners.privacy} />
 
       <Section tone="paper">
         <Container>

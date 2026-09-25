@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { BadgePoundSterling, CalendarClock, FileCheck2, LifeBuoy } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
+import { PageBanner } from "@/components/PageBanner";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTABand } from "@/components/sections/CTABand";
-import { fundingFaqs } from "@/lib/site";
+import { banners, fundingFaqs } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Funding and student finance",
@@ -40,11 +40,7 @@ const helpBlocks = [
 export default function FundingPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Funding and student finance"
-        title="Most eligible students do not pay tuition up front"
-        lede="If you qualify for student finance, your tuition is covered by a loan paid straight to the university, and you can apply separately for a maintenance loan towards living costs. Here is how it works and where we come in."
-      />
+      <PageBanner {...banners.funding} />
 
       <Section tone="paper">
         <Container>

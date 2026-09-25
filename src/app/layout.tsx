@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Cursor } from "@/components/ui/Cursor";
 import { ScrollReset } from "@/components/ScrollReset";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { site } from "@/lib/site";
 
 const schibsted = Schibsted_Grotesk({
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

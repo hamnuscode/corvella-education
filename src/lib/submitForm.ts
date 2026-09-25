@@ -1,36 +1,46 @@
+import { site, whatsappLink } from "@/lib/site";
+
 /**
- * PLACEHOLDER SUBMIT HANDLER.
+ * Forms hand off to WhatsApp.
  *
- * Nothing here leaves the browser. Point FORM_ENDPOINT at a real endpoint
- * (a Next route handler, Formspree, Resend, HubSpot, your CRM) and the rest of
- * the form code will work unchanged.
+ * Nothing is posted to a server: the details the visitor typed are composed
+ * into a message and WhatsApp opens with it ready to send, addressed to the
+ * agency number. That keeps every enquiry in one inbox the team already reads,
+ * and means there is no endpoint to maintain or data stored on the site.
  */
-export const FORM_ENDPOINT = ""; // e.g. "/api/enquiry"
 
-export type SubmitResult = { ok: true } | { ok: false; message: string };
+export type FormKind = "application-enquiry" | "general-contact" | "consultant-referral";
 
-export async function submitForm(
-  formName: string,
-  data: Record<string, string>,
-): Promise<SubmitResult> {
-  if (!FORM_ENDPOINT) {
-    // Demo mode: log the payload and pretend the network took a moment.
-    await new Promise((r) => setTimeout(r, 700));
-    if (process.env.NODE_ENV !== "production") {
-      console.info(`[corvella] demo submit "${formName}"`, data);
-    }
-    return { ok: true };
+const HEADINGS: Record<FormKind, string> = {
+  "application-enquiry": "New enquiry from the website",
+  "general-contact": "New message from the website",
+  "consultant-referral": "New referral enquiry from the website",
+};
+
+const LABELS: Record<string, string> = {
+  firstName: "First name",
+  lastName: "Last name",
+  email: "Email",
+  phone: "Phone",
+  message: "Message",
+  heard: "Heard about us",
+  level: "Highest qualification",
+  where: "Applying from",
+  mode: "Study preference",
+  when: "Preferred start",
+};
+
+export function buildMessage(kind: FormKind, data: Record<string, string>) {
+  const lines = [`${HEADINGS[kind]}`, ""];
+  for (const [key, value] of Object.entries(data)) {
+    if (!value) continue;
+    lines.push(`${LABELS[key] ?? key}: ${value}`);
   }
+  lines.push("", `Sent from ${site.url}`);
+  return lines.join("\n");
+}
 
-  try {
-    const res = await fetch(FORM_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ form: formName, ...data }),
-    });
-    if (!res.ok) return { ok: false, message: "That did not send. Please try again, or email us." };
-    return { ok: true };
-  } catch {
-    return { ok: false, message: "That did not send. Check your connection and try again." };
-  }
+export function openWhatsApp(kind: FormKind, data: Record<string, string>) {
+  const url = whatsappLink(buildMessage(kind, data));
+  window.open(url, "_blank", "noopener,noreferrer");
 }

@@ -1,55 +1,97 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { PageBanner } from "@/components/PageBanner";
 import { Container, Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { site } from "@/lib/site";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import { banners, site, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact us",
   description:
-    "Call, WhatsApp, email or message Corvella Education. Office hours, address and a contact form for university admissions enquiries.",
+    "Message Corvella Education on WhatsApp, call us, or send the form. Office hours, address and quick answers to your questions.",
   alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
-  const details = [
-    { icon: Phone, label: "Phone", value: site.contact.phone, href: site.contact.phoneHref },
-    { icon: MessageCircle, label: "WhatsApp", value: site.contact.whatsapp, href: site.contact.whatsappHref },
-    { icon: Mail, label: "Email", value: site.contact.email, href: site.contact.emailHref },
-  ];
+  const askHref = whatsappLink(
+    `Hello ${site.name}, I have a question about studying at a UK university.`,
+  );
 
   return (
     <>
-      <PageHeader
-        eyebrow="Contact"
-        title="Talk to someone who can answer properly"
-        lede="Call, message or send the form. If you can only talk in the evening or at the weekend, say so and we will work around it."
-      />
+      <PageBanner {...banners.contact} />
 
-      <Section tone="paper">
+      <Section tone="paper" backdrop={{ orbs: true }}>
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          {/* WhatsApp first: it is the quickest way to reach us */}
+          <Reveal>
+            <a
+              href={askHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-lift group flex flex-col gap-5 rounded-3xl border border-mist bg-paper p-7 hover:bg-white sm:flex-row sm:items-center sm:justify-between sm:p-9"
+              style={{ ["--accent" as string]: "#1fa855" }}
+            >
+              <span className="flex items-center gap-5">
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[#1fa855] text-paper">
+                  <WhatsAppIcon size={26} />
+                </span>
+                <span>
+                  <span className="block font-display text-[1.35rem] font-bold text-ink">
+                    Ask us a question
+                  </span>
+                  <span className="mt-1 block text-[0.94rem] text-quiet">
+                    Message us on WhatsApp and we will reply as soon as we can.
+                  </span>
+                </span>
+              </span>
+              <span className="inline-flex h-12 shrink-0 items-center justify-center gap-2.5 rounded-full bg-[#1fa855] px-6 font-semibold text-paper transition-colors group-hover:bg-[#1a8f48]">
+                <WhatsAppIcon size={18} />
+                {site.contact.whatsapp.display}
+              </span>
+            </a>
+          </Reveal>
+
+          <div className="mt-12 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <Reveal>
               <div className="flex flex-col gap-4">
-                {details.map((d) => (
-                  <a
-                    key={d.label}
-                    href={d.href}
-                    className="group flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/35 hover:bg-white"
+                <a
+                  href={site.contact.phoneHref}
+                  className="card-lift group flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6 hover:bg-white"
+                >
+                  <span
+                    aria-hidden
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand transition-colors group-hover:bg-brand group-hover:text-paper"
                   >
-                    <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand transition-colors group-hover:bg-brand group-hover:text-paper">
-                      <d.icon size={19} strokeWidth={1.9} />
+                    <Phone size={19} strokeWidth={1.9} />
+                  </span>
+                  <span>
+                    <span className="label block text-quiet">Phone</span>
+                    <span className="mt-1.5 block font-display text-[1.2rem] font-bold text-ink">
+                      {site.contact.phone}
                     </span>
-                    <span>
-                      <span className="label block text-quiet">{d.label}</span>
-                      <span className="mt-1.5 block font-display text-[1.2rem] font-bold text-ink">
-                        {d.value}
-                      </span>
+                  </span>
+                </a>
+
+                <a
+                  href={site.contact.emailHref}
+                  className="card-lift group flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6 hover:bg-white"
+                >
+                  <span
+                    aria-hidden
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand transition-colors group-hover:bg-brand group-hover:text-paper"
+                  >
+                    <Mail size={19} strokeWidth={1.9} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="label block text-quiet">Email</span>
+                    <span className="mt-1.5 block truncate font-display text-[1.1rem] font-bold text-ink">
+                      {site.contact.email}
                     </span>
-                  </a>
-                ))}
+                  </span>
+                </a>
 
                 <div className="flex items-start gap-4 rounded-2xl border border-mist bg-paper-2 p-6">
                   <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand">
@@ -75,12 +117,10 @@ export default function ContactPage() {
                     <span className="label block text-quiet">Office hours</span>
                     <span className="mt-1.5 block leading-relaxed text-ink">{site.contact.hours}</span>
                     <span className="mt-2 block text-[0.85rem] text-quiet">
-                      WhatsApp messages outside these hours are answered the next working day.
+                      Messages outside these hours are answered the next working day.
                     </span>
                   </span>
                 </div>
-
-
               </div>
             </Reveal>
 
@@ -88,8 +128,8 @@ export default function ContactPage() {
               <div className="rounded-3xl border border-mist bg-paper-2 p-6 sm:p-9">
                 <h2 className="display-md text-ink">Send us a message</h2>
                 <p className="mt-3 text-[0.95rem] leading-relaxed text-quiet">
-                  Tell us what you need. We reply to everything, including the questions people think
-                  are too basic to ask.
+                  Fill this in and we will open WhatsApp with your message ready to send. No question
+                  is too small.
                 </p>
                 <div className="mt-8">
                   <EnquiryForm variant="contact" />

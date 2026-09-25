@@ -1,79 +1,78 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ClipboardCheck, FileText, Wallet, Briefcase, ArrowUpRight } from "lucide-react";
+import { ClipboardCheck, MessagesSquare, Wallet, Briefcase, ArrowUpRight } from "lucide-react";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { ButtonLink } from "@/components/ui/Button";
 import { services, accentHex } from "@/lib/site";
 
-const icons = { ClipboardCheck, FileText, Wallet, Briefcase } as const;
+const icons = { ClipboardCheck, MessagesSquare, Wallet, Briefcase } as const;
 
 export function ServicesGrid({ tone = "tinted" }: { tone?: "paper" | "tinted" }) {
   return (
     <Section id="services" tone={tone} backdrop={{ orbs: true }}>
       <Container>
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <SectionHead
-            eyebrow="What we do"
-            title="Four things, done properly"
-            lede="We are not a course marketplace. We work through the whole thing with you and we tell you when something is not going to work."
-          />
-          <Link
-            href="/services"
-            className="label group inline-flex shrink-0 items-center gap-2 text-brand transition-colors hover:text-brand-600"
-          >
-            All services
-            <ArrowUpRight size={15} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
-        </div>
+        <SectionHead
+          eyebrow="What we do"
+          title="Four things we do properly"
+          lede="From your first question to your first term, all of it free for students."
+        />
 
-        <ul className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-mist bg-mist sm:grid-cols-2">
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2">
           {services.map((service, i) => {
             const Icon = icons[service.icon as keyof typeof icons];
+            const hex = accentHex[service.accent];
             return (
-              <Reveal as="li" key={service.slug} delay={i * 0.06} className="bg-paper">
+              <Reveal as="li" key={service.slug} delay={i * 0.06} className="h-full">
                 <Link
                   href={`/services#${service.slug}`}
-                  className="group relative flex h-full flex-col overflow-hidden p-8 transition-colors duration-300 hover:bg-white lg:p-10"
-                  style={{ ["--accent" as string]: accentHex[service.accent] }}
+                  className="card-lift group relative flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper hover:bg-white"
+                  style={{ ["--accent" as string]: hex }}
                 >
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    style={{
-                      background:
-                        "radial-gradient(80% 70% at 12% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 65%)",
-                    }}
-                  />
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-0 h-full w-[3px] origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100"
-                    style={{ background: "var(--accent)" }}
-                  />
-                  <span className="relative flex items-center justify-between">
+                  <div className="relative aspect-[16/8] overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, 520px"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                    />
                     <span
                       aria-hidden
-                      className="grid h-11 w-11 place-items-center rounded-xl transition-all duration-300 group-hover:scale-105 group-hover:text-paper"
+                      className="absolute inset-0"
                       style={{
-                        background: "color-mix(in srgb, var(--accent) 13%, transparent)",
-                        color: "var(--accent)",
+                        background: `linear-gradient(120deg, ${hex}e6 0%, ${hex}99 45%, transparent 100%)`,
                       }}
-                    >
-                      <Icon size={19} strokeWidth={1.9} />
-                    </span>
-                    <ArrowUpRight
-                      size={19}
-                      aria-hidden
-                      className="text-mist transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
                     />
-                  </span>
-                  <h3 className="relative mt-7 font-display text-[1.4rem] font-bold leading-tight text-ink">
-                    {service.title}
-                  </h3>
-                  <p className="relative mt-3 text-[0.95rem] leading-relaxed text-quiet">{service.short}</p>
+                    <span className="absolute inset-0 flex items-end justify-between p-6">
+                      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-paper/95 text-ink">
+                        <Icon size={21} strokeWidth={1.9} aria-hidden />
+                      </span>
+                      <ArrowUpRight
+                        size={22}
+                        aria-hidden
+                        className="text-paper/80 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
+                    </span>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-7 lg:p-8">
+                    <h3 className="font-display text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-ink">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-[0.95rem] leading-relaxed text-quiet">{service.short}</p>
+                  </div>
                 </Link>
               </Reveal>
             );
           })}
         </ul>
+
+        <div className="mt-12 text-center">
+          <ButtonLink href="/services" size="lg">
+            Explore our services
+          </ButtonLink>
+        </div>
       </Container>
     </Section>
   );

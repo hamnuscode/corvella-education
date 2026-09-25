@@ -16,8 +16,8 @@ npm run start    # serve the production build
 npm run lint     # eslint
 ```
 
-Node 20 or newer. No environment variables are needed to run the site: forms are in demo mode until
-you connect an endpoint (see `NOTES.md`).
+Node 20 or newer. No environment variables and no backend: every form hands off to WhatsApp with
+the details prefilled, so there is no endpoint to run or maintain.
 
 ## Stack
 
@@ -44,10 +44,11 @@ src/
   lib/
     site.ts               all copy, nav, stats, FAQs, partners, posts. Start here.
     postContent.ts        blog article bodies
-    submitForm.ts         the form endpoint (currently a demo handler)
+    submitForm.ts         composes form details into a WhatsApp message
     validate.ts           form validation rules
 public/
-  brand/                  logo files and the FBA UK Ltd logo
+  brand/                  logo files, icons and lockups
+  photos/                 21 CC0 photographs, see CREDITS.md
   partners/               university logos, trimmed and converted to WebP
 ```
 
@@ -65,9 +66,9 @@ perspective container (`ArchDepth`), so you look down the depth of the doorway r
 flat shape. `Tilt3D` gives the same treatment to the panel and the card grids. The site's argument is "the door you thought was closed", so the door is the shape
 everything is built from.
 
-The hero is not a headline plus a button. The hero **is** the first question of the eligibility
-check, answered inline, because finding out you can actually go is the most characteristic moment
-in this business.
+The home page opens with a photographic carousel. The door scene sits further down, where the
+eligibility check stands in the mouth of the extruded arch: four questions, then **Get started**
+opens the enquiry form in a popup and hands it to WhatsApp.
 
 | | |
 | --- | --- |

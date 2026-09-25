@@ -1,121 +1,218 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
-import { Container, Section, SectionHead, Eyebrow } from "@/components/ui/Section";
+import { ArrowRight, Check, GraduationCap } from "lucide-react";
+import { PageBanner, SectionBanner } from "@/components/PageBanner";
+import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Tilt3D } from "@/components/ui/Tilt3D";
+import { ButtonLink } from "@/components/ui/Button";
 import { CTABand } from "@/components/sections/CTABand";
 import { PartnerWall } from "@/components/sections/PartnerWall";
-import { courseLevels, subjectAreas } from "@/lib/site";
+import { accentHex, banners, courseLevels, photo, subjectGroups } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Courses",
   description:
-    "Undergraduate, postgraduate and online or blended courses at UK universities, including foundation year routes for students without A levels.",
+    "Undergraduate, postgraduate and flexible online courses at UK universities, including foundation year routes for students without A levels.",
   alternates: { canonical: "/courses" },
 };
+
+const routes = [
+  {
+    name: "Foundation year",
+    image: photo.campusPath,
+    accent: "brand" as const,
+    body: "An extra year at the front of your degree. You study, get ready, and roll straight into year one at the same university. No second application.",
+  },
+  {
+    name: "Access to Higher Education",
+    image: photo.openBook,
+    accent: "sky" as const,
+    body: "A one year diploma made for adults returning to study. Widely recognised by UK universities and often available part time at a local college.",
+  },
+  {
+    name: "Work experience entry",
+    image: photo.meeting,
+    accent: "ochre" as const,
+    body: "Some courses welcome strong, relevant experience in place of formal qualifications, sometimes with a short interview or piece of written work.",
+  },
+];
 
 export default function CoursesPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Courses"
-        title="Degrees you can actually start from where you are"
-        lede="Three ways in, depending on what you have already done and how much time you have. Tell us your subject and we will tell you which of these fits."
-      />
+      <PageBanner {...banners.courses} />
 
-      <Section tone="paper">
+      <Section tone="paper" backdrop={{ orbs: true }}>
         <Container>
-          <ul className="grid gap-5 lg:grid-cols-3">
-            {courseLevels.map((level, i) => (
-              <Reveal as="li" key={level.slug} delay={i * 0.08} className="h-full">
-                <Tilt3D className="h-full" max={6} radiusClass="rounded-t-[9rem] rounded-b-3xl">
-                <div className="flex h-full flex-col rounded-t-[9rem] rounded-b-3xl border border-mist bg-paper-2 px-8 pb-8 pt-12 transition-colors duration-300 hover:border-brand/35 hover:bg-white">
-                  <p className="label text-center text-brand">{level.label}</p>
-                  <h2 className="mt-5 text-center font-display text-[1.5rem] font-bold leading-tight text-ink">
-                    {level.title}
-                  </h2>
-                  <p className="mt-4 text-[0.95rem] leading-relaxed text-quiet">{level.body}</p>
-                  <ul className="mt-7 flex flex-col gap-2.5 border-t border-mist pt-6">
-                    {level.meta.map((m) => (
-                      <li key={m} className="flex items-start gap-2.5 text-[0.88rem] text-ink">
-                        <Check size={15} className="mt-0.5 shrink-0 text-brand" aria-hidden />
-                        {m}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                </Tilt3D>
-              </Reveal>
-            ))}
+          <SectionHead
+            eyebrow="Choose your level"
+            title="Three ways to study, all of them real degrees"
+            lede="Pick the one that fits your life today. We will help you with the rest."
+          />
+
+          <ul className="mt-14 grid gap-5 lg:grid-cols-3">
+            {courseLevels.map((level, i) => {
+              const hex = accentHex[level.accent];
+              return (
+                <Reveal as="li" key={level.slug} delay={i * 0.08} className="h-full">
+                  <Tilt3D className="h-full" max={5} radiusClass="rounded-3xl">
+                    <div
+                      id={level.slug}
+                      className="card-lift group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-mist bg-paper hover:bg-white"
+                      style={{ ["--accent" as string]: hex }}
+                    >
+                      <div className="relative aspect-[16/9] overflow-hidden">
+                        <Image
+                          src={level.image}
+                          alt=""
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 380px"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                        />
+                        <span
+                          aria-hidden
+                          className="absolute inset-0"
+                          style={{ background: `linear-gradient(140deg, ${hex}cc, ${hex}4d 60%, transparent)` }}
+                        />
+                        <span className="label absolute left-5 top-5 rounded-full bg-paper/95 px-3 py-1.5 text-ink">
+                          {level.label}
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col p-7">
+                        <h2 className="font-display text-[1.3rem] font-bold leading-tight text-ink">
+                          {level.title}
+                        </h2>
+                        <p className="mt-3 text-[0.93rem] leading-relaxed text-quiet">{level.body}</p>
+                        <ul className="mt-6 flex flex-col gap-2.5 border-t border-mist pt-5">
+                          {level.meta.map((m) => (
+                            <li key={m} className="flex items-start gap-2.5 text-[0.86rem] text-ink">
+                              <Check size={15} className="mt-0.5 shrink-0" style={{ color: hex }} aria-hidden />
+                              {m}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </Tilt3D>
+                </Reveal>
+              );
+            })}
           </ul>
         </Container>
       </Section>
 
-      <Section tone="tinted">
+      <Section tone="tinted" backdrop={{ orbs: true }}>
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <Eyebrow>Subject areas</Eyebrow>
-              <h2 className="display-lg mt-4 text-ink">What you can study</h2>
-              <p className="mt-5 text-[0.97rem] leading-relaxed text-quiet">
-                These are the subject areas we most often place students into across the partner
-                network. Availability changes by university and by intake, so treat this as a
-                starting point and ask us about your subject.
-              </p>
-              <Link
-                href="/apply"
-                className="group mt-7 inline-flex items-center gap-2 font-semibold text-brand transition-colors hover:text-brand-600"
-              >
-                Ask about your subject
-                <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-              </Link>
-            </div>
+          <SectionHead
+            eyebrow="Subject areas"
+            title="What would you love to study?"
+            lede="These are the areas we place students into most often. Availability changes by university and intake, so ask us about your subject."
+          />
 
-            <ul className="grid gap-px overflow-hidden rounded-2xl border border-mist bg-mist sm:grid-cols-2">
-              {subjectAreas.map((subject) => (
-                <li
-                  key={subject}
-                  className="bg-paper px-5 py-4 text-[0.95rem] font-medium text-ink transition-colors hover:bg-white"
-                >
-                  {subject}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {subjectGroups.map((group, i) => {
+              const hex = accentHex[group.accent];
+              return (
+                <Reveal as="li" key={group.name} delay={(i % 3) * 0.07} className="h-full">
+                  <div
+                    className="card-lift group flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper hover:bg-white"
+                    style={{ ["--accent" as string]: hex }}
+                  >
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={group.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 640px) 100vw, 360px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                      />
+                      <span
+                        aria-hidden
+                        className="absolute inset-0"
+                        style={{ background: `linear-gradient(150deg, ${hex}d9, ${hex}40 65%, transparent)` }}
+                      />
+                      <h3 className="absolute inset-x-5 bottom-4 flex items-center gap-2 font-display text-[1.15rem] font-bold text-paper">
+                        <GraduationCap size={18} aria-hidden />
+                        {group.name}
+                      </h3>
+                    </div>
+                    <ul className="flex flex-1 flex-col gap-2 p-6">
+                      {group.examples.map((ex) => (
+                        <li key={ex} className="flex items-start gap-2.5 text-[0.9rem] text-quiet">
+                          <span
+                            aria-hidden
+                            className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full"
+                            style={{ background: hex }}
+                          />
+                          {ex}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="px-6 pb-6">
+                      <Link
+                        href="/apply"
+                        className="inline-flex items-center gap-1.5 text-[0.88rem] font-semibold"
+                        style={{ color: hex }}
+                      >
+                        Ask about this subject
+                        <ArrowRight size={15} aria-hidden />
+                      </Link>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </ul>
+
+          <p className="mt-10 rounded-2xl border border-dashed border-mist bg-paper p-6 text-[0.86rem] leading-relaxed text-quiet">
+            This subject list is a temporary placeholder. Send us the course finder document and we
+            will replace it with your real course list, grouped by level and subject.
+          </p>
         </Container>
       </Section>
 
-      <Section tone="paper">
+      <Section tone="paper" backdrop={{ orbs: true }}>
         <Container>
-          <SectionHead
+          <SectionBanner
+            image={photo.lecture}
             eyebrow="Entry routes"
-            title="No A levels is not the end of the conversation"
-            lede="These are the three routes that most often work for people without traditional qualifications."
+            heading="No A levels? There is still a way in."
+            line="These are the three routes that work best for adults returning to study."
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                name: "Foundation year",
-                body: "An extra year attached to the front of a degree. You study on campus or online, get up to first year standard, then continue into the degree without reapplying.",
-              },
-              {
-                name: "Access to Higher Education",
-                body: "A one year diploma designed for adults returning to study. It is widely recognised by UK universities and can be done part time at a local college.",
-              },
-              {
-                name: "Work experience entry",
-                body: "Some courses will accept significant relevant experience in place of formal qualifications, sometimes with a short assessment or an interview.",
-              },
-            ].map((route, i) => (
-              <Reveal key={route.name} delay={i * 0.07}>
-                <div className="h-full rounded-2xl border border-mist bg-paper-2 p-8">
-                  <h3 className="font-display text-[1.25rem] font-bold text-ink">{route.name}</h3>
-                  <p className="mt-3 text-[0.94rem] leading-relaxed text-quiet">{route.body}</p>
-                </div>
-              </Reveal>
-            ))}
+
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {routes.map((route, i) => {
+              const hex = accentHex[route.accent];
+              return (
+                <Reveal key={route.name} delay={i * 0.07} className="h-full">
+                  <div
+                    className="card-lift flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper-2"
+                    style={{ ["--accent" as string]: hex }}
+                  >
+                    <div className="relative aspect-[16/8] overflow-hidden">
+                      <Image src={route.image} alt="" fill sizes="360px" className="object-cover" />
+                      <span
+                        aria-hidden
+                        className="absolute inset-0"
+                        style={{ background: `linear-gradient(140deg, ${hex}cc, transparent)` }}
+                      />
+                    </div>
+                    <div className="p-7">
+                      <h3 className="font-display text-[1.2rem] font-bold text-ink">{route.name}</h3>
+                      <p className="mt-3 text-[0.92rem] leading-relaxed text-quiet">{route.body}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 text-center">
+            <ButtonLink href="/apply" size="lg">
+              Check your eligibility
+            </ButtonLink>
           </div>
         </Container>
       </Section>
@@ -123,7 +220,7 @@ export default function CoursesPage() {
       <PartnerWall />
       <CTABand
         title="Not sure which course fits?"
-        body="Answer four quick questions and we will tell you which level you can enter at and which subjects are open to you."
+        body="Answer four quick questions and we will show you the level you can start at and the subjects open to you."
       />
     </>
   );

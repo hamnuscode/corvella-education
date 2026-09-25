@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { Coins, Network, ShieldCheck, UserRoundCheck } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
+import { PageBanner } from "@/components/PageBanner";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { site } from "@/lib/site";
+import { banners, site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Become a consultant",
+  title: "Refer a student",
   description:
-    "Refer students to Corvella Education. If you already talk to people who want to study, tell us and we will explain how referring works.",
+    "Know someone who would love to study? Introduce them to Corvella Education and we will look after them from there.",
   alternates: { canonical: "/careers" },
 };
 
@@ -39,11 +39,7 @@ const points = [
 export default function CareersPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Careers and referrals"
-        title="Know people who want to study? Introduce them."
-        lede="Corvella works with student referral consultants: people who already talk to adults thinking about university and want a straightforward way to point them somewhere useful."
-      />
+      <PageBanner {...banners.careers} />
 
       <Section tone="paper">
         <Container>
@@ -79,7 +75,7 @@ export default function CareersPage() {
                 we can pay and what we expect. There is no cost to join and no target to hit.
               </p>
               <p className="mt-6 text-[0.95rem] leading-relaxed text-quiet">
-                You can also email{" "}
+                You can also message us on WhatsApp, or email{" "}
                 <a
                   href={`mailto:${site.contact.referralEmail}`}
                   className="font-semibold text-brand underline underline-offset-2"

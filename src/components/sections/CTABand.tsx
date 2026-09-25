@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { CorvellaMark } from "@/components/brand/Logo";
 import { FloatingShapes } from "@/components/ui/FloatingShapes";
-import { site } from "@/lib/site";
+import { site, whatsappLink } from "@/lib/site";
 
 const assurances = [
   { icon: Clock3, text: "About a minute" },
@@ -90,7 +90,9 @@ export function CTABand({
                 />
               </ButtonLink>
               <ButtonLink
-                href={site.contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                href={whatsappLink(`Hello ${site.name}, I would like to check if I am eligible to study.`)}
                 variant="glassGhost"
                 size="lg"
                 className="w-full"

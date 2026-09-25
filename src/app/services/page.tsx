@@ -1,97 +1,94 @@
 import type { Metadata } from "next";
-import { ClipboardCheck, FileText, Wallet, Briefcase, Check } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
+import Image from "next/image";
+import { ClipboardCheck, MessagesSquare, Wallet, Briefcase, Check } from "lucide-react";
+import { PageBanner } from "@/components/PageBanner";
 import { Container, Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { ButtonLink } from "@/components/ui/Button";
 import { CTABand } from "@/components/sections/CTABand";
-import { services } from "@/lib/site";
+import { accentHex, banners, services } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Free eligibility assessment, full admissions support, student finance and funding guidance, and career support for UK university applicants.",
+    "Free eligibility assessment, interview practice, student finance guidance and career support for UK university applicants.",
   alternates: { canonical: "/services" },
 };
 
-const icons = { ClipboardCheck, FileText, Wallet, Briefcase } as const;
+const icons = { ClipboardCheck, MessagesSquare, Wallet, Briefcase } as const;
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Services"
-        title="Everything between deciding and starting"
-        lede="Four services, all free to students. Take one of them or all four. Most people start with the eligibility check and carry on from there."
-      />
+      <PageBanner {...banners.services} />
 
-      <Section tone="paper" className="py-0 sm:py-0 lg:py-0">
+      <Section tone="paper" className="!py-0" backdrop={{ orbs: true }}>
         <Container>
           {services.map((service, i) => {
             const Icon = icons[service.icon as keyof typeof icons];
+            const hex = accentHex[service.accent];
+            const flip = i % 2 === 1;
             return (
               <div
                 key={service.slug}
                 id={service.slug}
                 className="scroll-mt-28 border-b border-mist py-14 last:border-b-0 lg:py-20"
               >
-                <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-                  <Reveal>
-                    <div className="lg:sticky lg:top-28">
+                <div
+                  className={`grid items-center gap-10 lg:gap-16 ${
+                    flip ? "lg:grid-cols-[1.05fr_0.95fr]" : "lg:grid-cols-[0.95fr_1.05fr]"
+                  }`}
+                >
+                  <Reveal className={flip ? "lg:order-2" : ""}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-mist">
+                      <Image
+                        src={service.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 540px"
+                        className="object-cover"
+                      />
                       <span
                         aria-hidden
-                        className="grid h-14 w-14 place-items-center rounded-2xl bg-ink text-paper"
+                        className="absolute inset-0"
+                        style={{ background: `linear-gradient(150deg, ${hex}80, transparent 55%)` }}
+                      />
+                      <span
+                        aria-hidden
+                        className="absolute bottom-5 left-5 grid h-14 w-14 place-items-center rounded-2xl bg-paper text-ink shadow-md"
                       >
                         <Icon size={24} strokeWidth={1.8} />
                       </span>
-                      <p className="label mt-6 text-brand">Service {String(i + 1).padStart(2, "0")}</p>
-                      <h2 className="display-md mt-3 text-ink">{service.title}</h2>
                     </div>
                   </Reveal>
 
-                  <Reveal delay={0.08}>
-                    <p className="lede text-quiet">{service.body}</p>
-                    <ul className="mt-9 grid gap-px overflow-hidden rounded-2xl border border-mist bg-mist sm:grid-cols-2">
+                  <Reveal delay={0.08} className={flip ? "lg:order-1" : ""}>
+                    <p className="label" style={{ color: hex }}>
+                      Service {String(i + 1).padStart(2, "0")}
+                    </p>
+                    <h2 className="display-md mt-3 text-ink">{service.title}</h2>
+                    <p className="lede mt-5 text-quiet">{service.body}</p>
+
+                    <ul className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-mist bg-mist sm:grid-cols-2">
                       {service.points.map((point) => (
-                        <li key={point} className="flex gap-3 bg-paper p-5 text-[0.93rem] leading-snug text-ink">
-                          <Check size={16} className="mt-0.5 shrink-0 text-brand" aria-hidden />
+                        <li
+                          key={point}
+                          className="flex gap-3 bg-paper p-5 text-[0.92rem] leading-snug text-ink"
+                        >
+                          <Check size={16} className="mt-0.5 shrink-0" style={{ color: hex }} aria-hidden />
                           {point}
                         </li>
                       ))}
                     </ul>
+
+                    <ButtonLink href="/apply" size="md" className="mt-8">
+                      Get started
+                    </ButtonLink>
                   </Reveal>
                 </div>
               </div>
             );
           })}
-        </Container>
-      </Section>
-
-      <Section tone="tinted">
-        <Container>
-          <div className="rounded-3xl border border-mist bg-paper p-8 sm:p-12">
-            <h2 className="display-md max-w-2xl text-ink">What we do not do</h2>
-            <ul className="mt-8 grid gap-6 sm:grid-cols-3">
-              {[
-                {
-                  t: "We do not handle your money",
-                  b: "Your tuition loan and maintenance loan go through Student Finance England and your university, never through us.",
-                },
-                {
-                  t: "We do not give financial advice",
-                  b: "We explain how student funding works and help you complete the forms. We are not regulated financial advisers.",
-                },
-                {
-                  t: "We do not decide visas",
-                  b: "For international students, visa decisions sit with the Home Office. We make sure your university paperwork is correct.",
-                },
-              ].map((item) => (
-                <li key={item.t}>
-                  <h3 className="text-[1.02rem] font-bold text-ink">{item.t}</h3>
-                  <p className="mt-2 text-[0.92rem] leading-relaxed text-quiet">{item.b}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
         </Container>
       </Section>
 

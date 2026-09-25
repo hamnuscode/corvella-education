@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { Avatar } from "@/components/ui/Avatar";
+import Image from "next/image";
+import { photo } from "@/lib/site";
 
 const timeline = [
   {
@@ -41,14 +42,19 @@ export function SuccessStory() {
                       "radial-gradient(70% 60% at 50% 100%, color-mix(in srgb, #2b5f92 18%, transparent), transparent 70%)",
                   }}
                 />
-                <div className="absolute inset-0 grid place-items-center">
-                  <Avatar name="Leah Mensah" accent="brand" size={132} />
-                </div>
+                <Image
+                  src={photo.studentsCollab}
+                  alt="A student working with an adviser at a table"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 352px"
+                  className="object-cover"
+                />
+                <span
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent"
+                />
                 <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p
-                    className="label rounded-full border border-mist bg-paper/85 px-3 py-2 text-center text-quiet"
-                    style={{ backdropFilter: "blur(8px)" }}
-                  >
+                  <p className="label rounded-full border border-paper/25 bg-paper/15 px-3 py-2 text-center text-paper backdrop-blur-md">
                     Started September 2024
                   </p>
                 </div>

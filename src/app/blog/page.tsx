@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
+import { PageBanner } from "@/components/PageBanner";
 import { Container, Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTABand } from "@/components/sections/CTABand";
-import { posts, accentHex } from "@/lib/site";
+import { banners, posts, accentHex } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
     "Plain guidance on getting into a UK university as an adult: entry routes, funding, studying around work and changing career.",
   alternates: { canonical: "/blog" },
+  robots: { index: false, follow: false },
 };
 
 const dateFmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -21,11 +22,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Blog"
-        title="Straight answers to the questions people are embarrassed to ask"
-        lede="Short, plain pieces on getting in, paying for it and fitting study around a life you already have."
-      />
+      <PageBanner {...banners.blog} />
 
       <Section tone="paper">
         <Container>

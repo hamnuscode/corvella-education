@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Download } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
+import { PageBanner } from "@/components/PageBanner";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { CorvellaLogo, CorvellaMark } from "@/components/brand/Logo";
+import { photo } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Brand assets",
@@ -37,10 +38,11 @@ const files = [
 export default function BrandPage() {
   return (
     <>
-      <PageHeader
+      <PageBanner
+        image={photo.campusQuad}
         eyebrow="Brand"
-        title="The Corvella mark"
-        lede="A C that is also a raven's head. Corvella comes from the corvids, the family of birds known for being resourceful, so the initial and the bird are the same shape: a thick ring opened on the right, with the upper terminal drawn out into a beak and a single amber eye. The arch it used to sit in now belongs to the layout, where it is built with real depth."
+        heading="The Corvella mark"
+        line="A C that is also a raven's head, with the arch it grew out of now carried by the layout."
       />
 
       <Section tone="paper">

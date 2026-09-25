@@ -1,62 +1,70 @@
-import { GraduationCap, Clock, Compass, CalendarCheck } from "lucide-react";
+import Image from "next/image";
+import { Sparkles, Clock, Compass, CalendarCheck } from "lucide-react";
 import { Container, Section, SectionHead } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Tilt3D } from "@/components/ui/Tilt3D";
+import { ButtonLink } from "@/components/ui/Button";
 import { audience, accentHex } from "@/lib/site";
 
-const icons = { GraduationCap, Clock, Compass, CalendarCheck } as const;
+const icons = { Sparkles, Clock, Compass, CalendarCheck } as const;
 
 export function WhoFor() {
   return (
     <Section id="who-for" tone="paper" backdrop={{ orbs: true, arch: true }}>
       <Container>
         <SectionHead
-          eyebrow="Who this is for"
-          title="Most of the people we help were told university was not for them"
-          lede="If one of these sounds like your situation, there is almost certainly a route in. It may not be the one you were expecting."
+          eyebrow="Who we help"
+          title="Everyone starts somewhere. This could be your somewhere."
+          lede="Many of the students we work with once thought university was out of reach. We love showing them that it is not."
         />
 
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {audience.map((item, i) => {
             const Icon = icons[item.icon as keyof typeof icons];
             return (
-              // One accent across all four: they are four sides of the same question.
               <Reveal as="li" key={item.title} delay={i * 0.07} className="h-full">
-                <Tilt3D className="h-full" radiusClass="rounded-t-[8rem] rounded-b-2xl">
-                <div
-                  className="card-lift group relative h-full overflow-hidden rounded-t-[8rem] rounded-b-2xl border border-mist bg-paper-2 px-6 pb-7 pt-10 hover:bg-white"
-                  style={{ ["--accent" as string]: accentHex.brand }}
-                >
-                  <span
-                    aria-hidden
-                    className="absolute inset-x-0 top-0 h-40 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    style={{
-                      background:
-                        "radial-gradient(70% 100% at 50% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%)",
-                    }}
-                  />
-                  <span
-                    aria-hidden
-                    className="relative mx-auto grid h-12 w-12 place-items-center rounded-full transition-all duration-300 group-hover:scale-105"
-                    style={{
-                      background: "color-mix(in srgb, var(--accent) 13%, transparent)",
-                      color: "var(--accent)",
-                    }}
+                <Tilt3D className="h-full" radiusClass="rounded-3xl">
+                  <div
+                    className="card-lift group relative flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper"
+                    style={{ ["--accent" as string]: accentHex.brand }}
                   >
-                    <Icon size={21} strokeWidth={1.9} />
-                  </span>
-                  <h3 className="relative mt-6 text-center font-display text-[1.12rem] font-bold leading-tight text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="relative mt-3 text-center text-[0.92rem] leading-relaxed text-quiet">
-                    {item.body}
-                  </p>
-                </div>
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                      />
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent"
+                      />
+                      <span
+                        aria-hidden
+                        className="absolute bottom-3 left-3 grid h-10 w-10 place-items-center rounded-xl bg-paper text-brand shadow-sm"
+                      >
+                        <Icon size={19} strokeWidth={1.9} />
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="font-display text-[1.1rem] font-bold leading-tight text-ink">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2.5 text-[0.9rem] leading-relaxed text-quiet">{item.body}</p>
+                    </div>
+                  </div>
                 </Tilt3D>
               </Reveal>
             );
           })}
         </ul>
+
+        <div className="mt-12 text-center">
+          <ButtonLink href="/apply" size="lg">
+            Check your eligibility
+          </ButtonLink>
+        </div>
       </Container>
     </Section>
   );

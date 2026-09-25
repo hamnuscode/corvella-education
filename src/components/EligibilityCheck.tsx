@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
 
@@ -61,19 +60,19 @@ function assess(a: Answers): Outcome {
   const steps: string[] = [];
 
   if (level === "degree") {
-    headline = "Postgraduate routes look open to you";
+    headline = "Postgraduate study looks open to you";
     body =
       "With a degree or a diploma that can be topped up, you can usually apply straight to a master's or a top up year. Some courses will also count your work experience.";
     steps.push("Send us your transcript or certificate so we can confirm the level");
   } else if (level === "level3") {
-    headline = "You can likely apply for year one directly";
+    headline = "You can go straight into year one";
     body =
       "A level 3 qualification such as A levels, a BTEC or an Access to HE diploma is normally enough for direct entry to the first year of a degree. How old it is matters less than people think.";
     steps.push("Check which subjects your qualification opens up");
   } else {
-    headline = "A foundation year is your most likely way in";
+    headline = "A foundation year is a great route in";
     body =
-      "You do not need A levels. A foundation year sits in front of the degree, brings you up to first year standard and then rolls straight into it. Work experience strengthens the application.";
+      "You do not need A levels. A foundation year sits in front of the degree, gets you ready, and then rolls straight into it. Any work experience you have will strengthen your application.";
     steps.push("List your work history, including anything unpaid");
   }
 
@@ -101,13 +100,13 @@ function assess(a: Answers): Outcome {
 
 export function EligibilityCheck({
   variant = "compact",
-  ctaHref = "/apply",
-  ctaLabel = "Continue your application",
+  ctaLabel = "Get started",
+  onGetStarted,
   className = "",
 }: {
   variant?: "compact" | "full";
-  ctaHref?: string;
   ctaLabel?: string;
+  onGetStarted?: (answers: Answers) => void;
   className?: string;
 }) {
   const [step, setStep] = React.useState(0);
@@ -205,8 +204,8 @@ export function EligibilityCheck({
               </ul>
 
               <p className="mt-6 rounded-xl bg-paper-2 px-4 py-3 text-[0.82rem] leading-relaxed text-quiet">
-                This is a guide, not an offer. An adviser will confirm your options properly once we
-                have your details.
+                This is a friendly guide rather than an offer. An adviser will confirm your options
+                properly once we have your details.
               </p>
             </motion.div>
           )}
@@ -228,13 +227,18 @@ export function EligibilityCheck({
         )}
 
         {done ? (
-          <Link
-            href={ctaHref}
-            className="ml-auto inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-brand px-5 text-[0.94rem] font-semibold text-paper transition-colors hover:bg-brand-600"
+          <button
+            type="button"
+            onClick={() => onGetStarted?.(answers)}
+            className="group ml-auto inline-flex h-11 items-center justify-center gap-2 rounded-full bg-brand px-5 text-[0.94rem] font-semibold text-paper transition-colors hover:bg-brand-600"
           >
             {ctaLabel}
-            <ArrowRight size={17} aria-hidden />
-          </Link>
+            <ArrowRight
+              size={17}
+              aria-hidden
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            />
+          </button>
         ) : null}
       </div>
     </div>

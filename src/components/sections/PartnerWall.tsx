@@ -47,8 +47,8 @@ export function PartnerWall({ compact = true }: { compact?: boolean }) {
       <Container>
         <SectionHead
           eyebrow="Our university partners"
-          title="Real UK universities, through the FBA UK Ltd network"
-          lede="Corvella works with the partner universities in the FBA UK Ltd network. Which of them is open to you depends on your subject, your background and the intake you are aiming for."
+          title="Real degrees from real UK universities"
+          lede="We work with established universities right across the UK. Which ones suit you depends on your subject, your background and the intake you are aiming for, and we will help you choose."
           align="center"
         />
       </Container>
@@ -87,8 +87,8 @@ export function PartnerWall({ compact = true }: { compact?: boolean }) {
         <Container className="mt-12">
           <Reveal>
             <p className="mx-auto max-w-xl text-center text-[0.88rem] leading-relaxed text-quiet">
-              Partner lists change as agreements are renewed, so always confirm with us before you
-              make plans around a specific university.
+              Partner lists change as agreements are renewed, so do check with us before you make
+              plans around one particular university. We will always tell you what is available now.
             </p>
           </Reveal>
         </Container>

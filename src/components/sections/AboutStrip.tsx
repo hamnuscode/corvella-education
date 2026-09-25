@@ -1,29 +1,30 @@
 import Image from "next/image";
-import { ArrowUpRight, Compass, Handshake, MessagesSquare, ShieldCheck } from "lucide-react";
+import { Compass, Handshake, HeartHandshake, MessagesSquare } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { site } from "@/lib/site";
+import { ButtonLink } from "@/components/ui/Button";
+import { photo } from "@/lib/site";
 
 const principles = [
   {
-    icon: ShieldCheck,
-    title: "We tell you when the answer is no",
-    body: "If a course is not realistic for you this year, you will hear it from us. A place you cannot keep is worse than no place at all.",
+    icon: HeartHandshake,
+    title: "Free for students, always",
+    body: "Our advice costs you nothing. We are funded by the universities we work with when a student enrols.",
   },
   {
     icon: MessagesSquare,
     title: "One adviser, start to finish",
-    body: "You will not have to explain your situation again every time you call. One person keeps your case.",
+    body: "You get someone who knows your story, so you never have to explain it twice.",
   },
   {
     icon: Compass,
-    title: "The course, then the university",
-    body: "We start from where you want to end up and work backwards. The university comes second.",
+    title: "The course first",
+    body: "We start from where you want to end up and work backwards to the right course for you.",
   },
   {
     icon: Handshake,
-    title: "Free for students, always",
-    body: "Our support costs you nothing. We are funded by the universities in the partner network when a student enrols.",
+    title: "Honest, warm advice",
+    body: "We will tell you what is realistic and how to get there. No pressure, just clear guidance.",
   },
 ];
 
@@ -35,54 +36,40 @@ export function AboutStrip() {
           <div>
             <Eyebrow>Who we are</Eyebrow>
             <h2 className="display-lg mt-4 text-ink">
-              An admissions team for people the system forgot to plan for
+              A friendly admissions team on your side
             </h2>
             <div className="mt-6 flex flex-col gap-4 text-[1.01rem] leading-relaxed text-quiet">
               <p>
-                Higher education in the UK is more open than most people think. The problem is rarely
-                eligibility. It is that nobody explains the routes, the forms are long, and the
-                language is written for eighteen year olds coming out of sixth form.
+                University in the UK is far more open than most people imagine. The routes are there.
+                They are just rarely explained in plain words.
               </p>
               <p>
-                Corvella exists to close that gap. We tell you in plain words what you can apply for,
-                we do the admin alongside you, and we stay with you through student finance and into
-                your first term. We started in 2021 and the rule has not changed: no pressure, no
-                invented promises, and no course we would not recommend to someone we know.
+                That is where we come in. We tell you clearly what you can apply for, do the paperwork
+                alongside you, and stay with you through student finance and into your first term.
               </p>
             </div>
 
-            <Reveal delay={0.1}>
-              <a
-                href={site.parent.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group mt-8 flex flex-wrap items-center gap-5 rounded-2xl border border-mist bg-paper p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/30 hover:bg-white"
-              >
-                <span className="rounded-xl border border-mist bg-white px-4 py-3">
-                  <Image
-                    src="/brand/fba-uk-ltd-ink.webp"
-                    alt="FBA UK Ltd"
-                    width={160}
-                    height={50}
-                    className="h-7 w-auto"
-                  />
-                </span>
-                <span className="flex-1 text-[0.88rem] leading-relaxed text-quiet">
-                  {site.parent.line}
-                </span>
-                <ArrowUpRight
-                  size={18}
-                  aria-hidden
-                  className="text-quiet transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            <Reveal delay={0.08}>
+              <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl border border-mist">
+                <Image
+                  src={photo.campusAutumn}
+                  alt="Students walking through a tree lined university campus"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="object-cover"
                 />
-              </a>
+              </div>
             </Reveal>
+
+            <ButtonLink href="/services" variant="primary" size="md" className="mt-7">
+              See how we help
+            </ButtonLink>
           </div>
 
           <ul className="grid gap-4 sm:grid-cols-2 lg:content-start">
             {principles.map((p, i) => (
               <Reveal as="li" key={p.title} delay={i * 0.06}>
-                <div className="group h-full rounded-2xl border border-mist bg-paper p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:bg-white">
+                <div className="card-lift group h-full rounded-2xl border border-mist bg-paper p-6 hover:bg-white">
                   <span
                     aria-hidden
                     className="grid h-10 w-10 place-items-center rounded-xl bg-brand-100 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-paper"
