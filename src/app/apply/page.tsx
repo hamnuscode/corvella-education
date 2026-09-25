@@ -45,8 +45,8 @@ export default function ApplyPage() {
                 <p className="mt-4 text-[0.97rem] leading-relaxed text-quiet">
                   Four questions about where you are now. No sign up, and nothing is stored.
                 </p>
-                <div className="mt-9">
-                  <EligibilityFlow label="Four questions" halo={false} idPrefix="apply" />
+                <div className="mt-14 sm:mt-16">
+                  <EligibilityFlow label="Four questions" idPrefix="apply" />
                 </div>
               </div>
             </Reveal>

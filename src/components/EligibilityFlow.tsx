@@ -13,11 +13,13 @@ import { ArchPanel } from "@/components/ui/ArchPanel";
  */
 export function EligibilityFlow({
   label = "Free eligibility check",
-  halo = true,
+  frame = true,
+  tone = "light",
   idPrefix = "flow",
 }: {
   label?: string;
-  halo?: boolean;
+  frame?: boolean;
+  tone?: "light" | "dark";
   idPrefix?: string;
 }) {
   const [open, setOpen] = React.useState(false);
@@ -25,7 +27,7 @@ export function EligibilityFlow({
 
   return (
     <>
-      <ArchPanel label={label} halo={halo} idPrefix={idPrefix}>
+      <ArchPanel label={label} frame={frame} tone={tone} idPrefix={idPrefix}>
         <EligibilityCheck
           onGetStarted={(a) => {
             setAnswers(a);

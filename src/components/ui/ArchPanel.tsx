@@ -2,33 +2,75 @@ import * as React from "react";
 import { CorvellaMark } from "@/components/brand/Logo";
 
 /**
- * A panel shaped like the site's doorway. The top is a true semicircle, so the
- * usable content box does not start until roughly half the panel width down.
- * The crown fills that space deliberately rather than letting content spill
- * outside the curve.
+ * The doorway panel.
+ *
+ * Built like an actual door rather than a dome on a box: two outline rings
+ * standing behind it read as an architrave, the panel carries a keystone at the
+ * apex, and light spills down from the top of the arch. The shape is elliptical
+ * so the crown stays shallow, which leaves room for the label without wasting
+ * half the panel on empty curve.
  */
 export function ArchPanel({
   label,
   children,
-  halo = true,
+  frame = true,
+  tone = "light",
   className = "",
   idPrefix = "arch",
 }: {
   label: string;
   children: React.ReactNode;
-  halo?: boolean;
+  /** Outline rings behind the panel. Turn off where something else frames it. */
+  frame?: boolean;
+  tone?: "light" | "dark";
   className?: string;
   idPrefix?: string;
 }) {
+  const dark = tone === "dark";
+  const ring = dark ? "border-paper/15" : "border-mist";
+  const ringFaint = dark ? "border-paper/[0.08]" : "border-mist/60";
+
   return (
     <div className={`relative ${className}`}>
-      {halo ? <div aria-hidden className="arch absolute -inset-4 bg-paper/[0.07] sm:-inset-5" /> : null}
-      <div className="arch relative border border-mist bg-paper px-6 pb-7 pt-9 text-ink shadow-[0_30px_80px_-34px_rgba(23,19,52,0.55)] sm:px-8 sm:pt-14">
-        <div className="flex flex-col items-center gap-3 pb-6 sm:pb-9">
-          <CorvellaMark variant="colour" className="h-8 w-8" idPrefix={idPrefix} />
-          <p className="label text-center text-quiet">{label}</p>
+      {frame ? (
+        <>
+          <div
+            aria-hidden
+            className={`arch-door pointer-events-none absolute -left-7 -right-7 -top-8 bottom-0 border ${ringFaint}`}
+          />
+          <div
+            aria-hidden
+            className={`arch-door pointer-events-none absolute -left-3.5 -right-3.5 -top-4 bottom-0 border ${ring}`}
+          />
+        </>
+      ) : null}
+
+      <div
+        className={`arch-door relative overflow-hidden border text-ink shadow-[0_30px_80px_-34px_rgb(16_24_35/0.45)] ${
+          dark ? "border-paper/20 bg-paper" : "border-mist bg-paper"
+        }`}
+      >
+        {/* light coming through the top of the doorway */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-56"
+          style={{
+            background:
+              "radial-gradient(68% 100% at 50% 0%, rgb(240 169 60 / 0.2), rgb(94 155 214 / 0.1) 45%, transparent 72%)",
+          }}
+        />
+
+        <div className="relative px-6 pb-7 pt-7 sm:px-8 sm:pt-8">
+          <div className="flex flex-col items-center gap-3 pb-7">
+            {/* keystone */}
+            <span aria-hidden className="h-5 w-[3px] rounded-full bg-amber/70" />
+            <span className="grid h-11 w-11 place-items-center rounded-full border border-mist bg-paper shadow-[0_2px_10px_-4px_rgb(16_24_35/0.35)]">
+              <CorvellaMark variant="colour" className="h-6 w-6" idPrefix={idPrefix} />
+            </span>
+            <p className="label text-center text-quiet">{label}</p>
+          </div>
+          {children}
         </div>
-        {children}
       </div>
     </div>
   );

@@ -1,8 +1,19 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
+
+const noop = () => () => {};
+/** False during render on the server, true once hydrated. */
+function useMounted() {
+  return React.useSyncExternalStore(
+    noop,
+    () => true,
+    () => false,
+  );
+}
 
 export function Modal({
   open,
@@ -19,6 +30,7 @@ export function Modal({
 }) {
   const panelRef = React.useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const mounted = useMounted();
 
   React.useEffect(() => {
     if (!open) return;
@@ -60,10 +72,18 @@ export function Modal({
     };
   }, [open, onClose]);
 
-  return (
+  /*
+   * Rendered into <body>. Sections on this site carry `isolate` and
+   * `overflow-clip`, which put a dialog rendered in place inside their stacking
+   * context and inside their clip: it drew underneath the sticky header and had
+   * its top cut off. A portal takes it out of both.
+   */
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {open ? (
-        <div className="fixed inset-0 z-[70] flex items-start justify-center overflow-y-auto p-4 sm:items-center sm:p-6">
+        <div className="fixed inset-0 z-[70] overflow-y-auto">
           <motion.div
             className="fixed inset-0 bg-ink/70 backdrop-blur-sm"
             initial={{ opacity: 0 }}
@@ -72,34 +92,49 @@ export function Modal({
             transition={{ duration: 0.2 }}
             onClick={onClose}
           />
-          <motion.div
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label={title}
-            aria-describedby={description ? "modal-description" : undefined}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 22, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.99 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="relative my-auto w-full max-w-xl rounded-3xl border border-mist bg-paper p-6 shadow-[0_40px_90px_-30px_rgb(16_24_35/0.55)] sm:p-9"
-          >
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close"
-              className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-mist bg-paper text-quiet transition-colors hover:bg-paper-2 hover:text-ink"
+          {/* min-h-full inside the scroller centres the dialog when it fits and
+              lets it scroll from the very top when it does not. */}
+          <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
+            <motion.div
+              ref={panelRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label={title}
+              aria-describedby={description ? "modal-description" : undefined}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 22, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reduce ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.99 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[34rem] rounded-3xl border border-mist bg-paper p-6 shadow-[0_40px_90px_-30px_rgb(16_24_35/0.55)] sm:p-8"
             >
-              <X size={18} aria-hidden />
-            </button>
-            <h2 className="display-md pr-12 text-ink">{title}</h2>
-            {description ? (
-              <p id="modal-description" className="mt-3 text-[0.95rem] leading-relaxed text-quiet">{description}</p>
-            ) : null}
-            <div className="mt-7">{children}</div>
-          </motion.div>
+              <div className="flex items-start justify-between gap-5">
+                <div className="min-w-0">
+                  <h2 className="display-md text-ink">{title}</h2>
+                  {description ? (
+                    <p
+                      id="modal-description"
+                      className="mt-3 text-[0.95rem] leading-relaxed text-quiet"
+                    >
+                      {description}
+                    </p>
+                  ) : null}
+                </div>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  aria-label="Close"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-mist bg-paper text-quiet transition-colors hover:bg-paper-2 hover:text-ink"
+                >
+                  <X size={18} aria-hidden />
+                </button>
+              </div>
+
+              <div className="mt-7">{children}</div>
+            </motion.div>
+          </div>
         </div>
       ) : null}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

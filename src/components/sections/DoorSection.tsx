@@ -148,7 +148,7 @@ export function DoorSection() {
             <div className="relative py-8 sm:py-10">
               <DoorFrame />
               <div className="relative mx-auto w-[86%] sm:w-[84%]">
-                <EligibilityFlow halo={false} idPrefix="door" />
+                <EligibilityFlow frame={false} tone="dark" idPrefix="door" />
               </div>
             </div>
           </div>

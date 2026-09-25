@@ -98,6 +98,13 @@
     border-radius: var(--radius-arch) var(--radius-arch) 0 0;
   }
 
+  /* The doorway used for panels. Elliptical rather than a true semicircle, so
+     the crown stays in proportion at any width instead of becoming a dome half
+     the panel deep, and it scales without the radius clamping. */
+  .arch-door {
+    border-radius: 50% 50% 1.25rem 1.25rem / 23% 23% 2.5% 2.5%;
+  }
+
   /* A shallow arch for photographs: on brand, but it does not eat the picture
      the way a full semicircle does, and it holds the same shape at every width. */
   .arch-photo {
