@@ -39,7 +39,7 @@ export default function BrandPage() {
   return (
     <>
       <PageBanner
-        image={photo.campusQuad}
+        image={photo.brandCampus}
         eyebrow="Brand"
         heading="The Corvella mark"
         line="A C that is also a raven's head, with the arch it grew out of now carried by the layout."

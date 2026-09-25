@@ -81,13 +81,23 @@ It is `noindex` until you are happy with it.
 
 ## 4. Photography
 
-21 photographs in `public/photos/`, **all CC0 (public domain)**: free for commercial use, no
-attribution required, no copyright restrictions. Sources are listed in `public/photos/CREDITS.md`.
+42 photographs in `public/photos/`, **all CC0 (public domain)**: free for commercial use, no
+attribution required, no copyright restrictions. Full list in `public/photos/CREDITS.md`.
 
-One limitation worth knowing: the sources only serve these at around 960 to 1024 pixels wide. I
-upscaled the banner set to 1600 and sharpened it, which holds up well behind the dark scrim, but if
-you have a budget for stock photography the banners would get sharper. Drop replacements into
-`public/photos/` with the same filenames and nothing else needs to change.
+**Every photograph is used in exactly one place.** Nothing repeats anywhere on the site.
+
+**No photograph has anything laid over it.** Banners and the carousel are split layouts: the words
+sit on solid ink, the picture sits beside them untouched. Cards show the photo clean, with the
+accent carried by a thin bar and the icon badge rather than a colour wash.
+
+Six of them are portraits of real people used on the review cards. They are CC0, so this is legal,
+but please note the people in them did not give these testimonials. That is a second reason to swap
+the reviews for real ones before launch (see section 2).
+
+One limitation: the free sources only serve these at around 960 to 1400 pixels wide. That is why
+the layouts render photos at moderate size rather than full bleed, which keeps them crisp. If you
+buy stock photography later, drop replacements into `public/photos/` using the same filenames and
+nothing else needs to change.
 
 ---
 

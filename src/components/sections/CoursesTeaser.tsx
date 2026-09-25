@@ -38,11 +38,9 @@ export function CoursesTeaser() {
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                       />
                       <span
-                        aria-hidden
-                        className="absolute inset-0"
-                        style={{ background: `linear-gradient(140deg, ${hex}cc, ${hex}55 60%, transparent)` }}
-                      />
-                      <span className="label absolute left-5 top-5 rounded-full bg-paper/95 px-3 py-1.5 text-ink">
+                        className="label absolute left-4 top-4 rounded-full px-3 py-1.5 text-paper shadow-sm"
+                        style={{ background: hex }}
+                      >
                         {level.label}
                       </span>
                     </div>
@@ -89,11 +87,6 @@ export function CoursesTeaser() {
                       fill
                       sizes="96px"
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <span
-                      aria-hidden
-                      className="absolute inset-0"
-                      style={{ background: `linear-gradient(160deg, ${hex}66, transparent)` }}
                     />
                   </span>
                   <span className="min-w-0 flex-1 py-1">

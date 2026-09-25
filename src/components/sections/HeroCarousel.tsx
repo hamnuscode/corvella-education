@@ -54,41 +54,21 @@ export function HeroCarousel() {
         touch.current = null;
       }}
     >
-      <div className="relative min-h-[30rem] sm:min-h-[34rem] lg:min-h-[40rem]">
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={index}
-            className="absolute inset-0"
-            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.06 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ opacity: { duration: 0.8 }, scale: { duration: 8, ease: "linear" } }}
-          >
-            <Image
-              src={active.image}
-              alt=""
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              className="object-cover"
-            />
-          </motion.div>
-        </AnimatePresence>
+      <div aria-hidden className="absolute inset-0 hairline-grid opacity-40" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 top-0 h-[30rem] w-[30rem] rounded-full bg-brand/45 blur-[130px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 bottom-0 h-[24rem] w-[24rem] rounded-full bg-steel/25 blur-[130px]"
+      />
 
-        {/* scrim: keeps the type readable over any frame */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(100deg,rgb(16_24_35/0.94)_0%,rgb(16_24_35/0.82)_38%,rgb(16_24_35/0.45)_70%,rgb(16_24_35/0.35)_100%)]"
-        />
-        <div aria-hidden className="absolute inset-0 hairline-grid opacity-40" />
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent"
-        />
-
-        <Container className="relative flex min-h-[30rem] items-center py-16 sm:min-h-[34rem] lg:min-h-[40rem]">
+      <Container className="relative">
+        <div className="grid items-center gap-0 lg:grid-cols-[1fr_1fr] lg:gap-14">
+          {/* words on solid ground */}
           <div
-            className="max-w-2xl"
+            className="py-12 sm:py-14 lg:py-16"
             aria-live="polite"
             aria-atomic="true"
             role="group"
@@ -103,12 +83,12 @@ export function HeroCarousel() {
                 exit={reduce ? { opacity: 0 } : { opacity: 0, x: dir * -28 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <p className="label inline-flex items-center gap-2.5 rounded-full border border-paper/20 bg-paper/[0.08] px-3.5 py-2 text-paper/80 backdrop-blur-sm">
+                <p className="label inline-flex items-center gap-2.5 rounded-full border border-paper/20 bg-paper/[0.08] px-3.5 py-2 text-paper/80">
                   <span aria-hidden className="h-[7px] w-[7px] rounded-full bg-amber" />
                   {active.eyebrow}
                 </p>
                 <h1 className="display-xl mt-6 text-paper">{active.heading}</h1>
-                <p className="lede mt-6 max-w-xl text-paper/80">{active.line}</p>
+                <p className="lede mt-6 max-w-lg text-paper/80">{active.line}</p>
                 <Link
                   href={active.cta.href}
                   className="group mt-9 inline-flex h-[3.4rem] items-center justify-center gap-2 rounded-full bg-amber px-8 font-semibold text-ink transition-transform duration-200 hover:-translate-y-0.5"
@@ -123,11 +103,37 @@ export function HeroCarousel() {
               </motion.div>
             </AnimatePresence>
           </div>
-        </Container>
+
+          {/* the photograph, with nothing laid over it */}
+          <div className="relative -mx-5 pb-10 sm:-mx-7 lg:mx-0 lg:py-10">
+            <div className="arch-photo relative h-64 overflow-hidden sm:h-80 lg:h-[30rem]">
+              <AnimatePresence initial={false}>
+                <motion.div
+                  key={index}
+                  className="absolute inset-0"
+                  initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ opacity: { duration: 0.7 }, scale: { duration: 8, ease: "linear" } }}
+                >
+                  <Image
+                    src={active.image}
+                    alt=""
+                    fill
+                    priority={index === 0}
+                    sizes="(max-width: 1024px) 100vw, 620px"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </Container>
 
         {/* controls */}
-        <Container className="pointer-events-none absolute inset-x-0 bottom-7 z-10">
-          <div className="pointer-events-auto flex items-center justify-between gap-4">
+        <Container className="relative pb-10">
+          <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-2.5" role="tablist" aria-label="Choose a slide">
               {slides.map((s, i) => (
                 <button
@@ -136,7 +142,7 @@ export function HeroCarousel() {
                   aria-selected={i === index}
                   aria-label={s.heading}
                   onClick={() => go(i)}
-                  className="group relative h-1.5 overflow-hidden rounded-full bg-paper/30 transition-all duration-300"
+                  className="relative h-1.5 overflow-hidden rounded-full bg-paper/25 transition-all duration-300"
                   style={{ width: i === index ? "3rem" : "1.25rem" }}
                 >
                   {i === index ? (
@@ -180,7 +186,6 @@ export function HeroCarousel() {
             </div>
           </div>
         </Container>
-      </div>
     </section>
   );
 }

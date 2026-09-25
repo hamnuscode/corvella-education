@@ -50,12 +50,8 @@ export default function ServicesPage() {
                       />
                       <span
                         aria-hidden
-                        className="absolute inset-0"
-                        style={{ background: `linear-gradient(150deg, ${hex}80, transparent 55%)` }}
-                      />
-                      <span
-                        aria-hidden
-                        className="absolute bottom-5 left-5 grid h-14 w-14 place-items-center rounded-2xl bg-paper text-ink shadow-md"
+                        className="absolute bottom-5 left-5 grid h-14 w-14 place-items-center rounded-2xl bg-paper shadow-lg"
+                        style={{ color: hex }}
                       >
                         <Icon size={24} strokeWidth={1.8} />
                       </span>

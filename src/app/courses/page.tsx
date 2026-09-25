@@ -21,19 +21,19 @@ export const metadata: Metadata = {
 const routes = [
   {
     name: "Foundation year",
-    image: photo.campusPath,
+    image: photo.routeFoundation,
     accent: "brand" as const,
     body: "An extra year at the front of your degree. You study, get ready, and roll straight into year one at the same university. No second application.",
   },
   {
     name: "Access to Higher Education",
-    image: photo.openBook,
+    image: photo.routeAccess,
     accent: "sky" as const,
     body: "A one year diploma made for adults returning to study. Widely recognised by UK universities and often available part time at a local college.",
   },
   {
     name: "Work experience entry",
-    image: photo.meeting,
+    image: photo.routeExperience,
     accent: "ochre" as const,
     body: "Some courses welcome strong, relevant experience in place of formal qualifications, sometimes with a short interview or piece of written work.",
   },
@@ -72,11 +72,9 @@ export default function CoursesPage() {
                           className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                         />
                         <span
-                          aria-hidden
-                          className="absolute inset-0"
-                          style={{ background: `linear-gradient(140deg, ${hex}cc, ${hex}4d 60%, transparent)` }}
-                        />
-                        <span className="label absolute left-5 top-5 rounded-full bg-paper/95 px-3 py-1.5 text-ink">
+                          className="label absolute left-4 top-4 rounded-full px-3 py-1.5 text-paper shadow-sm"
+                          style={{ background: hex }}
+                        >
                           {level.label}
                         </span>
                       </div>
@@ -128,17 +126,14 @@ export default function CoursesPage() {
                         sizes="(max-width: 640px) 100vw, 360px"
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                       />
-                      <span
-                        aria-hidden
-                        className="absolute inset-0"
-                        style={{ background: `linear-gradient(150deg, ${hex}d9, ${hex}40 65%, transparent)` }}
-                      />
-                      <h3 className="absolute inset-x-5 bottom-4 flex items-center gap-2 font-display text-[1.15rem] font-bold text-paper">
-                        <GraduationCap size={18} aria-hidden />
-                        {group.name}
-                      </h3>
                     </div>
-                    <ul className="flex flex-1 flex-col gap-2 p-6">
+                    <h3
+                      className="flex items-center gap-2 px-6 pt-6 font-display text-[1.15rem] font-bold text-ink"
+                    >
+                      <GraduationCap size={18} aria-hidden style={{ color: hex }} />
+                      {group.name}
+                    </h3>
+                    <ul className="flex flex-1 flex-col gap-2 px-6 pb-2 pt-4">
                       {group.examples.map((ex) => (
                         <li key={ex} className="flex items-start gap-2.5 text-[0.9rem] text-quiet">
                           <span
@@ -176,7 +171,7 @@ export default function CoursesPage() {
       <Section tone="paper" backdrop={{ orbs: true }}>
         <Container>
           <SectionBanner
-            image={photo.lecture}
+            image={photo.coursesRoutes}
             eyebrow="Entry routes"
             heading="No A levels? There is still a way in."
             line="These are the three routes that work best for adults returning to study."
@@ -193,11 +188,7 @@ export default function CoursesPage() {
                   >
                     <div className="relative aspect-[16/8] overflow-hidden">
                       <Image src={route.image} alt="" fill sizes="360px" className="object-cover" />
-                      <span
-                        aria-hidden
-                        className="absolute inset-0"
-                        style={{ background: `linear-gradient(140deg, ${hex}cc, transparent)` }}
-                      />
+                      <span aria-hidden className="absolute inset-x-0 bottom-0 h-1.5" style={{ background: hex }} />
                     </div>
                     <div className="p-7">
                       <h3 className="font-display text-[1.2rem] font-bold text-ink">{route.name}</h3>

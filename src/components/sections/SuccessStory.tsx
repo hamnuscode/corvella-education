@@ -34,32 +34,19 @@ export function SuccessStory() {
               {/* The doorway again: portrait sits inside the arch. */}
               <div className="arch relative aspect-[3/4] overflow-hidden border border-mist bg-gradient-to-b from-brand-100 via-sky-100 to-paper">
                 <div className="absolute inset-0 hairline-grid-light" />
-                <div
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-0 h-2/3"
-                  style={{
-                    background:
-                      "radial-gradient(70% 60% at 50% 100%, color-mix(in srgb, #2b5f92 18%, transparent), transparent 70%)",
-                  }}
-                />
+
                 <Image
-                  src={photo.studentsCollab}
+                  src={photo.storyLeah}
                   alt="A student working with an adviser at a table"
                   fill
                   sizes="(max-width: 1024px) 100vw, 352px"
                   className="object-cover"
                 />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent"
-                />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="label rounded-full border border-paper/25 bg-paper/15 px-3 py-2 text-center text-paper backdrop-blur-md">
-                    Started September 2024
-                  </p>
-                </div>
+
+
               </div>
               <div className="mt-5 text-center">
+                <p className="label mb-3 text-quiet">Started September 2024</p>
                 <p className="font-display text-[1.15rem] font-bold text-ink">Leah Mensah</p>
                 <p className="mt-1 text-[0.88rem] text-quiet">
                   BSc Business Management with Foundation Year

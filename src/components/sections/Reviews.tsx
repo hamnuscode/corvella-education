@@ -4,14 +4,15 @@ import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/ui/Section";
-import { Avatar } from "@/components/ui/Avatar";
+import Image from "next/image";
 import { Tilt3D } from "@/components/ui/Tilt3D";
 import { accentHex, reviews } from "@/lib/site";
 
 /**
- * Reviews as a staggered card wall rather than one quote at a time. Everything
- * is on screen at once, which reads as a wall of goodwill instead of a slideshow
- * you have to wait for. On small screens it becomes a swipeable rail.
+ * Reviews as a card wall rather than one quote at a time, so the whole thing is
+ * readable at a glance. Cards stretch to a shared row height and the quote flexes,
+ * which keeps every footer on the same line. On small screens it becomes a
+ * swipeable rail.
  */
 export function Reviews() {
   const reduce = useReducedMotion();
@@ -30,15 +31,15 @@ export function Reviews() {
       </Container>
 
       {/* mobile: swipeable rail */}
-      <div className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 no-scrollbar sm:px-7 lg:hidden">
+      <div className="mt-12 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-5 pb-4 no-scrollbar sm:px-7 lg:hidden">
         {reviews.map((r) => (
           <ReviewCard key={r.name} review={r} className="w-[19rem] shrink-0 snap-center" />
         ))}
       </div>
 
-      {/* desktop: staggered wall */}
+      {/* desktop: aligned wall */}
       <Container className="mt-12 hidden lg:block">
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-3 items-stretch gap-5">
           {reviews.map((r, i) => (
             <motion.div
               key={r.name}
@@ -46,7 +47,7 @@ export function Reviews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.55, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className={i % 3 === 1 ? "lg:mt-10" : ""}
+              className="h-full"
             >
               <Tilt3D max={5} radiusClass="rounded-3xl" className="h-full">
                 <ReviewCard review={r} />
@@ -103,7 +104,15 @@ function ReviewCard({
       </blockquote>
 
       <figcaption className="mt-7 flex items-center gap-3.5 border-t border-mist pt-5">
-        <Avatar name={review.name} accent={review.accent} size={46} />
+        <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
+          <Image
+            src={review.photo}
+            alt={`${review.name}, student`}
+            fill
+            sizes="48px"
+            className="object-cover"
+          />
+        </span>
         <span className="min-w-0">
           <span className="block font-display text-[0.98rem] font-bold text-ink">{review.name}</span>
           <span className="block truncate text-[0.82rem] text-quiet">{review.course}</span>

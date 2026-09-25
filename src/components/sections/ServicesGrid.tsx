@@ -29,35 +29,32 @@ export function ServicesGrid({ tone = "tinted" }: { tone?: "paper" | "tinted" })
                   className="card-lift group relative flex h-full flex-col overflow-hidden rounded-3xl border border-mist bg-paper hover:bg-white"
                   style={{ ["--accent" as string]: hex }}
                 >
+                  <span aria-hidden className="h-1.5 w-full" style={{ background: hex }} />
                   <div className="relative aspect-[16/8] overflow-hidden">
                     <Image
                       src={service.image}
                       alt=""
                       fill
-                      sizes="(max-width: 640px) 100vw, 520px"
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                      sizes="(max-width: 640px) 100vw, 560px"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
-                    <span
-                      aria-hidden
-                      className="absolute inset-0"
-                      style={{
-                        background: `linear-gradient(120deg, ${hex}e6 0%, ${hex}99 45%, transparent 100%)`,
-                      }}
-                    />
-                    <span className="absolute inset-0 flex items-end justify-between p-6">
-                      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-paper/95 text-ink">
-                        <Icon size={21} strokeWidth={1.9} aria-hidden />
-                      </span>
-                      <ArrowUpRight
-                        size={22}
-                        aria-hidden
-                        className="text-paper/80 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                      />
-                    </span>
                   </div>
 
                   <div className="flex flex-1 flex-col p-7 lg:p-8">
-                    <h3 className="font-display text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-ink">
+                    <span className="flex items-center justify-between">
+                      <span
+                        className="grid h-12 w-12 place-items-center rounded-2xl"
+                        style={{ background: `${hex}1f`, color: hex }}
+                      >
+                        <Icon size={21} strokeWidth={1.9} aria-hidden />
+                      </span>
+                      <ArrowUpRight
+                        size={20}
+                        aria-hidden
+                        className="text-quiet transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
+                    </span>
+                    <h3 className="mt-5 font-display text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-ink">
                       {service.title}
                     </h3>
                     <p className="mt-3 text-[0.95rem] leading-relaxed text-quiet">{service.short}</p>

@@ -52,7 +52,7 @@ export function AboutStrip() {
             <Reveal delay={0.08}>
               <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl border border-mist">
                 <Image
-                  src={photo.campusAutumn}
+                  src={photo.aboutCampus}
                   alt="Students walking through a tree lined university campus"
                   fill
                   sizes="(max-width: 1024px) 100vw, 560px"

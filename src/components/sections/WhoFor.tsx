@@ -33,22 +33,18 @@ export function WhoFor() {
                         src={item.image}
                         alt=""
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                       />
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
                       <span
                         aria-hidden
-                        className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent"
-                      />
-                      <span
-                        aria-hidden
-                        className="absolute bottom-3 left-3 grid h-10 w-10 place-items-center rounded-xl bg-paper text-brand shadow-sm"
+                        className="grid h-10 w-10 place-items-center rounded-xl bg-brand-100 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-paper"
                       >
                         <Icon size={19} strokeWidth={1.9} />
                       </span>
-                    </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <h3 className="font-display text-[1.1rem] font-bold leading-tight text-ink">
+                      <h3 className="mt-4 font-display text-[1.1rem] font-bold leading-tight text-ink">
                         {item.title}
                       </h3>
                       <p className="mt-2.5 text-[0.9rem] leading-relaxed text-quiet">{item.body}</p>
